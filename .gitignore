@@ -1,0 +1,125 @@
+# Flutter & Dart related files
+.dart_tool/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+build/
+pubspec.lock
+
+# IntelliJ / VSCode IDE files
+.idea/
+.vscode/
+*.iml
+
+# macOS
+.DS_Store
+
+# Flutter project generated files
+.flutter/
+.melody/
+.melos/
+.metadata
+
+# Android
+android/.gradle/
+android/.idea/
+android/local.properties
+android/app/build/
+android/app/google-services.json  # Firebase configuration file (do not commit)
+android/key.properties
+android/app/src/debug/google-services.json
+android/app/src/profile/google-services.json
+android/app/src/release/google-services.json
+
+# iOS
+ios/Flutter/.generated
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/App.framework
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_export_environment.sh
+ios/Pods/
+ios/Podfile.lock
+ios/Runner.xcworkspace/
+ios/Runner/GoogleService-Info.plist  # Firebase configuration file (do not commit)
+ios/Flutter/App.xcworkspace/
+
+# Web
+web/asset-manifest.json
+web/favicon.png
+web/icons/
+web/manifest.json
+web/service-worker.js
+web/flutter_service_worker.js
+web/canvaskit/
+
+# Firebase and other backend services
+firebase.json
+firestore.indexes.json
+firestore.rules
+functions/node_modules/
+functions/.env
+functions/.cache/
+functions/lib/
+functions/logs/
+functions/package-lock.json
+
+# Windows
+windows/flutter/generated_plugin_registrant.cc
+windows/flutter/ephemeral/
+windows/Runner/GeneratedPluginRegistrant.h
+windows/Runner/GeneratedPluginRegistrant.cpp
+
+# Linux
+linux/flutter/ephemeral/
+linux/flutter/generated_plugin_registrant.cc
+
+# macOS
+macos/Flutter/ephemeral/
+macos/Flutter/GeneratedPluginRegistrant.swift
+macos/Flutter/ephemeral/Flutter-Generated.xcconfig
+
+# Miscellaneous
+*.log
+*.tmp
+*.swp
+*.lock
+*.bak
+*.orig
+*.pid
+*.pid.lock
+*.hprof
+*.key
+*.jks
+*.pem
+*.crt
+*.cer
+*.p12
+*.pfx
+
+# Generated files
+coverage/
+coverage.lcov
+.idea_modules/
+
+# Google Cloud and Firebase specific files
+google-services.json  # Firebase Android Configuration
+GoogleService-Info.plist  # Firebase iOS Configuration
+.env
+
+# Miscellaneous Environment Variables and System files
+*.env
+
+
+# Asset Bundles
+*.xcworkspace/
+*.bundle/
+*.sym/
+
+# Ignore any auto-generated secrets
+secrets/
+.ssh/
+
+# Other
+.meterian/
+out/
