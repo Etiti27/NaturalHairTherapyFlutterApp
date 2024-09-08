@@ -1,11 +1,13 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:natural_hair_therapist/Constants.dart';
 import 'package:natural_hair_therapist/Methods/NaturalHairQuote.dart';
 
-import '../Constants.dart';
 import '../Widgets/AppBarWidget.dart';
 import '../Widgets/BottomWidget.dart';
+import '../Widgets/ButtonWidget.dart';
+import 'Login.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -41,7 +43,7 @@ class _HomeState extends State<Home> {
         appBar: AppBarWidget(
           logo: const Image(
             image: AssetImage("assets/images/logo.png"),
-            color: Colors.green,
+            color: kPrimaryColor,
           ),
           title: "Natural Hair Therapist",
         ),
@@ -52,7 +54,7 @@ class _HomeState extends State<Home> {
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage("assets/images/logo.png"),
-                fit: BoxFit.contain,
+                fit: BoxFit.fill,
                 opacity: 0.3,
               ),
             ),
@@ -79,11 +81,13 @@ class _HomeState extends State<Home> {
                     child: Row(
                       children: [
                         Expanded(
-                            child: FilledButton(
-                                style: FilledButton.styleFrom(
-                                    backgroundColor: kPrimaryColor),
-                                onPressed: () {},
-                                child: const Text("Get Started!"))),
+                          child: FilledButtonWID(
+                            text: Text("Get Started"),
+                            onpressed: () {
+                              Navigator.pushNamed(context, Login.id);
+                            },
+                          ),
+                        )
                       ],
                     ),
                   )
@@ -97,16 +101,3 @@ class _HomeState extends State<Home> {
     );
   }
 }
-
-// backgroundColor: const Color(0xff8ba870),
-
-// Container(
-//   decoration: const BoxDecoration(
-//     image: DecorationImage(
-//       fit: BoxFit.cover,
-//       opacity: 0.2,
-//       image: AssetImage("assets/images/logo.png"),
-//     ),
-//   ),
-//   child: Text("data"),
-// ),

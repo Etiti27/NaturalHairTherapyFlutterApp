@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
-  AppBarWidget({required this.logo, required this.title});
+  AppBarWidget({super.key, required this.logo, required this.title});
   Widget logo;
   String title;
   @override
@@ -9,7 +9,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: const Color(0xff8ba870),
       leading: Container(
-          decoration: BoxDecoration(color: Colors.white), child: logo),
+          decoration: const BoxDecoration(color: Colors.white), child: logo),
       title: Text(
         title,
         style: const TextStyle(
