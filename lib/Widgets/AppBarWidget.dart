@@ -41,7 +41,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
           ],
         ),
       ],
-      elevation: 20.0,
+      elevation: 1.0,
     );
   }
 

@@ -1,13 +1,41 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:natural_hair_therapist/Methods/NaturalHairQuote.dart';
 
+import '../Constants.dart';
 import '../Widgets/AppBarWidget.dart';
+import '../Widgets/BottomWidget.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
   static const id = "home";
 
   @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  void initState() {
+    super.initState();
+    displayingQuote = getQuote();
+  }
+
+  late String displayingQuote;
+  // Generates a random integer between 50 and 99
+  String getQuote() {
+    Quote quote = Quote();
+    int quoteLength = quote.quoteLength();
+    print(quoteLength);
+    Random random = Random();
+    int randomNumber = random.nextInt(quoteLength);
+    return quote.getQuote(randomNumber);
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print(displayingQuote);
     return SafeArea(
       child: Scaffold(
         appBar: AppBarWidget(
@@ -15,31 +43,70 @@ class Home extends StatelessWidget {
             image: AssetImage("assets/images/logo.png"),
             color: Colors.green,
           ),
-          title: "Natural Hair Therapy",
+          title: "Natural Hair Therapist",
         ),
-        body: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              opacity: 0.2,
-              image: AssetImage("assets/images/logo.png"),
-            ),
-          ),
-        ),
-        bottomNavigationBar: SafeArea(
+        body: Padding(
+          padding: const EdgeInsets.all(15.0),
           child: Container(
-            padding: EdgeInsets.all(20.0),
-            // height: 20.0,
-            color: const Color(0xff8ba870),
-            child: const Text(
-              "Data",
-              style: TextStyle(
-                  // backgroundColor: Color(0xff8ba870),
+            height: double.infinity,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/logo.png"),
+                fit: BoxFit.contain,
+                opacity: 0.3,
+              ),
+            ),
+            child: Center(
+              child: Column(
+                children: [
+                  Expanded(
+                    child: Center(
+                        child: Card(
+                      child: Text(
+                        displayingQuote,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontFamily: "Roboto-bold",
+                          fontSize: 40,
+                        ),
+                      ),
+                    )),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        bottom: 50.0, left: 40.0, right: 40.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                            child: FilledButton(
+                                style: FilledButton.styleFrom(
+                                    backgroundColor: kPrimaryColor),
+                                onPressed: () {},
+                                child: const Text("Get Started!"))),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),
+        bottomNavigationBar: BottomWidget(),
       ),
     );
   }
 }
+
 // backgroundColor: const Color(0xff8ba870),
+
+// Container(
+//   decoration: const BoxDecoration(
+//     image: DecorationImage(
+//       fit: BoxFit.cover,
+//       opacity: 0.2,
+//       image: AssetImage("assets/images/logo.png"),
+//     ),
+//   ),
+//   child: Text("data"),
+// ),
