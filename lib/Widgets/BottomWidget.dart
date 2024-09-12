@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:natural_hair_therapist/Constants.dart';
 
 class BottomWidget extends StatelessWidget {
   DateTime now = DateTime.now();
@@ -10,7 +11,7 @@ class BottomWidget extends StatelessWidget {
     int year = now.year;
     // print('Current date and time: $year');
     return Container(
-      color: const Color(0xff8ba870),
+      color: kPrimaryColor,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Text(

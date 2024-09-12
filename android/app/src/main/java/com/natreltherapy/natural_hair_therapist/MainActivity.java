@@ -1,4 +1,4 @@
-package com.natreltherapy.natural_hair_therapist;
+package com.natreltherapy;
 
 import io.flutter.embedding.android.FlutterActivity;
 

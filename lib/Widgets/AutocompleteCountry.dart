@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:natural_hair_therapist/Methods/Country.dart';
+import 'package:natural_hair_therapist/Methods/ProviderPackage.dart';
+import 'package:provider/provider.dart';
 
 import '../Constants.dart';
 import '../Methods/InputDecoration.dart';
@@ -10,228 +13,50 @@ class AutoCompleteCountries extends StatefulWidget {
 
 class _AutoCompleteCountriesState extends State<AutoCompleteCountries> {
   @override
-
-  // late List listCountries;
-  // void getCountryList() {
-  //   CountryAutocomplete countryList = CountryAutocomplete();
-  //   listCountries = countryList.getCountry();
-  // }
-
-  final List<String> _countries = <String>[
-    'Afghanistan',
-    'Albania',
-    'Algeria',
-    'Andorra',
-    'Angola',
-    'Antigua and Barbuda',
-    'Argentina',
-    'Armenia',
-    'Australia',
-    'Austria',
-    'Azerbaijan',
-    'Bahamas',
-    'Bahrain',
-    'Bangladesh',
-    'Barbados',
-    'Belarus',
-    'Belgium',
-    'Belize',
-    'Benin',
-    'Bhutan',
-    'Bolivia',
-    'Bosnia and Herzegovina',
-    'Botswana',
-    'Brazil',
-    'Brunei',
-    'Bulgaria',
-    'Burkina Faso',
-    'Burundi',
-    'Cabo Verde',
-    'Cambodia',
-    'Cameroon',
-    'Canada',
-    'Central African Republic',
-    'Chad',
-    'Chile',
-    'China',
-    'Colombia',
-    'Comoros',
-    'Congo, Democratic Republic of the',
-    'Congo, Republic of the',
-    'Costa Rica',
-    'Croatia',
-    'Cuba',
-    'Cyprus',
-    'Czech Republic (Czechia)',
-    'Denmark',
-    'Djibouti',
-    'Dominica',
-    'Dominican Republic',
-    'East Timor (Timor-Leste)',
-    'Ecuador',
-    'Egypt',
-    'El Salvador',
-    'Equatorial Guinea',
-    'Eritrea',
-    'Estonia',
-    'Eswatini (Swaziland)',
-    'Ethiopia',
-    'Fiji',
-    'Finland',
-    'France',
-    'Gabon',
-    'Gambia',
-    'Georgia',
-    'Germany',
-    'Ghana',
-    'Greece',
-    'Grenada',
-    'Guatemala',
-    'Guinea',
-    'Guinea-Bissau',
-    'Guyana',
-    'Haiti',
-    'Honduras',
-    'Hungary',
-    'Iceland',
-    'India',
-    'Indonesia',
-    'Iran',
-    'Iraq',
-    'Ireland',
-    'Israel',
-    'Italy',
-    'Ivory Coast (Côte d\'Ivoire)',
-    'Jamaica',
-    'Japan',
-    'Jordan',
-    'Kazakhstan',
-    'Kenya',
-    'Kiribati',
-    'Korea, North (North Korea)',
-    'Korea, South (South Korea)',
-    'Kosovo',
-    'Kuwait',
-    'Kyrgyzstan',
-    'Laos',
-    'Latvia',
-    'Lebanon',
-    'Lesotho',
-    'Liberia',
-    'Libya',
-    'Liechtenstein',
-    'Lithuania',
-    'Luxembourg',
-    'Madagascar',
-    'Malawi',
-    'Malaysia',
-    'Maldives',
-    'Mali',
-    'Malta',
-    'Marshall Islands',
-    'Mauritania',
-    'Mauritius',
-    'Mexico',
-    'Micronesia',
-    'Moldova',
-    'Monaco',
-    'Mongolia',
-    'Montenegro',
-    'Morocco',
-    'Mozambique',
-    'Myanmar (Burma)',
-    'Namibia',
-    'Nauru',
-    'Nepal',
-    'Netherlands',
-    'New Zealand',
-    'Nicaragua',
-    'Niger',
-    'Nigeria',
-    'North Macedonia',
-    'Norway',
-    'Oman',
-    'Pakistan',
-    'Palau',
-    'Palestine',
-    'Panama',
-    'Papua New Guinea',
-    'Paraguay',
-    'Peru',
-    'Philippines',
-    'Poland',
-    'Portugal',
-    'Qatar',
-    'Romania',
-    'Russia',
-    'Rwanda',
-    'Saint Kitts and Nevis',
-    'Saint Lucia',
-    'Saint Vincent and the Grenadines',
-    'Samoa',
-    'San Marino',
-    'Sao Tome and Principe',
-    'Saudi Arabia',
-    'Senegal',
-    'Serbia',
-    'Seychelles',
-    'Sierra Leone',
-    'Singapore',
-    'Slovakia',
-    'Slovenia',
-    'Solomon Islands',
-    'Somalia',
-    'South Africa',
-    'South Sudan',
-    'Spain',
-    'Sri Lanka',
-    'Sudan',
-    'Suriname',
-    'Sweden',
-    'Switzerland',
-    'Syria',
-    'Taiwan',
-    'Tajikistan',
-    'Tanzania',
-    'Thailand',
-    'Togo',
-    'Tonga',
-    'Trinidad and Tobago',
-    'Tunisia',
-    'Turkey',
-    'Turkmenistan',
-    'Tuvalu',
-    'Uganda',
-    'Ukraine',
-    'United Arab Emirates',
-    'United Kingdom',
-    'United States',
-    'Uruguay',
-    'Uzbekistan',
-    'Vanuatu',
-    'Vatican City (Holy See)',
-    'Venezuela',
-    'Vietnam',
-    'Yemen',
-    'Zambia',
-    'Zimbabwe',
-  ];
+  Countries countries = Countries();
 
   @override
   Widget build(BuildContext context) {
+    List<String> _countries = countries.getCountries();
+    return auto(countries: _countries);
+  }
+}
+
+class auto extends StatefulWidget {
+  auto({
+    super.key,
+    required List<String> countries,
+  }) : _countries = countries;
+
+  final List<String> _countries;
+  void clear() {}
+
+  @override
+  State<auto> createState() => _autoState();
+}
+
+class _autoState extends State<auto> {
+  @override
+  Widget build(BuildContext context) {
+    String message = "";
     return Autocomplete<String>(
       optionsBuilder: (TextEditingValue textEditingValue) {
         if (textEditingValue.text.isEmpty) {
           return const Iterable<String>.empty();
         }
-        return _countries.where((String country) {
+        return widget._countries.where((String country) {
           return country
               .toLowerCase()
               .contains(textEditingValue.text.toLowerCase());
         });
       },
       onSelected: (String selection) {
+        Provider.of<ProviderClass>(context, listen: false)
+            .setCountry(selection);
+
+        // selectedCountry=selection;
         debugPrint('You just selected $selection');
+        print(selection);
       },
       fieldViewBuilder: (BuildContext context,
           TextEditingController textEditingController,
@@ -240,6 +65,9 @@ class _AutoCompleteCountriesState extends State<AutoCompleteCountries> {
         return TextField(
           controller: textEditingController,
           focusNode: focusNode,
+          onChanged: (String newMess) {
+            print("i am $message");
+          },
           decoration: InputDecor(
             "Country",
             "country:",
@@ -251,6 +79,5 @@ class _AutoCompleteCountriesState extends State<AutoCompleteCountries> {
         );
       },
     );
-    ;
   }
 }

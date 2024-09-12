@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:natural_hair_therapist/Methods/ProviderPackage.dart';
+import 'package:provider/provider.dart';
 
 import '../Constants.dart';
 
@@ -32,9 +34,12 @@ class _DateOfBirthScreenState extends State<DateOfBirthScreen> {
 
     if (pickedDate != null) {
       setState(() {
-        _dateController.text =
-            _formatDate(pickedDate); // Format and set the selected date
+        _dateController.text = _formatDate(pickedDate);
+        // Format and set the selected date
       });
+
+      Provider.of<ProviderClass>(context, listen: false)
+          .setDateOfBirth(_dateController.text);
     }
   }
 
@@ -45,9 +50,9 @@ class _DateOfBirthScreenState extends State<DateOfBirthScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(_dateController.text);
     return TextField(
       controller: _dateController,
+
       decoration: const InputDecoration(
         focusColor: kPrimaryColor,
         labelText: 'Date of Birth',

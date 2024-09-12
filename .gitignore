@@ -63,6 +63,7 @@ functions/.cache/
 functions/lib/
 functions/logs/
 functions/package-lock.json
+firebase_options.dart
 
 # Windows
 windows/flutter/generated_plugin_registrant.cc
@@ -103,8 +104,8 @@ coverage.lcov
 .idea_modules/
 
 # Google Cloud and Firebase specific files
-google-services.json  # Firebase Android Configuration
-GoogleService-Info.plist  # Firebase iOS Configuration
+google-services.json
+GoogleService-Info.plist
 .env
 
 # Miscellaneous Environment Variables and System files
@@ -123,3 +124,4 @@ secrets/
 # Other
 .meterian/
 out/
+GoogleService-info.plist

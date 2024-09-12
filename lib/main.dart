@@ -1,11 +1,28 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:natural_hair_therapist/Screens/Question.dart';
 import 'package:natural_hair_therapist/Screens/Registration.dart';
+import 'package:provider/provider.dart';
 
+import 'Methods/ProviderPackage.dart';
 import 'Screens/Home.dart';
 import 'Screens/Login.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  await dotenv.load(fileName: ".env");
+  WidgetsFlutterBinding.ensureInitialized(); // Ensures binding is initialized
+  await Firebase.initializeApp();
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => ProviderClass(),
+        )
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -14,11 +31,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: Login.id,
+      initialRoute: Home.id,
       routes: {
         Home.id: (context) => const Home(),
         Login.id: (context) => const Login(),
-        Registration.id: (context) => const Registration()
+        Registration.id: (context) => const Registration(),
+        QAScreen.id: (context) => const QAScreen()
       },
     );
   }

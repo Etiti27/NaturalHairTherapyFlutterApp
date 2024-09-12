@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:natural_hair_therapist/Methods/Firebase.dart';
+import 'package:natural_hair_therapist/Methods/ProviderPackage.dart';
+import 'package:natural_hair_therapist/Screens/Question.dart';
 import 'package:natural_hair_therapist/Widgets/AutocompleteCountry.dart';
+import 'package:provider/provider.dart';
 
 import '../Constants.dart';
 import '../Methods/DateOfBirth.dart';
-import '../Methods/InputDecoration.dart';
+import '../Methods/TextFieldMethod.dart';
 import '../Widgets/AppBarWidget.dart';
 import '../Widgets/BottomWidget.dart';
 import '../Widgets/ButtonWidget.dart';
@@ -18,13 +22,29 @@ class Registration extends StatefulWidget {
 }
 
 class _RegistrationState extends State<Registration> {
+  @override
   late String email;
   late String name;
   late String password;
   late String country;
   late String birthDate;
+  late String errorMessage;
+  bool isError = false;
+  bool isLoading = false;
+
+  FirebaseMethods firebaseMethods = FirebaseMethods();
+  TextEditingController nameTextController = TextEditingController();
+  TextEditingController emailTextController = TextEditingController();
+  TextEditingController passwordTextController = TextEditingController();
+  TextEditingController countryTextController = TextEditingController();
+  TextEditingController dateOfBirthTextController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    final selection = Provider.of<ProviderClass>(context);
+    birthDate = selection.getDateOfBirth();
+    country = selection.getCountry();
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBarWidget(
@@ -36,147 +56,201 @@ class _RegistrationState extends State<Registration> {
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Container(
-            height: double.infinity,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/images/logo.png"),
-                fit: BoxFit.fill,
-                opacity: 0.3,
-              ),
-            ),
-            child: Column(
-              children: [
-                const Expanded(
-                  flex: 1,
-                  child: Hero(
-                    tag: "logo",
-                    child: Image(
-                      width: 250,
+          child: isLoading
+              ? const Center(
+                  child: CircularProgressIndicator(
+                  color: kPrimaryColor,
+                ))
+              : Container(
+                  height: double.infinity,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
                       image: AssetImage("assets/images/logo.png"),
+                      fit: BoxFit.fill,
+                      opacity: 0.3,
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Expanded(
-                  flex: 4,
                   child: Column(
                     children: [
-                      //Name
-                      TextField(
-                        onChanged: (newName) {
-                          setState(() {
-                            name = newName;
-                          });
-                        },
-                        autofocus: false,
-                        keyboardType: TextInputType.text,
-                        decoration: InputDecor(
-                          "Enter Your Name",
-                          "Name:",
-                          const Icon(
-                            Icons.person,
-                            color: kPrimaryColor,
+                      const Expanded(
+                        flex: 1,
+                        child: Hero(
+                          tag: "logo",
+                          child: Image(
+                            width: 250,
+                            image: AssetImage("assets/images/logo.png"),
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-
-                      //E-MAIL
-                      TextField(
-                        onChanged: (newEmail) {
-                          setState(() {
-                            email = newEmail;
-                          });
-                        },
-                        autofocus: false,
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecor(
-                          "Enter Your E-mail",
-                          "E-mail:",
-                          const Icon(
-                            Icons.email,
-                            color: kPrimaryColor,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-
-                      //password
-                      TextField(
-                        onChanged: (newPassword) {
-                          setState(() {
-                            password = newPassword;
-                          });
-                        },
-                        obscureText: true,
-                        autofocus: false,
-                        keyboardType: TextInputType.text,
-                        decoration: InputDecor(
-                            "Enter Your Password",
-                            "Password:",
-                            const Icon(
-                              Icons.password,
-                              color: kPrimaryColor,
-                            )),
-                      ),
-                      const SizedBox(
-                        height: 10.0,
-                      ),
-
-                      //country
-                      AutoCompleteCountries(),
-                      const SizedBox(
-                        height: 10,
-                      ),
-
-                      const DateOfBirthScreen(),
-
-                      const SizedBox(
-                        height: 10.0,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          FilledButtonWID(
-                            text: const Text("Register"),
-                            onpressed: () {},
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text("I already have an account? "),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, Login.id);
-                            },
-                            child: const Text(
-                              "Sign in",
-                              style: TextStyle(
+                      isError
+                          ? Text(
+                              errorMessage,
+                              style: const TextStyle(
+                                  color: Colors.red,
+                                  fontStyle: FontStyle.italic,
+                                  fontWeight: FontWeight.bold),
+                            )
+                          : Text(""),
+                      // const SizedBox(
+                      //   height: 10,
+                      // ),
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          children: [
+                            //Name TextField
+                            TextFieldMethod(
+                              autoFocus: false,
+                              hintText: 'Enter Your Name',
+                              label: 'Name',
+                              suffixIcon: const Icon(
+                                Icons.person,
                                 color: kPrimaryColor,
                               ),
+                              onchanges: (String newName) {
+                                setState(() {
+                                  name = newName;
+                                });
+                              },
+                              keyboardType: TextInputType.text,
+                              textController: nameTextController,
                             ),
-                          )
-                        ],
-                      )
+                            const SizedBox(
+                              height: 5,
+                            ),
+
+                            // Email textField
+                            TextFieldMethod(
+                              autoFocus: false,
+                              hintText: "Enter Your Email",
+                              label: "E-mail",
+                              suffixIcon: const Icon(
+                                Icons.email,
+                                color: kPrimaryColor,
+                              ),
+                              onchanges: (newEmail) {
+                                setState(() {
+                                  email = newEmail;
+                                });
+                              },
+                              keyboardType: TextInputType.emailAddress,
+                              textController: emailTextController,
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+
+                            TextFieldMethod(
+                              autoFocus: false,
+                              hintText: "Enter Secret Password",
+                              label: "Password",
+                              suffixIcon: Icon(Icons.password_sharp,
+                                  color: kPrimaryColor),
+                              onchanges: (String newPassword) {
+                                setState(() {
+                                  password = newPassword;
+                                });
+                              },
+                              keyboardType: TextInputType.text,
+                              textController: passwordTextController,
+                              obsecure: true,
+                            ),
+
+                            const SizedBox(
+                              height: 10.0,
+                            ),
+                            //country
+                            AutoCompleteCountries(),
+                            const SizedBox(
+                              height: 10,
+                            ),
+
+                            const DateOfBirthScreen(),
+
+                            const SizedBox(
+                              height: 10.0,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                FilledButtonWID(
+                                  text: const Text("Register"),
+                                  onpressed: () async {
+                                    setState(() {
+                                      isLoading = true;
+                                    });
+                                    if (nameTextController.text == "" ||
+                                        emailTextController.text == "" ||
+                                        passwordTextController.text == "" ||
+                                        birthDate == "" ||
+                                        country == "") {
+                                      setState(() {
+                                        isLoading = false;
+                                        isError = true;
+                                        errorMessage =
+                                            "None of the field should be null";
+                                      });
+                                    } else {
+                                      print(
+                                          "the value is ${nameTextController.text}");
+                                      await firebaseMethods.register(
+                                        name,
+                                        email,
+                                        password,
+                                        country,
+                                        birthDate,
+                                      );
+                                      if (firebaseMethods.getErrorMessage() !=
+                                          "") {
+                                        setState(() {
+                                          isLoading = false;
+                                          nameTextController.clear();
+                                          emailTextController.clear();
+                                          passwordTextController.clear();
+                                          isError = true;
+                                          errorMessage =
+                                              firebaseMethods.getErrorMessage();
+                                        });
+                                      } else {
+                                        setState(() {
+                                          isLoading = false;
+                                          isError = false;
+                                        });
+
+                                        Navigator.pushReplacementNamed(
+                                            context, QAScreen.id);
+                                      }
+                                    }
+                                  },
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Text("I already have an account? "),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushNamed(context, Login.id);
+                                  },
+                                  child: const Text(
+                                    "Sign in",
+                                    style: TextStyle(
+                                      color: kPrimaryColor,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
-              ],
-            ),
-          ),
         ),
         bottomNavigationBar: BottomWidget(),
       ),
     );
-    ;
   }
 }
