@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:natural_hair_therapist/Methods/Firebase.dart';
 import 'package:natural_hair_therapist/Methods/TextFieldMethod.dart';
+import 'package:natural_hair_therapist/Methods/secondaryNavigation.dart';
 import 'package:natural_hair_therapist/Screens/Question.dart';
 import 'package:natural_hair_therapist/Screens/Registration.dart';
 
@@ -32,13 +33,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBarWidget(
-          logo: const Image(
-            image: AssetImage("assets/images/logo.png"),
-            color: kPrimaryColor,
-          ),
-          title: "Sign In",
-        ),
+        appBar: AppBarWidget(),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: isLoading
@@ -49,15 +44,12 @@ class _LoginState extends State<Login> {
                 )
               : Container(
                   height: double.infinity,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/logo.png"),
-                      fit: BoxFit.fill,
-                      opacity: 0.3,
-                    ),
-                  ),
+                  // decoration: BackgroundImage(),
                   child: Column(
                     children: [
+                      SecondaryNavigation(
+                        title: 'Sign In',
+                      ),
                       const Expanded(
                         flex: 3,
                         child: Hero(
@@ -70,16 +62,6 @@ class _LoginState extends State<Login> {
                       ),
                       const SizedBox(
                         height: 10,
-                      ),
-                      const Expanded(
-                        flex: 1,
-                        child: Text(
-                          "Sign In",
-                          style: TextStyle(
-                              fontSize: 30,
-                              fontFamily: "Roboto-Bold",
-                              color: kPrimaryColor),
-                        ),
                       ),
                       isError
                           ? Text(

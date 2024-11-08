@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:natural_hair_therapist/Methods/Firebase.dart';
+import 'package:natural_hair_therapist/Methods/secondaryNavigation.dart';
 import 'package:natural_hair_therapist/Widgets/AppBarWidget.dart';
 
 import '../Constants.dart';
+import '../Methods/Card.dart';
+import '../Methods/CarouselItem.dart';
+import '../Widgets/BottomWidget.dart';
 
 class QAScreen extends StatefulWidget {
   const QAScreen({Key? key}) : super(key: key);
@@ -16,6 +20,7 @@ class _QAScreenState extends State<QAScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controllerAnimation;
   late Animation<Color?> _colorAnimation;
+
   @override
   void initState() {
     super.initState();
@@ -53,7 +58,10 @@ class _QAScreenState extends State<QAScreen>
   bool isResponse = false;
   String response = "";
   FirebaseMethods firebases = FirebaseMethods();
+  List<String> activities = ["Grow Hair", "Stop Hair Loss", "Stop Breakage"];
   String userName = "";
+  final List<String> imageList = ["assets/images/logo.png"];
+
   void getUser() async {
     await firebases.setCurrentUserName();
 
@@ -95,211 +103,128 @@ class _QAScreenState extends State<QAScreen>
     getUser();
     // print(response);
     return Scaffold(
-        appBar: AppBarWidget(
-          logo: const Image(
-            image: AssetImage("assets/images/logo.png"),
-          ),
-          title: "Ask Your Question",
-        ),
-        body: _isLoading
-            ? const Center(
-                child: CircularProgressIndicator(
-                  color: kPrimaryColor,
-                ),
-              )
-            : Container(
-                height: double.infinity,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("assets/images/logo.png"),
-                    fit: BoxFit.fill,
-                    opacity: 0.3,
+      appBar: AppBarWidget(),
+      body: _isLoading
+          ? const Center(
+              child: CircularProgressIndicator(
+                color: kPrimaryColor,
+              ),
+            )
+          : Column(
+              children: [
+                SecondaryNavigation(title: "My Dashboard"),
+
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Welcome $userName",
+                        style: const TextStyle(
+                            fontSize: 30,
+                            fontFamily: "Roboto-Bold",
+                            color: kPrimaryColor),
+                      ),
+                    ],
                   ),
                 ),
-                child: Column(
-                  children: [
-                    const Expanded(
-                      flex: 1,
-                      child: Hero(
-                        tag: "logo",
-                        child: Image(
-                          width: double.infinity,
-                          image: AssetImage("assets/images/logo.png"),
-                        ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                // Expanded(
+                //   child: Text(
+                //     "I want to...",
+                //     style: TextStyle(
+                //         fontSize: 20,
+                //         fontFamily: "Roboto-Bold",
+                //         color: kPrimaryColor),
+                //   ),
+                // ),
+                Expanded(
+                  child: Column(
+                    children: [
+                      const Text(
+                        "I want to...",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontFamily: "Roboto-Bold",
+                            color: kPrimaryColor),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Welcome $userName",
-                            style: const TextStyle(
-                                fontSize: 30,
-                                fontFamily: "Roboto-Bold",
-                                color: kPrimaryColor),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      flex: 3,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                      Row(
                         children: [
                           Expanded(
-                            child: Card(
-                              color: kPrimaryColor,
-                              child: Padding(
-                                padding: const EdgeInsets.all(20.0),
-                                child: !isResponse
-                                    ? const Text("data")
-                                    : Text(
-                                        response,
-                                        textAlign: TextAlign.center,
-                                        style: const TextStyle(
-                                          fontSize: 20.0,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
+                            child: Cards(
+                              image: Image.asset(
+                                "assets/images/logo.png",
+                                width: 40.0,
+                                fit: BoxFit.cover,
                               ),
+                              onTap: () {},
+                              title: 'Grow Hair',
                             ),
                           ),
-                          const SizedBox(
-                            height: 20,
+                          Expanded(
+                            child: Cards(
+                              image: Image.asset(
+                                "assets/images/logo.png",
+                                width: 40.0,
+                                fit: BoxFit.cover,
+                              ),
+                              onTap: () {},
+                              title: 'Stop Hair Loss',
+                            ),
+                          ),
+                          Expanded(
+                            child: Cards(
+                              image: Image.asset(
+                                "assets/images/logo.png",
+                                width: 40.0,
+                                fit: BoxFit.cover,
+                              ),
+                              onTap: () {},
+                              title: 'Stop Breakage',
+                            ),
                           ),
                         ],
                       ),
-                    ),
-                  ],
-                ),
-              ),
-        bottomNavigationBar: Container(
-          height: 100,
-          color: kPrimaryColor,
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: kPrimaryColor,
-              ),
-              onPressed: () async {
-                final result = await buildShowModalBottomSheet(
-                  context,
-                  _controller,
-                  _submitQuestion,
-                );
-                print(" i am the result of: $result");
-              },
-              child: AnimatedBuilder(
-                animation: _colorAnimation,
-                builder: (context, child) {
-                  return Text(
-                    "Ask Question",
-                    style: TextStyle(
-                      color: _colorAnimation
-                          .value, // Apply the animated color value
-                      fontFamily: "Roboto-Bold",
-                      fontSize: 30,
-                    ),
-                  );
-                },
-              ),
-            ),
-          ),
-        ));
-  }
-
-  Future<dynamic> buildShowModalBottomSheet(BuildContext context,
-      TextEditingController textCL, VoidCallback onPressedMe) {
-    return showModalBottomSheet(
-      // isDismissible: false,
-      isScrollControlled: true,
-      context: context,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(20.0),
-        ),
-      ),
-      builder: (BuildContext context) {
-        return Padding(
-          padding: EdgeInsets.only(
-            bottom: MediaQuery.of(context)
-                .viewInsets
-                .bottom, // Adjusts for keyboard height
-            left: 16.0,
-            right: 16.0,
-            top: 16.0,
-          ),
-          child: SingleChildScrollView(
-            child: Container(
-              // height: 500,
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                // mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min, // Minimize the height
-                children: [
-                  TextField(
-                    controller: textCL,
-                    autofocus: true,
-                    keyboardType: TextInputType.text,
-                    maxLines: 3,
+                    ],
                   ),
-                  const SizedBox(height: 20.0),
-                  Row(
+                ),
+
+                Expanded(
+                  child: Column(
                     children: [
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: onPressedMe,
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: kPrimaryColor),
-                          child: const Text(
-                            "Ask?",
-                            style: TextStyle(color: Colors.white),
-                          ),
+                      const Text(
+                        "Learn",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontFamily: "Roboto-Bold",
+                            color: kPrimaryColor),
+                      ),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: kPrimaryColor),
+                        onPressed: () {},
+                        child: const Text(
+                          "Nish Framework",
+                          style: TextStyle(color: Colors.white),
                         ),
                       ),
                     ],
-                  )
-                ],
-              ),
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                      margin: const EdgeInsets.only(bottom: 20.0),
+                      child: CarouselItem()),
+                ),
+
+                //
+              ],
             ),
-          ),
-        );
-      },
+      bottomNavigationBar: BottomWidget(),
+      // resizeToAvoidBottomInset: true,
     );
   }
 }
-
-// return Scaffold(
-// appBar: AppBar(
-// title: const Text('Natural Hair Therapist Q&A'),
-// ),
-// body: Padding(
-// padding: const EdgeInsets.all(16.0),
-// child: Column(
-// children: [
-// TextField(
-// controller: _controller,
-// decoration: const InputDecoration(
-// labelText: 'Ask a hair health-related question',
-// ),
-// ),
-// const SizedBox(height: 16),
-// ElevatedButton(
-// onPressed: _submitQuestion,
-// child: const Text('Get Answer'),
-// ),
-// const SizedBox(height: 24),
-// _isLoading
-// ? const CircularProgressIndicator()
-//     : Text(
-// response,
-// style: const TextStyle(fontSize: 18),
-// ),
-// ],
-// ),
-// ),
-// );

@@ -1,47 +1,94 @@
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
-  AppBarWidget({super.key, required this.logo, required this.title});
-  Widget logo;
-  String title;
+  AppBarWidget({
+    super.key,
+  });
+
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: const Color(0xff8ba870),
-      leading: Container(
-          decoration: const BoxDecoration(color: Colors.white), child: logo),
-      title: Text(
-        title,
-        style: const TextStyle(
-          color: Colors.white,
-          // fontSize: 20.0,
-          fontStyle: FontStyle.normal,
-          fontFamily: "Roboto-Bold",
-        ),
-      ),
-      actions: [
-        PopupMenuButton<String>(
-          iconColor: Colors.white,
-          onSelected: (String value) {
-            print('Selected: $value');
+    return SafeArea(
+      child: AppBar(
+        // centerTitle: true,
+        backgroundColor: const Color(0xff8ba870),
+        leading: PopupMenuButton<String>(
+          icon: const Icon(
+            Icons.menu,
+            color: Colors.white,
+          ), // Use menu icon or any other icon
+          onSelected: (String result) {
+            print(result);
           },
           itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
             const PopupMenuItem<String>(
               value: 'Profile',
-              child: Text('Profile'),
+              child: ListTile(
+                leading: Icon(Icons.person),
+                title: Text('Profile'),
+              ),
             ),
             const PopupMenuItem<String>(
               value: 'Settings',
-              child: Text('Settings'),
+              child: ListTile(
+                leading: Icon(Icons.settings),
+                title: Text('Settings'),
+              ),
             ),
             const PopupMenuItem<String>(
               value: 'Logout',
-              child: Text('Logout'),
+              child: ListTile(
+                leading: Icon(Icons.logout),
+                title: Text('Logout'),
+              ),
             ),
           ],
         ),
-      ],
-      elevation: 1.0,
+        title: const ListTile(
+          leading: Image(
+            image: AssetImage("assets/images/logo.png"),
+            color: Colors.white,
+          ),
+          title: Text(
+            "Nat'rel",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 30.0,
+              fontStyle: FontStyle.normal,
+              fontFamily: "Roboto-Bold",
+            ),
+          ),
+          subtitle: Text(
+            "We Help You Grow Your Hair",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 10.0,
+              fontStyle: FontStyle.normal,
+              fontFamily: "Roboto-Bold",
+            ),
+          ),
+        ),
+        actions: <Widget>[
+          PopupMenuButton<String>(
+            icon: const Icon(
+              Icons.person,
+              color: Colors.white,
+            ), // Menu icon in AppBar
+            onSelected: (String result) {
+              print(result); // Perform actions based on the selected item
+            },
+            itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+              const PopupMenuItem<String>(
+                value: 'Profile',
+                child: ListTile(
+                  leading: Icon(Icons.person),
+                  title: Text('Profile'),
+                ),
+              ),
+            ],
+          ),
+        ],
+        elevation: 1.0,
+      ),
     );
   }
 

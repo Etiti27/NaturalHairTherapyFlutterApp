@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:natural_hair_therapist/Constants.dart';
 import 'package:natural_hair_therapist/Methods/NaturalHairQuote.dart';
 
+import '../Methods/BackgroundImage.dart';
+import '../Methods/secondaryNavigation.dart';
 import '../Widgets/AppBarWidget.dart';
 import '../Widgets/BottomWidget.dart';
 import '../Widgets/ButtonWidget.dart';
@@ -40,40 +42,36 @@ class _HomeState extends State<Home> {
     print(displayingQuote);
     return SafeArea(
       child: Scaffold(
-        appBar: AppBarWidget(
-          logo: const Image(
-            image: AssetImage("assets/images/logo.png"),
-            color: kPrimaryColor,
-          ),
-          title: "Natural Hair Therapist",
-        ),
+        appBar: AppBarWidget(),
         body: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Container(
             height: double.infinity,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/images/logo.png"),
-                fit: BoxFit.fill,
-                opacity: 0.3,
-              ),
-            ),
+            decoration: BackgroundImage(),
             child: Center(
               child: Column(
                 children: [
                   Expanded(
+                    flex: 1,
+                    child: SecondaryNavigation(
+                      title: " ",
+                    ),
+                  ),
+                  Expanded(
+                    flex: 5,
                     child: Center(
-                        child: Card(
-                      child: Text(
-                        displayingQuote,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontFamily: "Roboto-bold",
-                          fontSize: 40,
+                      child: Card(
+                        child: Text(
+                          displayingQuote,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: kPrimaryColor,
+                            fontFamily: "Roboto-bold",
+                            fontSize: 40,
+                          ),
                         ),
                       ),
-                    )),
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(

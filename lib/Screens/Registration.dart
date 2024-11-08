@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:natural_hair_therapist/Methods/Firebase.dart';
 import 'package:natural_hair_therapist/Methods/ProviderPackage.dart';
+import 'package:natural_hair_therapist/Methods/secondaryNavigation.dart';
 import 'package:natural_hair_therapist/Screens/Question.dart';
 import 'package:natural_hair_therapist/Widgets/AutocompleteCountry.dart';
 import 'package:provider/provider.dart';
 
 import '../Constants.dart';
+import '../Methods/BackgroundImage.dart';
 import '../Methods/DateOfBirth.dart';
 import '../Methods/TextFieldMethod.dart';
 import '../Widgets/AppBarWidget.dart';
@@ -47,13 +49,7 @@ class _RegistrationState extends State<Registration> {
 
     return SafeArea(
       child: Scaffold(
-        appBar: AppBarWidget(
-          logo: const Image(
-            image: AssetImage("assets/images/logo.png"),
-            color: kPrimaryColor,
-          ),
-          title: "Registration",
-        ),
+        appBar: AppBarWidget(),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: isLoading
@@ -63,25 +59,22 @@ class _RegistrationState extends State<Registration> {
                 ))
               : Container(
                   height: double.infinity,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/logo.png"),
-                      fit: BoxFit.fill,
-                      opacity: 0.3,
-                    ),
-                  ),
+                  decoration: BackgroundImage(),
                   child: Column(
                     children: [
-                      const Expanded(
-                        flex: 1,
-                        child: Hero(
-                          tag: "logo",
-                          child: Image(
-                            width: 250,
-                            image: AssetImage("assets/images/logo.png"),
-                          ),
-                        ),
+                      SecondaryNavigation(
+                        title: "Registration",
                       ),
+                      // const Expanded(
+                      //   flex: 1,
+                      //   child: Hero(
+                      //     tag: "logo",
+                      //     child: Image(
+                      //       width: 250,
+                      //       image: AssetImage("assets/images/logo.png"),
+                      //     ),
+                      //   ),
+                      // ),
                       isError
                           ? Text(
                               errorMessage,
@@ -95,7 +88,6 @@ class _RegistrationState extends State<Registration> {
                       //   height: 10,
                       // ),
                       Expanded(
-                        flex: 4,
                         child: Column(
                           children: [
                             //Name TextField
@@ -144,7 +136,7 @@ class _RegistrationState extends State<Registration> {
                               autoFocus: false,
                               hintText: "Enter Secret Password",
                               label: "Password",
-                              suffixIcon: Icon(Icons.password_sharp,
+                              suffixIcon: const Icon(Icons.password_sharp,
                                   color: kPrimaryColor),
                               onchanges: (String newPassword) {
                                 setState(() {
