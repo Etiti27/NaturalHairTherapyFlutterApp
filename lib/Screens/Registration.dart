@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:natural_hair_therapist/Methods/Firebase.dart';
 import 'package:natural_hair_therapist/Methods/ProviderPackage.dart';
 import 'package:natural_hair_therapist/Methods/secondaryNavigation.dart';
-import 'package:natural_hair_therapist/Screens/Question.dart';
+import 'package:natural_hair_therapist/Screens/Dashboard.dart';
 import 'package:natural_hair_therapist/Widgets/AutocompleteCountry.dart';
 import 'package:provider/provider.dart';
 

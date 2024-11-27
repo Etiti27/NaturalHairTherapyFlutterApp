@@ -18,12 +18,12 @@ class Cards extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(6.0),
         child: SizedBox(
-          height: 130,
           child: Card(
+            color: kPrimaryColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15.0),
             ),
-            elevation: 8, // Shadow effect
+            // Shadow effect
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
@@ -43,9 +43,9 @@ class Cards extends StatelessWidget {
                       Text(
                         title,
                         style: const TextStyle(
-                          fontSize: 15,
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: kPrimaryColor,
+                          color: Colors.white,
                         ),
                       ),
 

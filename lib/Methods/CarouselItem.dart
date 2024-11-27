@@ -5,10 +5,12 @@ import 'package:natural_hair_therapist/Constants.dart';
 class CarouselItem extends StatelessWidget {
   CarouselItem({
     super.key,
+    required this.image,
   });
+  Image image;
   List<Map<String, String>> blogs = [
     {
-      "title": "Hair loss",
+      "title": "Hair loss1",
       "body": "gd usgd ghfdgh fghhdgdh fghdgh fggdhd fgdhgdhg"
     },
     {
@@ -58,6 +60,7 @@ class CarouselItem extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    image,
                     Text(
                       blog["title"]!,
                       style: TextStyle(
