@@ -43,8 +43,8 @@ class MyApp extends StatelessWidget {
         QAScreen.id: (context) => const QAScreen(),
         Growyourhair.id: (context) => const Growyourhair(),
         QuestionScreen.id: (context) => QuestionScreen(),
-        Questiononescreen.id: (context) => Questiononescreen(),
-        Questiontwoscreen.id: (context) => Questiontwoscreen()
+        Questiononescreen.id: (context) => const Questiononescreen(),
+        Questiontwoscreen.id: (context) => const Questiontwoscreen()
       },
     );
   }

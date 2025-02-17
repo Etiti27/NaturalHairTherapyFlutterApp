@@ -22,11 +22,11 @@ class _QuestiontwoscreenState extends State<Questiontwoscreen> {
       appBar: AppBarWidget(),
       body: questionScreens(
         questionnaire: questionnaire,
-        image: Image.asset(
-          "assets/images/logo.png",
-          height: 100,
-          // width: 70,
-        ),
+        // image: Image.asset(
+        //   "assets/images/logo.png",
+        //   height: 100,
+        //   // width: 70,
+        // ),
         text:
             "Do you take any supplements (e.g., vitamins, minerals) specifically for hair or general health?",
         listOfAnswer: const [

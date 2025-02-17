@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:natural_hair_therapist/Methods/Firebase.dart';
-import 'package:natural_hair_therapist/Methods/secondaryNavigation.dart';
 import 'package:natural_hair_therapist/Screens/QuestionOneScreen.dart';
 import 'package:natural_hair_therapist/Widgets/AppBarWidget.dart';
 
@@ -113,7 +112,7 @@ class _QAScreenState extends State<QAScreen>
           : SingleChildScrollView(
               child: Column(
                 children: [
-                  SecondaryNavigation(title: "My Dashboard"),
+                  // SecondaryNavigation(title: "My Dashboard"),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
