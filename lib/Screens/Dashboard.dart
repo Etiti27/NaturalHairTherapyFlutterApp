@@ -1,24 +1,26 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:natural_hair_therapist/Methods/Firebase.dart';
-import 'package:natural_hair_therapist/Screens/QuestionOneScreen.dart';
 import 'package:natural_hair_therapist/Widgets/AppBarWidget.dart';
+import 'package:provider/provider.dart';
 
 import '../Constants.dart';
-import '../Methods/Card.dart';
+import '../Methods/ProviderPackage.dart';
 import '../Widgets/BottomWidget.dart';
+import '../Widgets/DashboardCard.dart';
+import 'GrowYourHair.dart';
 
-class QAScreen extends StatefulWidget {
-  const QAScreen({Key? key}) : super(key: key);
-  static const String id = "question";
+class Dashboard extends StatefulWidget {
+  const Dashboard({super.key});
+  static const String id = "dashboard";
 
   @override
-  _QAScreenState createState() => _QAScreenState();
+  State<Dashboard> createState() => _DashboardState();
 }
 
-class _QAScreenState extends State<QAScreen>
+class _DashboardState extends State<Dashboard>
     with SingleTickerProviderStateMixin {
   late AnimationController _controllerAnimation;
-  late Animation<Color?> _colorAnimation;
 
   @override
   void initState() {
@@ -30,10 +32,6 @@ class _QAScreenState extends State<QAScreen>
     );
 
     // Define a color tween animation
-    _colorAnimation = ColorTween(
-      begin: Colors.white,
-      end: kPrimaryColor,
-    ).animate(_controllerAnimation);
 
     // Start the animation and loop it
     _controllerAnimation.forward();
@@ -51,14 +49,18 @@ class _QAScreenState extends State<QAScreen>
   void dispose() {
     super.dispose();
     _controllerAnimation.dispose();
-    print("he was disponsed");
+    if (kDebugMode) {
+      print("he was disponsed");
+    }
   }
 
   bool isResponse = false;
+
   String response = "";
   FirebaseMethods firebases = FirebaseMethods();
   List<String> activities = ["Grow Hair", "Stop Hair Loss", "Stop Breakage"];
   String userName = "";
+  String email = "";
   final List<String> imageList = ["assets/images/logo.png"];
 
   void getUser() async {
@@ -66,41 +68,17 @@ class _QAScreenState extends State<QAScreen>
 
     setState(() {
       userName = firebases.getCurrentUserName();
+      email = firebases.getEmail()!;
     });
   }
 
-  final TextEditingController _controller = TextEditingController();
-
-  bool _isLoading = false;
-
-  void _submitQuestion() async {
-    setState(() {
-      _isLoading = true;
-    });
-
-    final userInput = _controller.text.trim();
-    if (userInput.isEmpty) {
-      Navigator.pop(context);
-      _isLoading = false;
-      isResponse = false;
-      return;
-    }
-
-    await firebases.getResponse(userInput);
-
-    setState(() {
-      response = firebases.getResponseMessage();
-      _isLoading = false;
-      isResponse = true;
-    });
-    Navigator.pop(context);
-    _controller.clear();
-  }
+  final bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
-    getUser();
-    // print(response);
+    final questionnaire = Provider.of<ProviderClass>(context);
+    // getUser();
+    print("my email : $email");
     return Scaffold(
       appBar: AppBarWidget(),
       body: _isLoading
@@ -140,67 +118,48 @@ class _QAScreenState extends State<QAScreen>
                   ),
                   Row(
                     children: [
-                      Expanded(
-                        child: Cards(
-                          image: Image.asset(
-                            "assets/images/logo.png",
-                            width: 100.0,
-                            // height: 50.0,
-                            fit: BoxFit.cover,
-                          ),
-                          onTap: () {
-                            Navigator.pushNamed(context, Questiononescreen.id);
-                          },
-                          title: 'Grow Hair',
-                        ),
+                      DashboardCard(
+                        imagePath: 'assets/images/logo.png',
+                        title: 'Grow Hair',
+                        OnTap: () {
+                          questionnaire.updateCurrentUsername(userName);
+                          questionnaire.updateEmail(email);
+
+                          Navigator.pushNamed(context, Growyourhair.id);
+                        },
                       ),
-                      Expanded(
-                        child: Cards(
-                          image: Image.asset(
-                            "assets/images/logo.png",
-                            width: 100.0,
-                          ),
-                          onTap: () {},
-                          title: 'Stop Hair Loss',
-                        ),
+                      DashboardCard(
+                        imagePath: 'assets/images/logo.png',
+                        title: 'Stop Hair Loss',
+                        OnTap: () {},
                       ),
                     ],
                   ),
                   Row(
                     children: [
-                      Expanded(
-                        child: Cards(
-                          image: Image.asset(
-                            "assets/images/logo.png",
-                            width: 100.0,
-                            fit: BoxFit.cover,
-                          ),
-                          onTap: () {},
-                          title: 'Stop Breakage',
-                        ),
+                      DashboardCard(
+                        imagePath: 'assets/images/logo.png',
+                        title: 'Stop Breakage',
+                        OnTap: () {},
                       ),
-                      Expanded(
-                        child: Cards(
-                          image: Image.asset(
-                            "assets/images/logo.png",
-                            width: 100.0,
-                            fit: BoxFit.cover,
-                          ),
-                          onTap: () {},
-                          title: 'Stop Breakage',
-                        ),
+                      DashboardCard(
+                        imagePath: 'assets/images/logo.png',
+                        title: 'Stop Breakage',
+                        OnTap: () {
+                          Navigator.pushNamed(context, Growyourhair.id);
+                        },
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
-                  Text("Learn"),
+                  const Text("Learn"),
                   ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
                         backgroundColor: kPrimaryColor),
-                    child: Text("NISH philosophy",
+                    child: const Text("NISH philosophy",
                         style: TextStyle(color: Colors.white)),
                   )
                 ],

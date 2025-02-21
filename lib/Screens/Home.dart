@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:natural_hair_therapist/Constants.dart';
 import 'package:natural_hair_therapist/Methods/NaturalHairQuote.dart';
@@ -31,7 +32,7 @@ class _HomeState extends State<Home> {
   String getQuote() {
     Quote quote = Quote();
     int quoteLength = quote.quoteLength();
-    print(quoteLength);
+    // print(quoteLength);
     Random random = Random();
     int randomNumber = random.nextInt(quoteLength);
     return quote.getQuote(randomNumber);
@@ -39,7 +40,9 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    print(displayingQuote);
+    if (kDebugMode) {
+      print(displayingQuote);
+    }
     return SafeArea(
       child: Scaffold(
         appBar: AppBarWidget(),
@@ -80,12 +83,13 @@ class _HomeState extends State<Home> {
                       children: [
                         Expanded(
                           child: FilledButtonWID(
-                            text: Text("Get Started"),
+                            text: const Text("Get Started"),
                             onpressed: () {
+                              // Navigator.pushNamed(context, Dashboard.id);
                               Navigator.pushNamed(context, Login.id);
                             },
                           ),
-                        )
+                        ),
                       ],
                     ),
                   )

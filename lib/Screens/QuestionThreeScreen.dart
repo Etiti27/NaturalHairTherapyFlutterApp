@@ -1,26 +1,22 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:natural_hair_therapist/Constants.dart';
 import 'package:natural_hair_therapist/Methods/ProviderPackage.dart';
-import 'package:natural_hair_therapist/Screens/QuestionThreeScreen.dart';
 import 'package:natural_hair_therapist/Widgets/AppBarWidget.dart';
 import 'package:natural_hair_therapist/Widgets/BottomWidget.dart';
-import 'package:natural_hair_therapist/Widgets/RadioSelect.dart';
 import 'package:provider/provider.dart';
 
 import '../Widgets/QuestionScreenWidget.dart';
 
-class Questiontwoscreen extends StatefulWidget {
-  static const String id = "questionTwoScreen";
+class Questionthreescreen extends StatefulWidget {
+  static const String id = "questionThreeScreen";
 
-  const Questiontwoscreen({super.key});
+  const Questionthreescreen({super.key});
 
   @override
-  State<Questiontwoscreen> createState() => _QuestiontwoscreenState();
+  State<Questionthreescreen> createState() => _QuestionthreescreenState();
 }
 
-class _QuestiontwoscreenState extends State<Questiontwoscreen> {
-  String selected = "7-8 Hours";
+class _QuestionthreescreenState extends State<Questionthreescreen> {
   @override
   Widget build(BuildContext context) {
     final questionnaire = Provider.of<ProviderClass>(context);
@@ -30,49 +26,44 @@ class _QuestiontwoscreenState extends State<Questiontwoscreen> {
         child: Column(
           children: [
             questionScreens(
-              questionnaireAnswer: questionnaire.getHairGrowthAnswer4(),
+              questionnaireAnswer: questionnaire.getHairGrowthAnswer7(),
               // questionnaire: questionnaire.nutritionAnswer1,
               text:
-                  "Are you aware of any ingredients that might harm your hair’s health or cause dryness?",
+                  "Do you protect your hair at night with a silk scarf or pillowcase?",
               listOfAnswer: const [
-                "Sodium Lauryl Sulfate (SLS)",
-                "Mineral Oil",
-                "Sodium Laureth Sulphate",
-                "Isopropyl Alcohol",
+                "Yes, every night",
+                "Sometimes",
+                "Never",
               ],
               OnChange: (value) {
-                questionnaire.updateHairGrowthAnswer4(value);
+                questionnaire.updateHairGrowthAnswer7(value);
               },
             ),
             questionScreens(
-              questionnaireAnswer: questionnaire.getHairGrowthAnswer5(),
+              questionnaireAnswer: questionnaire.getHairGrowthAnswer8(),
               text:
-                  "Do you regularly massage your scalp or use scalp-specific treatments?",
+                  "How would you describe your stress levels on a daily basis?",
               listOfAnswer: const [
-                "Yes",
-                "Regularly",
+                "Low",
+                "Moderate",
+                "High",
+              ],
+              OnChange: (value) {
+                questionnaire.updateHairGrowthAnswer8(value);
+              },
+            ),
+            questionScreens(
+              questionnaireAnswer: questionnaire.getHairGrowthAnswer9(),
+              text:
+                  "Do you have practices to manage stress, like exercise, meditation, or journaling?",
+              listOfAnswer: const [
+                "Yes, regularly",
                 "Occasionally",
                 "No",
               ],
               OnChange: (value) {
-                questionnaire.updateHairGrowthAnswer5(value);
+                questionnaire.updateHairGrowthAnswer9(value);
               },
-            ),
-            DynamicRadioSelect(
-              options: const ["7-8 Hours", "5-6 Hours", "Less than 5 Hours"],
-              selectedValue: selected,
-              OnChange: (value) {
-                setState(() {
-                  selected = value!;
-                  print("yes");
-                });
-
-                questionnaire.updateHairGrowthAnswer6(selected);
-                if (kDebugMode) {
-                  print(questionnaire.getHairGrowthAnswer6());
-                }
-              },
-              texts: "How many hours of sleep do you usually get per night?",
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -96,7 +87,7 @@ class _QuestiontwoscreenState extends State<Questiontwoscreen> {
                   ),
                   onPressed: () {
                     debugPrint("screen 1 next button pressed");
-                    Navigator.pushNamed(context, Questionthreescreen.id);
+                    // Navigator.pushNamed(context, Questiontwoscreen.id);
                   },
                   child: const Text(
                     "next >>",

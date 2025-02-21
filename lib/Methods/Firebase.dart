@@ -9,6 +9,7 @@ class FirebaseMethods {
   String _errorMessage = "";
   String _response = "";
   String userName = "";
+  String? email;
   final OpenAIService _openAIService = OpenAIService();
   bool isLoading = true;
 
@@ -117,11 +118,17 @@ class FirebaseMethods {
     for (var docs in QuerySnapshot.docs) {
       if (docs["email"] == getCurrentUser()) {
         userName = docs["name"];
+        email = docs["email"];
       }
     }
   }
 
   String getCurrentUserName() {
+    // print("i am now just $userName");
     return userName.toUpperCase();
+  }
+
+  String? getEmail() {
+    return email;
   }
 }

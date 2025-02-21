@@ -52,7 +52,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
             "Nat'rel",
             style: TextStyle(
               color: Colors.white,
-              fontSize: 30.0,
+              fontSize: 25.0,
               fontStyle: FontStyle.normal,
               fontFamily: "Roboto-Bold",
             ),

@@ -1,45 +1,52 @@
-class Question {
-  final Map<String, dynamic> _questionAndAnswer = {
-    "What is Flutter?":
-        "Flutter is an open-source UI software development toolkit created by Google.",
-    "How to use StatefulWidget in Flutter?":
-        "StatefulWidget is a widget that has mutable state. You can use setState to rebuild it with a new state.",
-    "What is Dart?":
-        "Dart is a programming language optimized for building mobile, desktop, server, and web applications.",
-    "How to make an HTTP request in Flutter?":
-        "You can use the http package to make HTTP requests in Flutter.",
+class QuestionBank {
+  final Map<String, String> _questions = {
+    "question1":
+        "How often do you include foods high in protein (like beans, fish, eggs) in your diet?",
+    "question2":
+        "Do you take any supplements (e.g., vitamins, minerals) specifically for hair or general health?",
+    "question3":
+        "Which of these ingredients do you look for when choosing a hair product?",
+    "question4":
+        "Are you aware of any ingredients that might harm your hair’s health or cause dryness?",
+    "question5":
+        "Do you regularly massage your scalp or use scalp-specific treatments?",
+    "question6": "How many hours of sleep do you usually get per night?",
+    "question7":
+        "Do you protect your hair at night with a silk scarf or pillowcase?",
+    "question8": "How would you describe your stress levels on a daily basis?",
+    "question9":
+        "Do you have practices to manage stress, like exercise, meditation, or journaling?",
   };
 
-  String findBestMatch(String userInput) {
-    userInput = userInput
-        .toLowerCase(); // Convert to lowercase for case-insensitive matching
-    List<String> userWords =
-        userInput.split(' '); // Split user input into words
+  final Map<String, List<String>> _answer = {
+    "answer1": ["Daily", "A few times a week", "Rarely", "Never"],
+    "answer2": ["Yes", "Regularly", "Occasionally", "No"],
+    "answer3": [
+      "Castor Oil",
+      "Coconut Oil",
+      "Aloe vera",
+      "Shea Butter",
+      "Sodium Cocoyl Isethionate",
+      "Cetyl Alcohol"
+    ],
+    "answer4": [
+      "Sodium Lauryl Sulfate (SLS)",
+      "Mineral Oil",
+      "Sodium Laureth Sulphate",
+      "Isopropyl Alcohol"
+    ],
+    "answer5": ["Yes", "Regularly", "Occasionally", "No"],
+    "answer6": ["7-8 Hours", "5-6 Hours", "Less than 5 Hours"],
+    "answer7": ["Yes, every night", "Sometimes", "Never"],
+    "answer8": ["Low", "Moderate", "High"],
+    "answer9": ["Yes, regularly", "Occasionally", "No"],
+  };
 
-    String? bestMatch;
-    int maxWordMatches = 0; // Track the maximum word matches
+  Map<String, String> getQuestion() {
+    return _questions;
+  }
 
-    for (String question in _questionAndAnswer.keys) {
-      List<String> questionWords =
-          question.toLowerCase().split(' '); // Split question into words
-
-      // Count the number of matching words
-      int wordMatches = 0;
-      for (String word in userWords) {
-        if (questionWords.contains(word)) {
-          wordMatches++;
-        }
-      }
-
-      // If the number of word matches is greater than 3, consider it a match
-      if (wordMatches > 3 && wordMatches > maxWordMatches) {
-        maxWordMatches = wordMatches;
-        bestMatch = question;
-      }
-    }
-
-    return bestMatch != null
-        ? _questionAndAnswer[bestMatch]!
-        : "Sorry, I couldn't find an answer to that question.";
+  Map getAnswer() {
+    return _answer;
   }
 }

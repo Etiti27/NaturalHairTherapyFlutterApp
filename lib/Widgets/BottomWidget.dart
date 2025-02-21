@@ -16,7 +16,7 @@ class BottomWidget extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Text(
           "Natural Hair Therapist \n copyright © $year",
-          style: const TextStyle(color: Colors.white, fontSize: 10.0),
+          style: const TextStyle(color: Colors.white, fontSize: 20.0),
           textAlign: TextAlign.center,
         ),
       ),

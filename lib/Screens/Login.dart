@@ -142,7 +142,7 @@ class _LoginState extends State<Login> {
                                         });
                                       } else {
                                         Navigator.pushReplacementNamed(
-                                            context, QAScreen.id);
+                                            context, Dashboard.id);
                                         setState(() {
                                           isLoading = false;
                                         });

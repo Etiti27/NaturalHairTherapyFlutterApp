@@ -2,23 +2,23 @@ import 'package:flutter/material.dart';
 
 import '../Constants.dart';
 import '../Methods/BackgroundImage.dart';
-import '../Methods/ProviderPackage.dart';
 
 class questionScreens extends StatelessWidget {
   const questionScreens({
     super.key,
-    required this.questionnaire,
+    required this.questionnaireAnswer,
     // this.image,
     required this.text,
     required this.listOfAnswer,
     required this.OnChange,
     this.nextButtonAppearance,
     this.prevButtonAppearance,
+    // required ProviderClass questionnaire,
   });
 
-  final ProviderClass questionnaire;
   // final Image image;
   final String text;
+  final String? questionnaireAnswer;
   final List<String> listOfAnswer;
   final ValueChanged<String?> OnChange;
 
@@ -32,7 +32,7 @@ class questionScreens extends StatelessWidget {
       decoration: BackgroundImage(),
       child: Center(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -59,8 +59,7 @@ class questionScreens extends StatelessWidget {
                     //   height: 30,
                     // ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 20.0, horizontal: 16.0),
+                      padding: const EdgeInsets.all(20.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
@@ -68,16 +67,22 @@ class questionScreens extends StatelessWidget {
                             text,
                             textAlign: TextAlign.center,
                             style: const TextStyle(
-                              fontSize: 20,
+                              fontSize: 25,
                               color: Colors.white,
                             ),
                           ),
                           const SizedBox(
-                            height: 20,
+                            height: 30,
                           ),
                           DropdownButton<String>(
-                            value: questionnaire.nutritionAnswer1,
-                            hint: const Text("Select an option"),
+                            value: questionnaireAnswer,
+                            hint: const Text(
+                              "Select an option",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
                             items: listOfAnswer
                                 .map((option) => DropdownMenuItem(
                                       value: option,
@@ -85,7 +90,7 @@ class questionScreens extends StatelessWidget {
                                         child: Text(
                                           option,
                                           style: const TextStyle(
-                                            fontSize: 20,
+                                            fontSize: 25,
                                           ),
                                         ),
                                       ),
@@ -103,17 +108,17 @@ class questionScreens extends StatelessWidget {
                                 kPrimaryColor, // Set dropdown menu color to match the card
                             style: const TextStyle(
                               color: Colors
-                                  .black, // Set the text color of the selected item
+                                  .white, // Set the text color of the selected item
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
                             underline: Container(
-                              height: 1,
+                              height: 2,
                               color: Colors
                                   .white, // Add an underline for styling (optional)
                             ),
                           ),
-                          // const SizedBox(height: 20),
+                          const SizedBox(height: 20),
 
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,

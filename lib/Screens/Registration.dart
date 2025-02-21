@@ -210,7 +210,7 @@ class _RegistrationState extends State<Registration> {
                                         });
 
                                         Navigator.pushReplacementNamed(
-                                            context, QAScreen.id);
+                                            context, Dashboard.id);
                                       }
                                     }
                                   },
