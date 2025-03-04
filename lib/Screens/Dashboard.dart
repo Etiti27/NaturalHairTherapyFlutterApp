@@ -8,7 +8,7 @@ import '../Constants.dart';
 import '../Methods/ProviderPackage.dart';
 import '../Widgets/BottomWidget.dart';
 import '../Widgets/DashboardCard.dart';
-import 'GrowYourHair.dart';
+import 'UnderstandingNISH/GrowYourHair.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -119,7 +119,12 @@ class _DashboardState extends State<Dashboard>
                   Row(
                     children: [
                       DashboardCard(
-                        imagePath: 'assets/images/logo.png',
+                        image: Image.asset(
+                          'assets/images/logo.png',
+                          width: 100.0,
+                          // height: 50.0,
+                          fit: BoxFit.cover,
+                        ),
                         title: 'Grow Hair',
                         OnTap: () {
                           questionnaire.updateCurrentUsername(userName);
@@ -129,7 +134,12 @@ class _DashboardState extends State<Dashboard>
                         },
                       ),
                       DashboardCard(
-                        imagePath: 'assets/images/logo.png',
+                        image: Image.asset(
+                          'assets/images/logo.png',
+                          width: 100.0,
+                          // height: 50.0,
+                          fit: BoxFit.cover,
+                        ),
                         title: 'Stop Hair Loss',
                         OnTap: () {},
                       ),
@@ -138,12 +148,22 @@ class _DashboardState extends State<Dashboard>
                   Row(
                     children: [
                       DashboardCard(
-                        imagePath: 'assets/images/logo.png',
+                        image: Image.asset(
+                          'assets/images/logo.png',
+                          width: 100.0,
+                          // height: 50.0,
+                          fit: BoxFit.cover,
+                        ),
                         title: 'Stop Breakage',
                         OnTap: () {},
                       ),
                       DashboardCard(
-                        imagePath: 'assets/images/logo.png',
+                        image: Image.asset(
+                          'assets/images/logo.png',
+                          width: 100.0,
+                          // height: 50.0,
+                          fit: BoxFit.cover,
+                        ),
                         title: 'Stop Breakage',
                         OnTap: () {
                           Navigator.pushNamed(context, Growyourhair.id);

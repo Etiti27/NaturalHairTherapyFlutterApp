@@ -4,13 +4,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:natural_hair_therapist/Constants.dart';
 import 'package:natural_hair_therapist/Methods/NaturalHairQuote.dart';
+import 'package:natural_hair_therapist/Methods/PostgreSQL.dart';
+import 'package:natural_hair_therapist/Screens/Dashboard.dart';
 
 import '../Methods/BackgroundImage.dart';
 import '../Methods/secondaryNavigation.dart';
 import '../Widgets/AppBarWidget.dart';
 import '../Widgets/BottomWidget.dart';
 import '../Widgets/ButtonWidget.dart';
-import 'Login.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -36,6 +37,22 @@ class _HomeState extends State<Home> {
     Random random = Random();
     int randomNumber = random.nextInt(quoteLength);
     return quote.getQuote(randomNumber);
+  }
+
+  Future<void> postgres() async {
+    DatabaseService postgre = DatabaseService();
+    await postgre.ensureConnected();
+    List userData = await postgre.fetchUsers();
+
+    print(userData);
+    // postgre.closeConnection();
+  }
+
+  Future<void> updateResponse(String email, String response) async {
+    DatabaseService postgre = DatabaseService();
+    await postgre.ensureConnected();
+    await postgre.updateResponse(email, response);
+    // postgre.closeConnection();
   }
 
   @override
@@ -85,8 +102,20 @@ class _HomeState extends State<Home> {
                           child: FilledButtonWID(
                             text: const Text("Get Started"),
                             onpressed: () {
+                              // Navigator.pushNamed(context, Login.id);
+                              Navigator.pushNamed(context, Dashboard.id);
+                            },
+                          ),
+                        ),
+                        Expanded(
+                          child: FilledButtonWID(
+                            text: const Text("postgressws"),
+                            onpressed: () {
+                              postgres();
+                              updateResponse("christopherobinna27@gmail.com",
+                                  "wererdfdeerr");
                               // Navigator.pushNamed(context, Dashboard.id);
-                              Navigator.pushNamed(context, Login.id);
+                              // Navigator.pushNamed(context, Login.id);
                             },
                           ),
                         ),

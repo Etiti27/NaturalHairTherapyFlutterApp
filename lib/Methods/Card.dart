@@ -9,7 +9,7 @@ class Cards extends StatelessWidget {
     required this.title,
   });
   VoidCallback onTap;
-  Image image;
+  Widget image;
   String title;
   @override
   Widget build(BuildContext context) {
@@ -42,6 +42,7 @@ class Cards extends StatelessWidget {
                       // Title
                       Text(
                         title,
+                        textAlign: TextAlign.center,
                         style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,

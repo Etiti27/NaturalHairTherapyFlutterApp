@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:natural_hair_therapist/Screens/Dashboard2.dart';
 import 'package:natural_hair_therapist/Widgets/AppBarWidget.dart';
 import 'package:natural_hair_therapist/Widgets/BottomWidget.dart';
 import 'package:provider/provider.dart';
@@ -10,13 +11,13 @@ import '../Methods/QuestionBank.dart';
 import '../Methods/secondaryNavigation.dart';
 // import 'openai_service.dart'; // Ensure this is the correct file path
 
-class ChatScreen extends StatefulWidget {
+class ResultScreen extends StatefulWidget {
   static const String id = "Result";
   @override
-  _ChatScreenState createState() => _ChatScreenState();
+  _ResultScreenState createState() => _ResultScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class _ResultScreenState extends State<ResultScreen> {
   @override
   // void initState() {
   //   // TODO: implement initState
@@ -84,6 +85,22 @@ class _ChatScreenState extends State<ChatScreen> {
                           ),
                         ),
                       ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Center(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: kPrimaryColor),
+                      onPressed: () {
+                        Navigator.pushNamed(context, Dashboard2.id);
+                      },
+                      child: const Text(
+                        "Start Your Education",
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   ),
                 ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:natural_hair_therapist/Methods/PostgreSQL.dart';
 import 'package:provider/provider.dart';
 
 import '../Constants.dart';
@@ -15,7 +16,6 @@ class QuestionsDynamics extends StatefulWidget {
   QuestionsDynamics({
     super.key,
     required this.questionnaire,
-    // required this.text,
     required this.list,
     required this.questionnairAnswer,
     required this.OnChange,
@@ -34,26 +34,36 @@ class QuestionsDynamics extends StatefulWidget {
 
 class _QuestionsDynamicsState extends State<QuestionsDynamics> {
   final Map _questions = QuestionBank().getQuestion();
-
   final Map _answers = QuestionBank().getAnswer();
-
   final OpenAIService openAIService = OpenAIService();
+  final DatabaseService postgre = DatabaseService(); // ✅ PostgreSQL Instance
 
-  String responseText = "loading";
+  String responseText = "Loading...";
   bool isLoading = false;
 
+  @override
+  void initState() {
+    super.initState();
+    connectDatabase(); // ✅ Ensure PostgreSQL connects on init
+  }
+
+  // ✅ Ensure PostgreSQL is connected before using it
+  Future<void> connectDatabase() async {
+    await postgre.ensureConnected();
+  }
+
+  // ✅ Fetch AI-generated response
   Future<void> fetchResponse(String userInput) async {
     setState(() {
       isLoading = true;
-      responseText = "Loading..."; // Show loading state
+      responseText = "Loading...";
     });
 
     try {
-      String response =
-          await openAIService.generateResponse(userInput, "write 100 words");
+      String response = await openAIService.generateResponse(
+          userInput, "Summarize in not more than 100 words");
       setState(() {
         responseText = response;
-        isLoading = false;
       });
     } catch (e) {
       setState(() {
@@ -63,19 +73,35 @@ class _QuestionsDynamicsState extends State<QuestionsDynamics> {
     }
   }
 
+  // ✅ Update PostgreSQL Response
+  Future<void> updateResponse(String email, String response) async {
+    await postgre.ensureConnected(); // ✅ Ensure connection before query
+    try {
+      await postgre.updateResponse(email, response);
+      setState(() {
+        isLoading = false;
+      });
+      print("✅ Database updated for: $email");
+    } catch (e) {
+      print("❌ Database update failed: $e");
+    }
+  }
+
+  // ✅ Send Email
   Future<void> sendEmails(String? recepientEmail, String text) async {
+    if (recepientEmail == null || recepientEmail.isEmpty) return;
     EmailSend email = EmailSend(
       emailSubject: 'Hair Report',
       emailText: text,
-      receipientEmail: recepientEmail!,
+      receipientEmail: recepientEmail,
     );
     await email.sendEmailed();
   }
 
-  // "I ${questionnaire.getHairGrowthAnswer1()} foods high in protein (like beans, fish, eggs) in your diet"
   @override
   Widget build(BuildContext context) {
     final questionnaire = Provider.of<ProviderClass>(context);
+
     return Scaffold(
       appBar: AppBarWidget(),
       body: isLoading
@@ -85,37 +111,32 @@ class _QuestionsDynamicsState extends State<QuestionsDynamics> {
               ),
             )
           : SingleChildScrollView(
-              child: Container(
-                width: double.infinity, // Ensures the Column takes full width
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 16), // Optional padding
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
-                  mainAxisAlignment:
-                      MainAxisAlignment.center, // Centers vertically
-                  crossAxisAlignment:
-                      CrossAxisAlignment.center, // Centers horizontally
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(
-                        height: MediaQuery.of(context).size.height *
-                            0.2), // Push content downward
-
+                    const SizedBox(height: 20), // Add spacing
                     LinearProgressIndicator(
                       value: widget.questionnaire.getProgress(),
                       color: kPrimaryColor,
                       minHeight: 5.0,
                     ),
+                    const SizedBox(height: 20),
 
+                    // ✅ Question Screen
                     questionScreens(
                       questionnaireAnswer: widget.questionnairAnswer,
                       text:
                           "${_questions["question${widget.questionnaire.getCurrentPage()}"]}",
                       listOfAnswer: widget.list,
                       OnChange: widget.OnChange,
+
+                      // ✅ Previous Button
                       prevButtonAppearance: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white),
                         onPressed: () {
-                          debugPrint("screen 1 prev button pressed");
                           if (widget.questionnaire.getCurrentPage() > 1) {
                             widget.questionnaire.updateProgressBck(
                                 widget.questionnaire.getTotalPage());
@@ -125,12 +146,15 @@ class _QuestionsDynamicsState extends State<QuestionsDynamics> {
                         child: const Text("<< prev",
                             style: TextStyle(color: kPrimaryColor)),
                       ),
+
+                      // ✅ Next/Finish Button
                       nextButtonAppearance: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white),
                         onPressed: () async {
                           if (widget.questionnaire.getCurrentPage() ==
                               widget.questionnaire.getTotalPage()) {
+                            // ✅ Reset Progress on Completion
                             widget.questionnaire.resetProgress();
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
@@ -142,28 +166,38 @@ class _QuestionsDynamicsState extends State<QuestionsDynamics> {
                               ),
                             );
 
+                            // ✅ Create Input for AI
                             String input =
-                                "I ${widget.questionnaire.getHairGrowthAnswer1()} foods high in protein (like beans, fish, eggs) in your diet"
-                                "with ${widget.questionnaire.getHairGrowthAnswer2()} supplements (e.g., vitamins, minerals) specifically for hair or general health"
-                                "i look out for ${widget.questionnaire.getHairGrowthAnswer3()} in my hair product"
-                                "I am aware that ${widget.questionnaire.getHairGrowthAnswer4()} ingredients might harm my hair's health or cause dryness"
-                                "I ${widget.questionnaire.getHairGrowthAnswer5()} massage my scalp or scalp-specific treatment"
-                                "I usually sleep ${widget.questionnaire.getHairGrowthAnswer6()} per night and"
-                                "${widget.questionnaire.getHairGrowthAnswer7()} protect my hair with a silk scarf or pillowcase"
-                                "i can describe my stress level as being ${widget.questionnaire.getHairGrowthAnswer8()} and"
-                                "${widget.questionnaire.getHairGrowthAnswer9()} practice stress management like meditation, exercise or journaling";
+                                "I ${widget.questionnaire.getHairGrowthAnswer1()} foods high in protein (like beans, fish, eggs) in my diet. "
+                                "I take ${widget.questionnaire.getHairGrowthAnswer2()} supplements (e.g., vitamins, minerals) for hair health. "
+                                "I look for ${widget.questionnaire.getHairGrowthAnswer3()} in hair products. "
+                                "I am aware that ${widget.questionnaire.getHairGrowthAnswer4()} might harm my hair’s health. "
+                                "I ${widget.questionnaire.getHairGrowthAnswer5()} massage my scalp. "
+                                "I sleep ${widget.questionnaire.getHairGrowthAnswer6()} hours per night. "
+                                "I ${widget.questionnaire.getHairGrowthAnswer7()} use a silk scarf or pillowcase. "
+                                "I describe my stress level as ${widget.questionnaire.getHairGrowthAnswer8()}. "
+                                "I ${widget.questionnaire.getHairGrowthAnswer9()} practice stress management (e.g., meditation, exercise, journaling).";
+
+                            // ✅ Fetch AI Response
                             await fetchResponse(input);
-                            questionnaire.updateResponse(responseText);
-                            sendEmails(questionnaire.getEmail(),
-                                "<h2>Hello ${questionnaire.getCurrentUsername()},</h2> <p>$responseText</p>");
+
+                            // ✅ Update Database & Send Email
+
+                            await sendEmails(
+                              questionnaire.getEmail(),
+                              "<h2>Hello ${questionnaire.getCurrentUsername()},</h2> <p>$responseText</p>",
+                            );
+                            await updateResponse(
+                                questionnaire.getEmail()!, responseText);
+
+                            // ✅ Navigate After Async Tasks Are Done
 
                             Navigator.pushNamed(
                               context,
-                              ChatScreen.id,
+                              ResultScreen.id,
                               arguments: {"responseText": responseText},
                             );
-                          } else if (widget.questionnaire.getCurrentPage() <
-                              widget.questionnaire.getTotalPage()) {
+                          } else {
                             widget.questionnaire.updateProgress(
                                 widget.questionnaire.getTotalPage());
                             Navigator.pushNamed(context,
@@ -173,19 +207,14 @@ class _QuestionsDynamicsState extends State<QuestionsDynamics> {
                         child: Text(
                           widget.questionnaire.getCurrentPage() ==
                                   widget.questionnaire.getTotalPage()
-                              ? "finish"
-                              : "next >>",
+                              ? "Finish"
+                              : "Next >>",
                           style: TextStyle(color: kPrimaryColor),
                         ),
                       ),
                     ),
-                    // Text(responseText!),
 
                     if (widget.feedback != null) widget.feedback!,
-
-                    SizedBox(
-                        height: MediaQuery.of(context).size.height *
-                            0.3), // Add spacing at bottom
                   ],
                 ),
               ),

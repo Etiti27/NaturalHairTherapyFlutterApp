@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:natural_hair_therapist/Methods/ProviderPackage.dart';
-import 'package:provider/provider.dart';
-
-import '../Widgets/QuestionDynamics.dart';
+import 'package:natural_hair_therapist/imports.dart';
 
 class Question8 extends StatelessWidget {
   static const String id = "Question8";

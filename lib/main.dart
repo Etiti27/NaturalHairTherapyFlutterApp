@@ -1,30 +1,10 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:natural_hair_therapist/Screens/2Question.dart';
-import 'package:natural_hair_therapist/Screens/3Question.dart';
-import 'package:natural_hair_therapist/Screens/Dashboard.dart';
-import 'package:natural_hair_therapist/Screens/GrowYourHair.dart';
-import 'package:natural_hair_therapist/Screens/QuestionThreeScreen.dart';
-import 'package:natural_hair_therapist/Screens/QuestionTwoScreen.dart';
-import 'package:natural_hair_therapist/Screens/Registration.dart';
-import 'package:natural_hair_therapist/Screens/question_one.dart';
-import 'package:natural_hair_therapist/Screens/test.dart';
-import 'package:provider/provider.dart';
+import 'package:natural_hair_therapist/Screens/HairCareGrowthMain.dart';
 
-import 'Methods/ProviderPackage.dart';
-import 'Screens/4Question.dart';
-import 'Screens/5Question.dart';
-import 'Screens/6Question.dart';
-import 'Screens/7Question.dart';
-import 'Screens/8Question.dart';
-import 'Screens/9Question.dart';
-import 'Screens/Home.dart';
-import 'Screens/Login.dart';
-import 'Screens/Result.dart';
+import 'imports.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensures binding is initialized
+  // await NotificationService.init();
   await dotenv.load(fileName: ".env");
   await Firebase.initializeApp();
   runApp(
@@ -51,6 +31,7 @@ class MyApp extends StatelessWidget {
         Login.id: (context) => const Login(),
         Registration.id: (context) => const Registration(),
         Dashboard.id: (context) => const Dashboard(),
+        Dashboard2.id: (context) => const Dashboard2(),
         Growyourhair.id: (context) => const Growyourhair(),
         QuestionScreen.id: (context) => QuestionScreen(),
         Questiononescreen.id: (context) => Questiononescreen(),
@@ -65,7 +46,41 @@ class MyApp extends StatelessWidget {
         Question8.id: (context) => const Question8(),
         Question9.id: (context) => const Question9(),
         Growyourhair.id: (context) => const Growyourhair(),
-        ChatScreen.id: (context) => ChatScreen()
+        Growyourhair2.id: (context) => Growyourhair2(),
+        Growyourhair3.id: (context) => Growyourhair3(),
+        Growyourhair4.id: (context) => Growyourhair4(),
+        ResultScreen.id: (context) => ResultScreen(),
+        NISH1.id: (context) => NISH1(),
+        NISH2.id: (context) => NISH2(),
+        NISH3.id: (context) => NISH3(),
+        NISH4.id: (context) => NISH4(),
+        Ingredient.id: (context) => Ingredient(),
+        Ingredient2.id: (context) => Ingredient2(),
+        Ingredient3.id: (context) => Ingredient3(),
+        Ingredient4.id: (context) => Ingredient4(),
+        Ingredient5.id: (context) => Ingredient5(),
+        Ingredient6.id: (context) => Ingredient6(),
+        Ingredient7.id: (context) => Ingredient7(),
+        scalp1.id: (context) => scalp1(),
+        scalp2.id: (context) => scalp2(),
+        scalp3.id: (context) => scalp3(),
+        scalp4.id: (context) => scalp4(),
+        stress1.id: (context) => stress1(),
+        stress2.id: (context) => stress2(),
+        stress3.id: (context) => stress3(),
+        stress4.id: (context) => stress4(),
+        stress5.id: (context) => stress5(),
+        sleep1.id: (context) => sleep1(),
+        sleep2.id: (context) => sleep2(),
+        sleep3.id: (context) => sleep3(),
+        sleep4.id: (context) => sleep4(),
+        sleep5.id: (context) => sleep5(),
+        hairMain1.id: (context) => hairMain1(),
+        hairMain2.id: (context) => hairMain2(),
+        hairMain3.id: (context) => hairMain3(),
+        lengthlent1.id: (context) => lengthlent1(),
+        lengthlent2.id: (context) => lengthlent2(),
+        HairCareGrowthMain.id: (context) => HairCareGrowthMain()
       },
     );
   }
