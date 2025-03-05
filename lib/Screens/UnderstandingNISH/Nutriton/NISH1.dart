@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:natural_hair_therapist/Constants.dart';
-import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Stress3.dart';
+import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Nutriton/NISH2.dart';
 
-import '../../Widgets/AppBarWidget.dart';
-import '../../Widgets/BottomWidget.dart';
-import '../../Widgets/GrowYourHairWelcome.dart';
+import '../../../Widgets/AppBarWidget.dart';
+import '../../../Widgets/BottomWidget.dart';
+import '../../../Widgets/GrowYourHairWelcome.dart';
 
-class stress2 extends StatefulWidget {
-  const stress2({super.key});
-  static const String id = "stress2";
+class NISH1 extends StatefulWidget {
+  const NISH1({super.key});
+  static const String id = "nish1";
 
   @override
-  State<stress2> createState() => _stress2State();
+  State<NISH1> createState() => _NISH1State();
 }
 
-class _stress2State extends State<stress2> {
+class _NISH1State extends State<NISH1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidget(),
       body: WelcomeHair(
-        header: 'STRESS MANAGEMENT',
-        subheader: 'Key Points in Stress Management',
+        header: 'NISH',
+        subheader: 'Welcome to NISH!',
         note: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              kSTRESS2,
+              kNish1,
               textAlign: TextAlign.justify,
               style: TextStyle(
                 fontSize: 20,
@@ -48,7 +48,7 @@ class _stress2State extends State<stress2> {
           ],
         ),
         nextButton: () {
-          Navigator.pushNamed(context, stress3.id);
+          Navigator.pushNamed(context, NISH2.id);
         },
         nextButtonText: 'Next >>',
       ),

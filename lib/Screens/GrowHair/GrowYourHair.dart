@@ -15,12 +15,12 @@ class _GrowyourhairState extends State<Growyourhair> {
       appBar: AppBarWidget(),
       body: WelcomeHair(
         header: 'Grow Your Hair',
-        subheader: 'Welcome to Your Hair Growth Journey!',
+        subheader: 'Welcome to Your Hair Growth Journey!!',
         note: const Text(
           kGrowYourHairText,
           textAlign: TextAlign.justify,
           style: TextStyle(
-            fontSize: 25,
+            fontSize: 20,
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),

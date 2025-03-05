@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:natural_hair_therapist/Constants.dart';
-import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Ingredient4.dart';
+import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Ingredient/Ingredient4.dart';
 
-import '../../Widgets/AppBarWidget.dart';
-import '../../Widgets/BottomWidget.dart';
-import '../../Widgets/GrowYourHairWelcome.dart';
+import '../../../Widgets/AppBarWidget.dart';
+import '../../../Widgets/BottomWidget.dart';
+import '../../../Widgets/GrowYourHairWelcome.dart';
 
 class Ingredient3 extends StatefulWidget {
   const Ingredient3({super.key});

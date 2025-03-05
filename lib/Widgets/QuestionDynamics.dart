@@ -19,14 +19,16 @@ class QuestionsDynamics extends StatefulWidget {
     required this.list,
     required this.questionnairAnswer,
     required this.OnChange,
-    this.feedback,
+    required this.feedback,
+    required this.isValue,
   });
 
   final ProviderClass questionnaire;
-  final Widget? feedback;
+  final String feedback;
   final List<String> list;
   final String? questionnairAnswer;
   final ValueChanged<String?> OnChange;
+  final bool isValue;
 
   @override
   State<QuestionsDynamics> createState() => _QuestionsDynamicsState();
@@ -110,112 +112,135 @@ class _QuestionsDynamicsState extends State<QuestionsDynamics> {
                 backgroundColor: kPrimaryColor,
               ),
             )
-          : SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const SizedBox(height: 20), // Add spacing
-                    LinearProgressIndicator(
-                      value: widget.questionnaire.getProgress(),
-                      color: kPrimaryColor,
-                      minHeight: 5.0,
-                    ),
-                    const SizedBox(height: 20),
-
-                    // ✅ Question Screen
-                    questionScreens(
-                      questionnaireAnswer: widget.questionnairAnswer,
-                      text:
-                          "${_questions["question${widget.questionnaire.getCurrentPage()}"]}",
-                      listOfAnswer: widget.list,
-                      OnChange: widget.OnChange,
-
-                      // ✅ Previous Button
-                      prevButtonAppearance: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white),
-                        onPressed: () {
-                          if (widget.questionnaire.getCurrentPage() > 1) {
-                            widget.questionnaire.updateProgressBck(
-                                widget.questionnaire.getTotalPage());
-                          }
-                          Navigator.pop(context);
-                        },
-                        child: const Text("<< prev",
-                            style: TextStyle(color: kPrimaryColor)),
+          : Center(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const SizedBox(height: 20), // Add spacing
+                      LinearProgressIndicator(
+                        value: widget.questionnaire.getProgress(),
+                        color: kPrimaryColor,
+                        minHeight: 5.0,
                       ),
+                      const SizedBox(height: 20),
 
-                      // ✅ Next/Finish Button
-                      nextButtonAppearance: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white),
-                        onPressed: () async {
-                          if (widget.questionnaire.getCurrentPage() ==
-                              widget.questionnaire.getTotalPage()) {
-                            // ✅ Reset Progress on Completion
-                            widget.questionnaire.resetProgress();
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                backgroundColor: kPrimaryColor,
-                                content: Text(
-                                  "You've completed all questions!",
-                                  style: TextStyle(color: Colors.white),
+                      // ✅ Question Screen
+                      questionScreens(
+                        questionnaireAnswer: widget.questionnairAnswer,
+                        text:
+                            "${_questions["question${widget.questionnaire.getCurrentPage()}"]}",
+                        listOfAnswer: widget.list,
+                        OnChange: widget.OnChange,
+
+                        // ✅ Previous Button
+                        prevButtonAppearance: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white),
+                          onPressed: () {
+                            if (widget.questionnaire.getCurrentPage() > 1) {
+                              widget.questionnaire.updateProgressBck(
+                                  widget.questionnaire.getTotalPage());
+                            }
+                            Navigator.pop(context);
+                          },
+                          child: const Text("<< prev",
+                              style: TextStyle(color: kPrimaryColor)),
+                        ),
+
+                        // ✅ Next/Finish Button
+                        nextButtonAppearance: !widget.isValue
+                            ? ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.grey),
+                                onPressed: () {},
+                                child: Text("Next >>"),
+                              )
+                            : ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.white),
+                                onPressed: () async {
+                                  if (widget.questionnaire.getCurrentPage() ==
+                                      widget.questionnaire.getTotalPage()) {
+                                    // ✅ Reset Progress on Completion
+                                    widget.questionnaire.resetProgress();
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        backgroundColor: kPrimaryColor,
+                                        content: Text(
+                                          "You've completed all questions!",
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      ),
+                                    );
+
+                                    // ✅ Create Input for AI
+                                    String input =
+                                        "I ${widget.questionnaire.getHairGrowthAnswer1()} foods high in protein (like beans, fish, eggs) in my diet. "
+                                        "I take ${widget.questionnaire.getHairGrowthAnswer2()} supplements (e.g., vitamins, minerals) for hair health. "
+                                        "I look for ${widget.questionnaire.getHairGrowthAnswer3()} in hair products. "
+                                        "I am aware that ${widget.questionnaire.getHairGrowthAnswer4()} might harm my hair’s health. "
+                                        "I ${widget.questionnaire.getHairGrowthAnswer5()} massage my scalp. "
+                                        "I sleep ${widget.questionnaire.getHairGrowthAnswer6()} hours per night. "
+                                        "I ${widget.questionnaire.getHairGrowthAnswer7()} use a silk scarf or pillowcase. "
+                                        "I describe my stress level as ${widget.questionnaire.getHairGrowthAnswer8()}. "
+                                        "I ${widget.questionnaire.getHairGrowthAnswer9()} practice stress management (e.g., meditation, exercise, journaling).";
+
+                                    // ✅ Fetch AI Response
+                                    await fetchResponse(input);
+
+                                    // ✅ Update Database & Send Email
+
+                                    await sendEmails(
+                                      questionnaire.getEmail(),
+                                      "<h2>Hello ${questionnaire.getCurrentUsername()},</h2> <p>$responseText</p>",
+                                    );
+                                    await updateResponse(
+                                        questionnaire.getEmail()!,
+                                        responseText);
+
+                                    // ✅ Navigate After Async Tasks Are Done
+
+                                    Navigator.pushNamed(
+                                      context,
+                                      ResultScreen.id,
+                                      arguments: {"responseText": responseText},
+                                    );
+                                  } else {
+                                    widget.questionnaire.updateProgress(
+                                        widget.questionnaire.getTotalPage());
+
+                                    Navigator.pushNamed(context,
+                                        "Question${widget.questionnaire.getCurrentPage()}");
+                                  }
+                                },
+                                child: Text(
+                                  widget.questionnaire.getCurrentPage() ==
+                                          widget.questionnaire.getTotalPage()
+                                      ? "Finish"
+                                      : "Next >>",
+                                  style: TextStyle(color: kPrimaryColor),
                                 ),
                               ),
-                            );
-
-                            // ✅ Create Input for AI
-                            String input =
-                                "I ${widget.questionnaire.getHairGrowthAnswer1()} foods high in protein (like beans, fish, eggs) in my diet. "
-                                "I take ${widget.questionnaire.getHairGrowthAnswer2()} supplements (e.g., vitamins, minerals) for hair health. "
-                                "I look for ${widget.questionnaire.getHairGrowthAnswer3()} in hair products. "
-                                "I am aware that ${widget.questionnaire.getHairGrowthAnswer4()} might harm my hair’s health. "
-                                "I ${widget.questionnaire.getHairGrowthAnswer5()} massage my scalp. "
-                                "I sleep ${widget.questionnaire.getHairGrowthAnswer6()} hours per night. "
-                                "I ${widget.questionnaire.getHairGrowthAnswer7()} use a silk scarf or pillowcase. "
-                                "I describe my stress level as ${widget.questionnaire.getHairGrowthAnswer8()}. "
-                                "I ${widget.questionnaire.getHairGrowthAnswer9()} practice stress management (e.g., meditation, exercise, journaling).";
-
-                            // ✅ Fetch AI Response
-                            await fetchResponse(input);
-
-                            // ✅ Update Database & Send Email
-
-                            await sendEmails(
-                              questionnaire.getEmail(),
-                              "<h2>Hello ${questionnaire.getCurrentUsername()},</h2> <p>$responseText</p>",
-                            );
-                            await updateResponse(
-                                questionnaire.getEmail()!, responseText);
-
-                            // ✅ Navigate After Async Tasks Are Done
-
-                            Navigator.pushNamed(
-                              context,
-                              ResultScreen.id,
-                              arguments: {"responseText": responseText},
-                            );
-                          } else {
-                            widget.questionnaire.updateProgress(
-                                widget.questionnaire.getTotalPage());
-                            Navigator.pushNamed(context,
-                                "Question${widget.questionnaire.getCurrentPage()}");
-                          }
-                        },
-                        child: Text(
-                          widget.questionnaire.getCurrentPage() ==
-                                  widget.questionnaire.getTotalPage()
-                              ? "Finish"
-                              : "Next >>",
-                          style: TextStyle(color: kPrimaryColor),
-                        ),
                       ),
-                    ),
 
-                    if (widget.feedback != null) widget.feedback!,
-                  ],
+                      if (widget.feedback != null)
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Text(
+                            widget.feedback, // ✅ Updates dynamically
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
                 ),
               ),
             ),

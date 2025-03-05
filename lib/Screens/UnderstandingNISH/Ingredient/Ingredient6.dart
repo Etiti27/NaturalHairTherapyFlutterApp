@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:natural_hair_therapist/Constants.dart';
-import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Stress1.dart';
+import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Ingredient/Ingredient7.dart';
 
-import '../../Widgets/AppBarWidget.dart';
-import '../../Widgets/BottomWidget.dart';
-import '../../Widgets/GrowYourHairWelcome.dart';
+import '../../../Widgets/AppBarWidget.dart';
+import '../../../Widgets/BottomWidget.dart';
+import '../../../Widgets/GrowYourHairWelcome.dart';
 
-class scalp4 extends StatefulWidget {
-  const scalp4({super.key});
-  static const String id = "scalp4";
+class Ingredient6 extends StatefulWidget {
+  const Ingredient6({super.key});
+  static const String id = "ingredient6";
 
   @override
-  State<scalp4> createState() => _scalp4State();
+  State<Ingredient6> createState() => _Ingredient6State();
 }
 
-class _scalp4State extends State<scalp4> {
+class _Ingredient6State extends State<Ingredient6> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidget(),
       body: WelcomeHair(
-        header: 'SCALP CARE',
-        subheader: 'Scalp Health Is Key to Long-Term Hair Health',
+        header: 'INGREDIENT',
+        subheader: 'Choosing Ingredients Based on Hair Needs',
         note: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              kSCALP4,
+              kINGREDIENT6,
               textAlign: TextAlign.justify,
               style: TextStyle(
                 fontSize: 20,
@@ -48,7 +48,7 @@ class _scalp4State extends State<scalp4> {
           ],
         ),
         nextButton: () {
-          Navigator.pushNamed(context, stress1.id);
+          Navigator.pushNamed(context, Ingredient7.id);
         },
         nextButtonText: 'Next >>',
       ),

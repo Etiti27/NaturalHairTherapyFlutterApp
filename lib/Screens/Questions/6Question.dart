@@ -11,6 +11,8 @@ class Question6 extends StatefulWidget {
 
 class _Question6State extends State<Question6> {
   String selected = "7-8 Hours";
+  String feedback = "Please select an option.";
+  bool isValued = false;
   @override
   Widget build(BuildContext context) {
     final questionnaire = Provider.of<ProviderClass>(context);
@@ -19,8 +21,14 @@ class _Question6State extends State<Question6> {
       questionnairAnswer: questionnaire.getHairGrowthAnswer6(),
       OnChange: (String? value) {
         questionnaire.updateHairGrowthAnswer6(value!);
+        setState(() {
+          feedback = "";
+          isValued = true;
+        });
       },
       list: const ["7-8 Hours", "5-6 Hours", "Less than 5 Hours"],
+      feedback: feedback,
+      isValue: isValued,
     );
   }
 }

@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:natural_hair_therapist/Constants.dart';
+import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Stress/Stress3.dart';
 
-import '../../Widgets/AppBarWidget.dart';
-import '../../Widgets/BottomWidget.dart';
-import '../../Widgets/GrowYourHairWelcome.dart';
-import 'Scalp1.dart';
+import '../../../Widgets/AppBarWidget.dart';
+import '../../../Widgets/BottomWidget.dart';
+import '../../../Widgets/GrowYourHairWelcome.dart';
 
-class Ingredient7 extends StatefulWidget {
-  const Ingredient7({super.key});
-  static const String id = "ingredient7";
+class stress2 extends StatefulWidget {
+  const stress2({super.key});
+  static const String id = "stress2";
 
   @override
-  State<Ingredient7> createState() => _Ingredient7State();
+  State<stress2> createState() => _stress2State();
 }
 
-class _Ingredient7State extends State<Ingredient7> {
+class _stress2State extends State<stress2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidget(),
       body: WelcomeHair(
-        header: 'INGREDIENT',
-        subheader: 'A Practical Approach to Selecting Products',
+        header: 'STRESS MANAGEMENT',
+        subheader: 'Key Points in Stress Management',
         note: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              kINGREDIENT7,
+              kSTRESS2,
               textAlign: TextAlign.justify,
               style: TextStyle(
                 fontSize: 20,
@@ -48,7 +48,7 @@ class _Ingredient7State extends State<Ingredient7> {
           ],
         ),
         nextButton: () {
-          Navigator.pushNamed(context, scalp1.id);
+          Navigator.pushNamed(context, stress3.id);
         },
         nextButtonText: 'Next >>',
       ),

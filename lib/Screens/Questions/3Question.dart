@@ -10,7 +10,7 @@ class Question3 extends StatefulWidget {
 }
 
 class _Question3State extends State<Question3> {
-  String feedback = ""; // ✅ Default empty feedback to prevent null issues
+  // ✅ Default empty feedback to prevent null issues
 
   // ✅ Feedback messages mapped to each ingredient
   final Map<String, String> feedbackMessages = {
@@ -27,23 +27,16 @@ class _Question3State extends State<Question3> {
     "Cetyl Alcohol":
         "Great choice! Cetyl alcohol is a fatty alcohol that conditions and softens hair. It helps improve moisture retention and makes hair products creamier for easier application."
   };
+  String feedback = "Please select an option.";
+  bool isValued = false;
 
   @override
   Widget build(BuildContext context) {
     final questionnaire = Provider.of<ProviderClass>(context);
 
     return QuestionsDynamics(
-      feedback: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Text(
-          feedback, // ✅ Now updates dynamically
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            color: Colors.red,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
+      feedback: feedback,
+
       questionnaire: questionnaire,
       questionnairAnswer: questionnaire.getHairGrowthAnswer3(),
       OnChange: (String? value) {
@@ -52,13 +45,13 @@ class _Question3State extends State<Question3> {
 
           // ✅ Use setState() to update UI dynamically
           setState(() {
-            feedback = feedbackMessages[value] ??
-                "Please select an option."; // Default fallback message
+            feedback = feedbackMessages[value] ?? "Please select an option.";
+            isValued = true;
           });
         }
       },
-      list: feedbackMessages.keys
-          .toList(), // ✅ Automatically uses keys from the feedback map
+      list: feedbackMessages.keys.toList(),
+      isValue: isValued, // ✅ Automatically uses keys from the feedback map
     );
   }
 }

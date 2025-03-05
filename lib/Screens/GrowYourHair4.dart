@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:natural_hair_therapist/Screens/Questions/question_one.dart';
+import 'package:natural_hair_therapist/Screens/Questions/1Question.dart';
 
-import '../../Widgets/AppBarWidget.dart';
-import '../../Widgets/BottomWidget.dart';
-import '../../Widgets/GrowYourHairWelcome.dart';
+import '../Widgets/AppBarWidget.dart';
+import '../Widgets/BottomWidget.dart';
+import '../Widgets/GrowYourHairWelcome.dart';
 
 class Growyourhair4 extends StatefulWidget {
   const Growyourhair4({super.key});

@@ -1,14 +1,4 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:natural_hair_therapist/Methods/Firebase.dart';
-import 'package:natural_hair_therapist/Widgets/AppBarWidget.dart';
-import 'package:provider/provider.dart';
-
-import '../Constants.dart';
-import '../Methods/ProviderPackage.dart';
-import '../Widgets/BottomWidget.dart';
-import '../Widgets/DashboardCard.dart';
-import 'UnderstandingNISH/GrowYourHair.dart';
+import 'package:natural_hair_therapist/imports.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -117,6 +107,8 @@ class _DashboardState extends State<Dashboard>
                         color: kPrimaryColor),
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
                     children: [
                       DashboardCard(
                         image: Image.asset(
@@ -125,7 +117,7 @@ class _DashboardState extends State<Dashboard>
                           // height: 50.0,
                           fit: BoxFit.cover,
                         ),
-                        title: 'Grow Hair',
+                        title: 'Grow Hair       ',
                         OnTap: () {
                           questionnaire.updateCurrentUsername(userName);
                           questionnaire.updateEmail(email);
@@ -146,6 +138,8 @@ class _DashboardState extends State<Dashboard>
                     ],
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
                     children: [
                       DashboardCard(
                         image: Image.asset(
@@ -166,7 +160,7 @@ class _DashboardState extends State<Dashboard>
                         ),
                         title: 'Stop Breakage',
                         OnTap: () {
-                          Navigator.pushNamed(context, Growyourhair.id);
+                          // Navigator.pushNamed(context, Growyourhair.id);
                         },
                       ),
                     ],

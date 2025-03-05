@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:natural_hair_therapist/Constants.dart';
 
-import '../../Widgets/AppBarWidget.dart';
-import '../../Widgets/BottomWidget.dart';
-import '../../Widgets/GrowYourHairWelcome.dart';
-import 'Ingredient5.dart';
+import '../../../Widgets/AppBarWidget.dart';
+import '../../../Widgets/BottomWidget.dart';
+import '../../../Widgets/GrowYourHairWelcome.dart';
+import 'Stress5.dart';
 
-class Ingredient4 extends StatefulWidget {
-  const Ingredient4({super.key});
-  static const String id = "ingredient4";
+class stress4 extends StatefulWidget {
+  const stress4({super.key});
+  static const String id = "stress4";
 
   @override
-  State<Ingredient4> createState() => _Ingredient4State();
+  State<stress4> createState() => _stress4State();
 }
 
-class _Ingredient4State extends State<Ingredient4> {
+class _stress4State extends State<stress4> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidget(),
       body: WelcomeHair(
-        header: 'INGREDIENT',
-        subheader: 'Why Ingredients Behave Differently on Different Hair',
+        header: 'STRESS MANAGEMENT',
+        subheader: 'How Stress Affects Hair Health',
         note: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              kINGREDIENT4,
+              kSTRESS4,
               textAlign: TextAlign.justify,
               style: TextStyle(
                 fontSize: 20,
@@ -48,7 +48,7 @@ class _Ingredient4State extends State<Ingredient4> {
           ],
         ),
         nextButton: () {
-          Navigator.pushNamed(context, Ingredient5.id);
+          Navigator.pushNamed(context, stress5.id);
         },
         nextButtonText: 'Next >>',
       ),

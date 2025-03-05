@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:natural_hair_therapist/Constants.dart';
+import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Ingredient/Ingredient.dart';
 
-import '../../Widgets/AppBarWidget.dart';
-import '../../Widgets/BottomWidget.dart';
-import '../../Widgets/GrowYourHairWelcome.dart';
-import 'Ingredient3.dart';
+import '../../../Widgets/AppBarWidget.dart';
+import '../../../Widgets/BottomWidget.dart';
+import '../../../Widgets/GrowYourHairWelcome.dart';
 
-class Ingredient2 extends StatefulWidget {
-  const Ingredient2({super.key});
-  static const String id = "ingredient2";
+class NISH4 extends StatefulWidget {
+  const NISH4({super.key});
+  static const String id = "nish4";
 
   @override
-  State<Ingredient2> createState() => _Ingredient2State();
+  State<NISH4> createState() => _NISH4State();
 }
 
-class _Ingredient2State extends State<Ingredient2> {
+class _NISH4State extends State<NISH4> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidget(),
       body: WelcomeHair(
-        header: 'INGREDIENT',
-        subheader: 'What Are Ingredients?',
+        header: 'NUTRITION',
+        subheader: 'Gut-Healthy Tips for Hair Growth',
         note: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              kINGREDIENT2,
+              kNISH4,
               textAlign: TextAlign.justify,
               style: TextStyle(
                 fontSize: 20,
@@ -34,11 +34,10 @@ class _Ingredient2State extends State<Ingredient2> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 10),
           ],
         ),
         nextButton: () {
-          Navigator.pushNamed(context, Ingredient3.id);
+          Navigator.pushNamed(context, Ingredient.id);
         },
         nextButtonText: 'Next >>',
       ),

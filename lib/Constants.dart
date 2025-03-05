@@ -1,11 +1,21 @@
-import 'package:flutter/material.dart';
+import 'package:natural_hair_therapist/imports.dart';
 
 // final questionnaire = Provider.of<ProviderClass>(context);
 const kPrimaryColor = Color(0xff8ba870);
 const kGrowYourHairText =
-    "We’re so glad you’re here! Growing healthy hair is all about giving your body the support it needs—it already knows how to grow hair; our job is just to help it along.";
+    """We're so glad you're here! Growing healthy hair is a natural process—your body already knows how to do it. Our role is to support that process by providing the right nutrition, care, and environment for optimal growth. 
+    
+    Hair thrives when we nourish it from within, maintain a healthy scalp, and use the right products and techniques to prevent breakage. 
+    
+    It's not about forcing growth but about giving your hair what it needs to flourish. With the right approach, patience, and consistency, you can achieve strong, beautiful hair. Let’s work together to support your hair’s natural journey!""";
 const kNish1 =
-    "This unique, holistic framework developed by your Natural Hair Therapist (NHT) covers everything your body needs for healthy hair growth";
+    """Welcome to NISH! This unique, holistic framework, developed by your Natural Hair Therapist (NHT), provides everything your body needs for healthy hair growth. 
+    
+    NISH focuses on Nutrition, Ingredients, Scalp care, Sleep management, Stress management, and Hair maintenance, ensuring a well-rounded approach to hair health. 
+    
+    By addressing both internal and external factors, NISH empowers you to support your hair naturally and effectively. 
+    
+    Let’s begin your journey to stronger, healthier hair!""";
 const kNISH2 =
     """Nutrition is the foundation of hair health. Just like plants need water, soil, and sunlight to grow, your hair relies on the nutrients you provide through your diet. Think of it as giving your body the building blocks it needs to create strong, resilient hair.”
 
@@ -39,12 +49,12 @@ const kINGREDIENT =
     However, just because an ingredient works well for someone else doesn’t mean it will work the same way for you. 
     
     Understanding ingredients—what they do, how they behave, and when to use them—empowers you to make choices that fit your unique hair needs rather than following a one-size-fits-all approach.""";
-const kINGREDIENT2 = """
-
-    Ingredients are the individual components that make up hair products, each with specific properties and effects on hair. 
+const kINGREDIENT2 =
+    """Ingredients are the building blocks of hair products, each playing a unique role in hair health. They can moisturize, strengthen, cleanse, or protect, depending on their properties and how they’re formulated. 
     
-They can moisturize, strengthen, cleanse, or protect, depending on their type and how they’re used in a product.""";
-
+    Understanding ingredients helps you choose the right products for your hair’s needs. Some nourish and hydrate, while others provide structure or shield against damage. 
+    
+    By selecting the right combination, you can enhance your hair’s strength, resilience, and overall health""";
 const kINGREDIENT3 =
     """• Humectants: Attract moisture from the air to the hair (e.g., glycerin, hyaluronic acid).
     
@@ -52,16 +62,14 @@ const kINGREDIENT3 =
 
 • Proteins: Strengthen the hair structure, reducing breakage (e.g., hydrolyzed keratin, silk proteins).
 
-• Cleansing Agents: Remove dirt and buildup from the hair and scalp (e.g., sodium cocoyl isethionate, a mild sulfate found in some shampoos).
-""";
+• Cleansing Agents: Remove dirt and buildup from the hair and scalp (e.g., sodium cocoyl isethionate, a mild sulfate found in some shampoos).""";
 
 const kINGREDIENT4 =
     """Ingredients behave uniquely based on factors like climate, humidity, and individual hair characteristics. For example, glycerin is known to attract moisture, but in dry climates, it can pull moisture from the hair instead, leading to dryness.
 
 The Natural Hair Therapist approach encourages users to identify their hair needs rather than focusing on hair types (like 3a, 4c, etc.). Needs may include moisture, protein, or strength, and understanding these will guide you in choosing ingredients that specifically benefit your hair.
 
-Don’t choose products based on a friend or family member’s experience. Instead, assess your own hair’s needs and look for ingredients that align with those needs.
-""";
+Don’t choose products based on a friend or family member’s experience. Instead, assess your own hair’s needs and look for ingredients that align with those needs.""";
 
 const kINGREDIENT5 =
     """• Alcohols: Not all alcohols are bad. Fatty alcohols, such as cetyl and stearyl alcohol, help retain moisture, while short-chain alcohols (like isopropyl alcohol) can be drying in large amounts.
@@ -72,8 +80,7 @@ const kINGREDIENT5 =
 const kINGREDIENT6 =
     """Examine the first five ingredients listed, as these make up most of the product. Look for ingredients that meet your specific hair needs, whether it’s hydration (humectants), strength (proteins), or moisture retention (emollients).
 
-Introduce one new product at a time and observe how your hair responds. This way, you can identify which ingredients work well for your hair and which may not be as effective.
-""";
+Introduce one new product at a time and observe how your hair responds. This way, you can identify which ingredients work well for your hair and which may not be as effective.""";
 
 const kINGREDIENT7 =
     """Before buying a product, assess what your hair currently needs (e.g., more moisture, extra strength, or protein). Use this to determine which ingredients will best support that need.

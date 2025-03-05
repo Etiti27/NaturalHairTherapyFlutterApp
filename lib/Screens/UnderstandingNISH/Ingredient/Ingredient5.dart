@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:natural_hair_therapist/Constants.dart';
 
-import '../../Widgets/AppBarWidget.dart';
-import '../../Widgets/BottomWidget.dart';
-import '../../Widgets/GrowYourHairWelcome.dart';
+import '../../../Widgets/AppBarWidget.dart';
+import '../../../Widgets/BottomWidget.dart';
+import '../../../Widgets/GrowYourHairWelcome.dart';
 import 'Ingredient6.dart';
 
 class Ingredient5 extends StatefulWidget {

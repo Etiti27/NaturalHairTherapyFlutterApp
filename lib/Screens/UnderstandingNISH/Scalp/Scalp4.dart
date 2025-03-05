@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:natural_hair_therapist/Constants.dart';
-import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Stress4.dart';
+import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Stress/Stress1.dart';
 
-import '../../Widgets/AppBarWidget.dart';
-import '../../Widgets/BottomWidget.dart';
-import '../../Widgets/GrowYourHairWelcome.dart';
+import '../../../Widgets/AppBarWidget.dart';
+import '../../../Widgets/BottomWidget.dart';
+import '../../../Widgets/GrowYourHairWelcome.dart';
 
-class stress3 extends StatefulWidget {
-  const stress3({super.key});
-  static const String id = "stress3";
+class scalp4 extends StatefulWidget {
+  const scalp4({super.key});
+  static const String id = "scalp4";
 
   @override
-  State<stress3> createState() => _stress3State();
+  State<scalp4> createState() => _scalp4State();
 }
 
-class _stress3State extends State<stress3> {
+class _scalp4State extends State<scalp4> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidget(),
       body: WelcomeHair(
-        header: 'STRESS MANAGEMENT',
-        subheader: 'Self-Assessment for Stress',
+        header: 'SCALP CARE',
+        subheader: 'Scalp Health Is Key to Long-Term Hair Health',
         note: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              kSTRESS3,
+              kSCALP4,
               textAlign: TextAlign.justify,
               style: TextStyle(
                 fontSize: 20,
@@ -48,7 +48,7 @@ class _stress3State extends State<stress3> {
           ],
         ),
         nextButton: () {
-          Navigator.pushNamed(context, stress4.id);
+          Navigator.pushNamed(context, stress1.id);
         },
         nextButtonText: 'Next >>',
       ),

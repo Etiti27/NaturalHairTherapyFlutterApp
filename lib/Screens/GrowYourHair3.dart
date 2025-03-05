@@ -28,7 +28,7 @@ class _Growyourhair3State extends State<Growyourhair3> {
               "Together, we’ll explore simple ways to:",
               textAlign: TextAlign.justify,
               style: TextStyle(
-                fontSize: 25,
+                fontSize: 20,
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
@@ -39,7 +39,7 @@ class _Growyourhair3State extends State<Growyourhair3> {
                   child: Text(
                     "• $item",
                     style: const TextStyle(
-                      fontSize: 25,
+                      fontSize: 20,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
@@ -50,7 +50,7 @@ class _Growyourhair3State extends State<Growyourhair3> {
               "Let’s get started and give your hair the best care possible!",
               textAlign: TextAlign.justify,
               style: TextStyle(
-                fontSize: 25,
+                fontSize: 20,
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
