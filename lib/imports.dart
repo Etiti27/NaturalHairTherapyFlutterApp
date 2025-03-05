@@ -25,7 +25,7 @@ export 'package:natural_hair_therapist/Screens/UnderstandingNISH/Sleep3.dart';
 export 'package:natural_hair_therapist/Screens/UnderstandingNISH/Sleep5.dart';
 export 'package:natural_hair_therapist/Screens/UnderstandingNISH/Stress/Stress1.dart';
 export 'package:natural_hair_therapist/Screens/UnderstandingNISH/Stress/Stress3.dart';
-export 'package:natural_hair_therapist/Screens/UnderstandingNISH/Stress/Stress5.dart';
+export 'package:natural_hair_therapist/Screens/UnderstandingNISH/Stress5.dart';
 export 'package:natural_hair_therapist/Screens/test.dart';
 export 'package:provider/provider.dart';
 
