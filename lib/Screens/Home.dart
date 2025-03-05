@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:natural_hair_therapist/Constants.dart';
 import 'package:natural_hair_therapist/Methods/NaturalHairQuote.dart';
 import 'package:natural_hair_therapist/Methods/PostgreSQL.dart';
-import 'package:natural_hair_therapist/Screens/Dashboard.dart';
 
 import '../Methods/BackgroundImage.dart';
 import '../Methods/secondaryNavigation.dart';
 import '../Widgets/AppBarWidget.dart';
 import '../Widgets/BottomWidget.dart';
 import '../Widgets/ButtonWidget.dart';
+import 'Authentication/Login.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -102,8 +102,8 @@ class _HomeState extends State<Home> {
                           child: FilledButtonWID(
                             text: const Text("Get Started"),
                             onpressed: () {
-                              // Navigator.pushNamed(context, Login.id);
-                              Navigator.pushNamed(context, Dashboard.id);
+                              Navigator.pushNamed(context, Login.id);
+                              // Navigator.pushNamed(context, Dashboard.id);
                             },
                           ),
                         ),

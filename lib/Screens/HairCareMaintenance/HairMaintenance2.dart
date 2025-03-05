@@ -1,26 +1,32 @@
-import 'package:natural_hair_therapist/imports.dart';
+import 'package:flutter/material.dart';
+import 'package:natural_hair_therapist/Constants.dart';
+import 'package:natural_hair_therapist/Screens/HairCareMaintenance/HairMaintenance3.dart';
 
-class lengthlent2 extends StatefulWidget {
-  const lengthlent2({super.key});
-  static const String id = "lengthlent2";
+import '../../../Widgets/AppBarWidget.dart';
+import '../../../Widgets/BottomWidget.dart';
+import '../../../Widgets/GrowYourHairWelcome.dart';
+
+class HairMaintenance2 extends StatefulWidget {
+  const HairMaintenance2({super.key});
+  static const String id = "hairMaintenance2";
 
   @override
-  State<lengthlent2> createState() => _lengthlent2State();
+  State<HairMaintenance2> createState() => _HairMaintenance2State();
 }
 
-class _lengthlent2State extends State<lengthlent2> {
+class _HairMaintenance2State extends State<HairMaintenance2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidget(),
       body: WelcomeHair(
-        header: 'Length Retention',
-        subheader: 'Key Techniques for Length Retention',
+        header: 'HAIR MAINTENANCE',
+        subheader: 'Tools, Products, and Methods',
         note: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              kLENGTHLENT2,
+              kHAIRMAINTENANCE2,
               textAlign: TextAlign.justify,
               style: TextStyle(
                 fontSize: 20,
@@ -42,7 +48,7 @@ class _lengthlent2State extends State<lengthlent2> {
           ],
         ),
         nextButton: () {
-          Navigator.pushNamed(context, Dashboard2.id);
+          Navigator.pushNamed(context, HairMaintenance3.id);
         },
         nextButtonText: 'Next >>',
       ),

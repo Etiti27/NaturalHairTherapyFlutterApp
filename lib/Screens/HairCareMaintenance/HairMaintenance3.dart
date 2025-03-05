@@ -1,26 +1,26 @@
 import 'package:natural_hair_therapist/imports.dart';
 
-class lengthlent2 extends StatefulWidget {
-  const lengthlent2({super.key});
-  static const String id = "lengthlent2";
+class HairMaintenance3 extends StatefulWidget {
+  const HairMaintenance3({super.key});
+  static const String id = "hairMaintenance3";
 
   @override
-  State<lengthlent2> createState() => _lengthlent2State();
+  State<HairMaintenance3> createState() => _HairMaintenance3State();
 }
 
-class _lengthlent2State extends State<lengthlent2> {
+class _HairMaintenance3State extends State<HairMaintenance3> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidget(),
       body: WelcomeHair(
-        header: 'Length Retention',
-        subheader: 'Key Techniques for Length Retention',
+        header: 'HAIR MAINTENANCE',
+        subheader: 'Length Retention: Keeping the Length You’ve Grown',
         note: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              kLENGTHLENT2,
+              kHAIRMAINTENANCE3,
               textAlign: TextAlign.justify,
               style: TextStyle(
                 fontSize: 20,

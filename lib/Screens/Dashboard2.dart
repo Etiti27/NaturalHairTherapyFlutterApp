@@ -28,102 +28,98 @@ class _Dashboard2State extends State<Dashboard2> {
 
     return Scaffold(
       appBar: AppBarWidget(),
-      body: SingleChildScrollView(
-        child: Center(
+      body: Center(
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
           child: Column(
             mainAxisAlignment:
                 MainAxisAlignment.center, // ✅ Center content vertically
             crossAxisAlignment:
                 CrossAxisAlignment.center, // ✅ Center content horizontally
             children: [
-              Row(
-                mainAxisAlignment:
-                    MainAxisAlignment.center, // ✅ Center items in Row
-                children: [
-                  DashboardCard(
-                    icon: const Center(
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: DashboardCard(
+                  icon: const Center(
+                    child: Center(
                       child: Icon(
                         Icons.lock_open,
                         color: Colors.white,
                         size: 40.0,
                       ),
                     ),
-                    image: Image.asset(
-                      'assets/images/logo.png',
-                      width: 100.0,
-                      // height: 50.0,
-                      fit: BoxFit.cover,
-                    ),
-                    title: 'Understanding NISH',
-                    OnTap: () {
-                      Navigator.pushNamed(context, NISH1.id);
-                    },
                   ),
-                  const SizedBox(width: 10), // ✅ Add spacing between cards
-                ],
-              ),
-              Row(
-                mainAxisAlignment:
-                    MainAxisAlignment.center, // ✅ Center items in Row
-                children: [
-                  DashboardCard(
-                    icon: Center(
-                      child: !isFirstDone
-                          ? const Icon(
-                              Icons.lock_outline,
-                              color: Colors.white,
-                              size: 40.0,
-                            )
-                          : const Icon(
-                              Icons.lock_open,
-                              color: Colors.white,
-                              size: 40.0,
-                            ),
-                    ),
-                    image: Image.asset(
-                      'assets/images/logo.png',
-                      width: 100.0,
-                      // height: 50.0,
-                      fit: BoxFit.cover,
-                    ),
-                    title: 'Hair Care, Hair Growth, Hair Maintenance',
-                    OnTap: () {
-                      Navigator.pushNamed(context, HairCareGrowthMain.id);
-                    },
+                  image: Image.asset(
+                    'assets/images/logo.png',
+                    width: 100.0,
+                    // height: 50.0,
+                    fit: BoxFit.cover,
                   ),
-                  const SizedBox(width: 10), // ✅ Add spacing between cards
-                ],
+                  title: 'Understanding NISH',
+                  OnTap: () {
+                    Navigator.pushNamed(context, NISH1.id);
+                  },
+                ),
               ),
-              Row(
-                mainAxisAlignment:
-                    MainAxisAlignment.center, // ✅ Center items in Row
-                children: [
-                  DashboardCard(
-                    icon: Center(
-                      child: !isFirstDone
-                          ? const Icon(
-                              Icons.lock_outline,
-                              color: Colors.white,
-                              size: 40.0,
-                            )
-                          : const Icon(
-                              Icons.lock_open,
-                              color: Colors.white,
-                              size: 40.0,
-                            ),
-                    ),
-                    image: Image.asset(
-                      'assets/images/logo.png',
-                      width: 100.0,
-                      // height: 50.0,
-                      fit: BoxFit.cover,
-                    ),
-                    title: '3 steps to grow Better Hair',
-                    OnTap: () {},
+              const SizedBox(width: 10),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: DashboardCard(
+                  icon: Center(
+                    child: !isFirstDone
+                        ? const Icon(
+                            Icons.lock_outline,
+                            color: Colors.white,
+                            size: 40.0,
+                          )
+                        : const Icon(
+                            Icons.lock_open,
+                            color: Colors.white,
+                            size: 40.0,
+                          ),
                   ),
-                  const SizedBox(width: 10), // ✅ Add spacing between cards
-                ],
+                  image: Image.asset(
+                    'assets/images/logo.png',
+                    width: 100.0,
+                    // height: 50.0,
+                    fit: BoxFit.cover,
+                  ),
+                  title: 'Hair Care,\n'
+                      'Hair Growth, \n'
+                      'Hair Maintenance',
+                  OnTap: () {
+                    Navigator.pushNamed(context, HairCareGrowthMain.id);
+                  },
+                ),
               ),
+              const SizedBox(width: 10),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: DashboardCard(
+                  icon: Center(
+                    child: !isFirstDone
+                        ? const Icon(
+                            Icons.lock_outline,
+                            color: Colors.white,
+                            size: 40.0,
+                          )
+                        : const Icon(
+                            Icons.lock_open,
+                            color: Colors.white,
+                            size: 40.0,
+                          ),
+                  ),
+                  image: Image.asset(
+                    'assets/images/logo.png',
+                    width: 100.0,
+                    // height: 50.0,
+                    fit: BoxFit.cover,
+                  ),
+                  title: '3 steps to grow Better Hair',
+                  OnTap: () {},
+                ),
+              ),
+              const SizedBox(width: 10),
             ],
           ),
         ),

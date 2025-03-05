@@ -237,3 +237,81 @@ const kLENGTHLENT2 =
 • Trimming Split Ends: Regular trims remove split or damaged ends, preventing breakage from traveling up the hair shaft.
 
 • Moisturizing the Ends: The ends are the oldest and most fragile parts of the hair, so keeping them conditioned moisturized is essential to prevent dryness and splitting.""";
+
+const kHAIRCARE =
+    """Hair care is the overarching foundation—it’s the total sum of everything you do to grow and maintain healthy hair. 
+    
+    True hair care goes beyond just what you put on your hair; it’s also about what you put into your body. 
+    
+    The nutrients and building blocks you provide internally are essential for creating strong, resilient hair. 
+    
+    In essence, hair care is NISH—it’s the combination of Nutrition, Ingredients, Scalp care, Sleep management, Stress management, and Hair maintenance that supports true hair health from the inside out.""";
+const kHAIRGROWTH1 =
+    """Hair growth doesn’t come out of a jar—it’s a natural process your body performs on its own, like your heartbeat or breathing. No matter what you do, your hair will grow, unless there are underlying health issues. 
+    
+    Understanding how this natural cycle works can help you support healthy, strong hair.
+
+The Four Phases of Hair Growth:
+
+	1.	Anagen (Growth Phase): This is the active growth phase, lasting 2-7 years, where hair grows from the follicle.
+	
+	2.	Catagen (Transition Phase): Lasting only about 2-3 weeks, this phase is where hair growth starts to slow, and the follicle begins to shrink.
+	
+	3.	Telogen (Resting Phase): This phase lasts 3-4 months, where hair is fully formed but not growing.
+	
+	4.	Exogen (Shedding Phase): Part of the resting phase, this is when hair sheds naturally, making way for new growth.
+	
+These phases repeat in a cycle, allowing your hair to renew over time.""";
+
+const kHAIRGROWTH2 =
+    """While growth itself is an automatic process, the quality of your hair depends on the building blocks you give your body. 
+    
+    Without nutrients like vitamins, minerals, and proteins, hair can become weak, dry, or brittle. Proper nutrition is key; poor nutrition leads to poor results, just as lack of vitamins results in lackluster hair.
+
+So, remember: hair growth itself isn’t in a jar—but giving your body the right nutrition can make all the difference in achieving strong, healthy hair.""";
+
+const kHAIRMAINTENANCE1 =
+    """When most people talk about ‘hair care,’ what they’re really referring to is hair maintenance—taking care of the strands that have already grown. 
+    
+    From a Natural Hair Therapist’s point of view, hair maintenance involves the actions, tools, and products used to keep existing hair healthy, strong, and moisturized.
+    
+What Is Hair Maintenance?
+Hair maintenance is the ongoing care you give to the hair on your scalp. This includes:
+	
+	•	Washing to keep the scalp and hair clean without stripping natural oils,
+	
+	•	Conditioning to restore moisture and make hair softer,
+	
+	•	Moisturizing to prevent dryness, and
+	
+	•	Sealing with oils or butters to lock in moisture and protect hair.
+
+These are the foundations of healthy hair, ensuring that each strand stays strong and manageable.""";
+
+const kHAIRMAINTENANCE2 =
+    """The tools, products, and methods you use make a big difference in your hair’s health. Tools like wide-tooth combs, satin scarves, and bonnets help reduce breakage and frizz by minimizing friction. 
+    
+    Choosing products is just as important—each ingredient plays a role in your hair’s condition, so it’s essential to know what’s in them.
+
+Certain techniques are also part of hair maintenance, such as:
+
+	•	 Steaming for deep hydration,
+	
+	•	The greenhouse method to improve moisture retention, and
+	
+	•	Low-manipulation styles that keep hair healthy by reducing daily wear and tear""";
+
+const kHAIRMAINTENANCE3 =
+    """Length retention is a vital part of hair maintenance and often confused with ‘growing hair.’ While hair grows naturally, retaining that length means protecting the hair you’ve already grown. 
+    
+    Here are some techniques to support length retention:
+    
+	•	Protective Styling (like braids, twists, or updos) shields hair ends from friction and helps prevent breakage.
+	
+	•	Minimizing Manipulation reduces daily handling, allowing hair to stay intact longer.
+	
+	•	Trimming Split Ends prevents breakage from traveling up the strand and keeps hair looking healthy and full.
+	
+Together, hair maintenance and length retention create a balanced approach for healthy, strong hair. 
+
+Remember, growing hair is a natural process, but keeping it healthy and strong requires a consistent, intentional routine—not just products.""";
