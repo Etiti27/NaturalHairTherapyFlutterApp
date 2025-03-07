@@ -39,14 +39,14 @@ class _HomeState extends State<Home> {
     return quote.getQuote(randomNumber);
   }
 
-  Future<void> postgres() async {
-    DatabaseService postgre = DatabaseService();
-    await postgre.ensureConnected();
-    List userData = await postgre.fetchUsers();
-
-    print(userData);
-    // postgre.closeConnection();
-  }
+  // Future<void> postgres() async {
+  //   DatabaseService postgre = DatabaseService();
+  //   await postgre.ensureConnected();
+  //   List userData = await postgre.fetchUsers();
+  //
+  //   print(userData);
+  //   // postgre.closeConnection();
+  // }
 
   Future<void> updateResponse(String email, String response) async {
     DatabaseService postgre = DatabaseService();

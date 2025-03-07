@@ -1,4 +1,4 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:natural_hair_therapist/imports.dart';
 import 'package:postgres/postgres.dart';
 
 class DatabaseService {
@@ -37,12 +37,15 @@ class DatabaseService {
   }
 
   // ✅ Fetch Users
-  Future<List<Map<String, dynamic>>> fetchUsers() async {
+  Future<List<Map<String, dynamic>>> fetchUsers(emailw) async {
     await ensureConnected();
     try {
       List<List<dynamic>> results = await connection.query(
-        "SELECT id, name, email, response, created_at FROM users",
+        "SELECT id, name, email, response, created_at, isnishdone, ishaircaredone, is3stepdone FROM users WHERE email = @email",
+        substitutionValues: {"email": "$emailw"},
       );
+
+      print("object");
       return results
           .map((row) => {
                 'id': row[0],
@@ -50,11 +53,16 @@ class DatabaseService {
                 'email': row[2],
                 'response': row[3],
                 'created_at': row[4],
+                'isnishdone': row[5],
+                'ishaircaredone': row[6],
+                'is3stepdone': row[7],
               })
           .toList();
     } catch (e) {
       print("❌ Failed to fetch users: $e");
       return [];
+    } finally {
+      await closeConnection();
     }
   }
 
@@ -90,6 +98,26 @@ class DatabaseService {
       print("✅ Response updated for: $email");
     } catch (e) {
       print("❌ Failed to update user: $e");
+    } finally {
+      await closeConnection();
+    }
+  }
+
+  Future<void> updateDone(String email, String course, bool isDone) async {
+    await ensureConnected();
+    try {
+      await connection.query(
+        "UPDATE users SET $course = @$course WHERE email = @email",
+        substitutionValues: {
+          '$course': isDone,
+          'email': email,
+        },
+      );
+      print("✅ Response updated for: $course");
+    } catch (e) {
+      print("❌ Failed to update user: $e");
+    } finally {
+      await closeConnection();
     }
   }
 
@@ -97,7 +125,9 @@ class DatabaseService {
   Future<void> closeConnection() async {
     if (_connection != null && !_connection!.isClosed) {
       await _connection!.close();
-      print("✅ PostgreSQL Connection Closed");
+      if (kDebugMode) {
+        print("✅ PostgreSQL Connection Closed");
+      }
     }
   }
 }

@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:natural_hair_therapist/Constants.dart';
+import 'package:natural_hair_therapist/Screens/UnderstandingNISH/sleep/Sleep1.dart';
 
-import '../../Widgets/AppBarWidget.dart';
-import '../../Widgets/BottomWidget.dart';
-import '../../Widgets/GrowYourHairWelcome.dart';
-import 'Sleep3.dart';
+import '../../../Widgets/AppBarWidget.dart';
+import '../../../Widgets/BottomWidget.dart';
+import '../../../Widgets/GrowYourHairWelcome.dart';
 
-class sleep2 extends StatefulWidget {
-  const sleep2({super.key});
-  static const String id = "sleep2";
+class stress5 extends StatefulWidget {
+  const stress5({super.key});
+  static const String id = "stress5";
 
   @override
-  State<sleep2> createState() => _sleep2State();
+  State<stress5> createState() => _stress5State();
 }
 
-class _sleep2State extends State<sleep2> {
+class _stress5State extends State<stress5> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidget(),
       body: WelcomeHair(
-        header: 'SLEEP MANAGEMENT',
-        subheader: 'Why Quality Sleep Matters for Hair Health',
+        header: 'STRESS MANAGEMENT',
+        subheader: 'Stress-Relieving Practices',
         note: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              kSLEEP2,
+              kSTRESS5,
               textAlign: TextAlign.justify,
               style: TextStyle(
                 fontSize: 20,
@@ -48,7 +48,7 @@ class _sleep2State extends State<sleep2> {
           ],
         ),
         nextButton: () {
-          Navigator.pushNamed(context, sleep3.id);
+          Navigator.pushNamed(context, sleep1.id);
         },
         nextButtonText: 'Next >>',
       ),

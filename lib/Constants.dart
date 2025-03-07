@@ -322,3 +322,7 @@ const kHAIRMAINTENANCE3 =
 Together, hair maintenance and length retention create a balanced approach for healthy, strong hair. 
 
 Remember, growing hair is a natural process, but keeping it healthy and strong requires a consistent, intentional routine—not just products.""";
+const kENDOFNISH =
+    """Now, let’s take things a step further by diving into the key concepts of hair growth, hair care, and hair maintenance. These terms are often used interchangeably, which can lead to confusion. 
+
+In the next module, you’ll gain a clear understanding of each concept, helping you make more informed and intentional decisions about your hair.""";

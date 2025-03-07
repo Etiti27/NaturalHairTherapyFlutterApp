@@ -4,7 +4,7 @@ import 'package:natural_hair_therapist/Constants.dart';
 import '../../../Widgets/AppBarWidget.dart';
 import '../../../Widgets/BottomWidget.dart';
 import '../../../Widgets/GrowYourHairWelcome.dart';
-import '../Stress5.dart';
+import '../sleep/Stress5.dart';
 
 class stress4 extends StatefulWidget {
   const stress4({super.key});

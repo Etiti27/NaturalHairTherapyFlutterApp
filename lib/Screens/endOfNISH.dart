@@ -2,32 +2,26 @@ import 'package:natural_hair_therapist/imports.dart';
 
 // import 'openai_service.dart'; // Ensure this is the correct file path
 
-class ResultScreen extends StatefulWidget {
-  static const String id = "Result";
+class EndOfNish extends StatefulWidget {
+  static const String id = "endofnish";
+
+  const EndOfNish({super.key});
   @override
-  _ResultScreenState createState() => _ResultScreenState();
+  _EndOfNishState createState() => _EndOfNishState();
 }
 
-class _ResultScreenState extends State<ResultScreen> {
-  @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   fetchResponse(in);
-  //   print(responseText);
-  // }
-
-  List<String> users = ["obinna", "how"];
-  // int index = 1;
-  final Map<String, String> _questions = QuestionBank().getQuestion();
+class _EndOfNishState extends State<EndOfNish> {
+  Future<void> updateDone(email, course, isDone) async {
+    DatabaseService update = await DatabaseService();
+    await update.updateDone(email, course, isDone);
+    update.closeConnection();
+  }
 
   @override
   Widget build(BuildContext context) {
     final questionnaire = Provider.of<ProviderClass>(context);
-    String? response = questionnaire.getResponse();
-    final args =
-        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
-    String responseText = args["responseText"];
+    final newEmail = questionnaire.getEmail();
+    const nextCourse = "ishaircaredone";
 
     return Scaffold(
       appBar: AppBarWidget(),
@@ -43,7 +37,7 @@ class _ResultScreenState extends State<ResultScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SecondaryNavigation(
-                    title: "Result",
+                    title: "Congratulations!",
                   ),
                   // const SizedBox(
                   //   height: 20,
@@ -61,12 +55,20 @@ class _ResultScreenState extends State<ResultScreen> {
                         Padding(
                           padding: EdgeInsets.all(20.0),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
+                              Text(
+                                """You've successfully completed the "Understanding NISH" module!.""",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 25,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              SizedBox(height: 25.0),
                               // Text(responseText),
                               Text(
-                                "Great job! 🎉 Your responses have been recorded, and your personalized report has been emailed to you. Make sure to check your inbox for insights and recommendations based on your answers. If you don’t see the email, kindly check your spam folder or contact support for assistance",
-                                textAlign: TextAlign.center,
+                                kENDOFNISH,
+                                textAlign: TextAlign.justify,
                                 style: TextStyle(
                                   fontSize: 25,
                                   color: Colors.white,
@@ -81,18 +83,25 @@ class _ResultScreenState extends State<ResultScreen> {
                   const SizedBox(
                     height: 30,
                   ),
-                  Center(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: kPrimaryColor),
-                      onPressed: () {
-                        Navigator.pushNamed(context, Dashboard2.id);
-                      },
-                      child: const Text(
-                        "Start Your Education",
-                        style: TextStyle(color: Colors.white),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      ElevatedButton(
+                        iconAlignment: IconAlignment.end,
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: kPrimaryColor),
+                        onPressed: () async {
+                          await updateDone(newEmail, nextCourse, true);
+                          await Navigator.pushNamed(context, Dashboard2.id,
+                              arguments: nextCourse);
+                        },
+                        child: const Text(
+                          textAlign: TextAlign.end,
+                          "Next >>",
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                 ],
               ),

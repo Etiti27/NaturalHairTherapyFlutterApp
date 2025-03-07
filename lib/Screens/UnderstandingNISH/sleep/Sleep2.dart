@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:natural_hair_therapist/Constants.dart';
-import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Sleep5.dart';
 
-import '../../Widgets/AppBarWidget.dart';
-import '../../Widgets/BottomWidget.dart';
-import '../../Widgets/GrowYourHairWelcome.dart';
+import '../../../Widgets/AppBarWidget.dart';
+import '../../../Widgets/BottomWidget.dart';
+import '../../../Widgets/GrowYourHairWelcome.dart';
+import 'Sleep3.dart';
 
-class sleep4 extends StatefulWidget {
-  const sleep4({super.key});
-  static const String id = "sleep4";
+class sleep2 extends StatefulWidget {
+  const sleep2({super.key});
+  static const String id = "sleep2";
 
   @override
-  State<sleep4> createState() => _sleep4State();
+  State<sleep2> createState() => _sleep2State();
 }
 
-class _sleep4State extends State<sleep4> {
+class _sleep2State extends State<sleep2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidget(),
       body: WelcomeHair(
         header: 'SLEEP MANAGEMENT',
-        subheader: 'How to Improve Sleep Quality for Better Hair Health',
+        subheader: 'Why Quality Sleep Matters for Hair Health',
         note: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              kSLEEP4,
+              kSLEEP2,
               textAlign: TextAlign.justify,
               style: TextStyle(
                 fontSize: 20,
@@ -48,7 +48,7 @@ class _sleep4State extends State<sleep4> {
           ],
         ),
         nextButton: () {
-          Navigator.pushNamed(context, sleep5.id);
+          Navigator.pushNamed(context, sleep3.id);
         },
         nextButtonText: 'Next >>',
       ),

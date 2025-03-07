@@ -5,6 +5,7 @@ import 'package:natural_hair_therapist/Screens/HairCareMaintenance/HairGrowth2.d
 import 'package:natural_hair_therapist/Screens/HairCareMaintenance/HairMaintenance.dart';
 import 'package:natural_hair_therapist/Screens/HairCareMaintenance/HairMaintenance2.dart';
 import 'package:natural_hair_therapist/Screens/HairCareMaintenance/HairMaintenance3.dart';
+import 'package:natural_hair_therapist/Screens/endOfNISH.dart';
 
 import 'imports.dart';
 
@@ -93,6 +94,7 @@ class MyApp extends StatelessWidget {
         HairMaintenance.id: (context) => HairMaintenance(),
         HairMaintenance2.id: (context) => HairMaintenance2(),
         HairMaintenance3.id: (context) => HairMaintenance3(),
+        EndOfNish.id: (context) => EndOfNish(),
       },
     );
   }

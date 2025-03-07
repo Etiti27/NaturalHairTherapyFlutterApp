@@ -1,3 +1,4 @@
+import 'package:natural_hair_therapist/Screens/endOfNISH.dart';
 import 'package:natural_hair_therapist/imports.dart';
 
 class lengthlent2 extends StatefulWidget {
@@ -42,7 +43,7 @@ class _lengthlent2State extends State<lengthlent2> {
           ],
         ),
         nextButton: () {
-          Navigator.pushNamed(context, Dashboard2.id);
+          Navigator.pushNamed(context, EndOfNish.id);
         },
         nextButtonText: 'Next >>',
       ),

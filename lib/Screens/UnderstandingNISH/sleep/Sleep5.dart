@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:natural_hair_therapist/Constants.dart';
 import 'package:natural_hair_therapist/Screens/UnderstandingNISH/HairMain1.dart';
 
-import '../../Widgets/AppBarWidget.dart';
-import '../../Widgets/BottomWidget.dart';
-import '../../Widgets/GrowYourHairWelcome.dart';
+import '../../../Widgets/AppBarWidget.dart';
+import '../../../Widgets/BottomWidget.dart';
+import '../../../Widgets/GrowYourHairWelcome.dart';
 
 class sleep5 extends StatefulWidget {
   const sleep5({super.key});

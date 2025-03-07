@@ -13,19 +13,43 @@ class _Dashboard2State extends State<Dashboard2> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final questionnaire = Provider.of<ProviderClass>(context, listen: false);
+      final emails = questionnaire.getEmail();
+      checkedd(emails);
+    });
+    // userInfo();
+  }
+
+  Future<Map<String, dynamic>> userInfo(emailw) async {
+    DatabaseService infor = DatabaseService();
+    List<Map<String, dynamic>> infors = await infor.fetchUsers(emailw);
+    infor.closeConnection();
+    return infors[0];
+  }
+
+  bool isNishDone = true;
+  bool isHairCare = false;
+  bool is3step = false;
+  // final String? courseName =
+  //     ModalRoute.of(context)!.settings.arguments as String?;
+
+  // userInfo(emails);
+  Future<void> checkedd(emaild) async {
+    dynamic userDone = await userInfo(emaild);
+    bool nish = userDone["isnishdone"];
+    bool hairCare = userDone["ishaircaredone"];
+    bool threeStep = userDone["is3stepdone"];
+
+    setState(() {
+      isNishDone = nish;
+      isHairCare = hairCare;
+      is3step = threeStep;
+    });
   }
 
   @override
-  final List<String> imageList = ["assets/images/logo.png"];
-
-  bool isFirstDone = false;
-  bool isSecondDone = false;
-  bool isThirdDone = false;
-
-  @override
   Widget build(BuildContext context) {
-    final questionnaire = Provider.of<ProviderClass>(context);
-
     return Scaffold(
       appBar: AppBarWidget(),
       body: Center(
@@ -40,15 +64,7 @@ class _Dashboard2State extends State<Dashboard2> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: DashboardCard(
-                  icon: const Center(
-                    child: Center(
-                      child: Icon(
-                        Icons.lock_open,
-                        color: Colors.white,
-                        size: 40.0,
-                      ),
-                    ),
-                  ),
+                  icon: iconLock(isDone: isNishDone),
                   image: Image.asset(
                     'assets/images/logo.png',
                     width: 100.0,
@@ -57,7 +73,7 @@ class _Dashboard2State extends State<Dashboard2> {
                   ),
                   title: 'Understanding NISH',
                   OnTap: () {
-                    Navigator.pushNamed(context, NISH1.id);
+                    isNishDone ? Navigator.pushNamed(context, NISH1.id) : null;
                   },
                 ),
               ),
@@ -65,19 +81,7 @@ class _Dashboard2State extends State<Dashboard2> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: DashboardCard(
-                  icon: Center(
-                    child: !isFirstDone
-                        ? const Icon(
-                            Icons.lock_outline,
-                            color: Colors.white,
-                            size: 40.0,
-                          )
-                        : const Icon(
-                            Icons.lock_open,
-                            color: Colors.white,
-                            size: 40.0,
-                          ),
-                  ),
+                  icon: iconLock(isDone: isHairCare),
                   image: Image.asset(
                     'assets/images/logo.png',
                     width: 100.0,
@@ -88,7 +92,9 @@ class _Dashboard2State extends State<Dashboard2> {
                       'Hair Growth, \n'
                       'Hair Maintenance',
                   OnTap: () {
-                    Navigator.pushNamed(context, HairCareGrowthMain.id);
+                    isHairCare
+                        ? Navigator.pushNamed(context, HairCareGrowthMain.id)
+                        : null;
                   },
                 ),
               ),
@@ -96,19 +102,7 @@ class _Dashboard2State extends State<Dashboard2> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: DashboardCard(
-                  icon: Center(
-                    child: !isFirstDone
-                        ? const Icon(
-                            Icons.lock_outline,
-                            color: Colors.white,
-                            size: 40.0,
-                          )
-                        : const Icon(
-                            Icons.lock_open,
-                            color: Colors.white,
-                            size: 40.0,
-                          ),
-                  ),
+                  icon: iconLock(isDone: is3step),
                   image: Image.asset(
                     'assets/images/logo.png',
                     width: 100.0,
@@ -126,5 +120,28 @@ class _Dashboard2State extends State<Dashboard2> {
       ),
       bottomNavigationBar: BottomWidget(),
     );
+  }
+}
+
+class iconLock extends StatelessWidget {
+  const iconLock({
+    super.key,
+    required this.isDone,
+  });
+
+  final bool isDone;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+        child: !isDone
+            ? Image.asset(
+                "assets/images/lock.gif",
+                width: 70,
+              )
+            : Image.asset(
+                "assets/images/unlock.gif",
+                width: 70,
+              ));
   }
 }
