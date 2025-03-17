@@ -129,7 +129,7 @@ class _QuestionsDynamicsState extends State<QuestionsDynamics> {
                       const SizedBox(height: 20),
 
                       // ✅ Question Screen
-                      questionScreens(
+                      QuestionScreens(
                         questionnaireAnswer: widget.questionnairAnswer,
                         text:
                             "${_questions["question${widget.questionnaire.getCurrentPage()}"]}",
@@ -184,10 +184,11 @@ class _QuestionsDynamicsState extends State<QuestionsDynamics> {
                                         "I look for ${widget.questionnaire.getHairGrowthAnswer3()} in hair products. "
                                         "I am aware that ${widget.questionnaire.getHairGrowthAnswer4()} might harm my hair’s health. "
                                         "I ${widget.questionnaire.getHairGrowthAnswer5()} massage my scalp. "
-                                        "I sleep ${widget.questionnaire.getHairGrowthAnswer6()} hours per night. "
-                                        "I ${widget.questionnaire.getHairGrowthAnswer7()} use a silk scarf or pillowcase. "
-                                        "I describe my stress level as ${widget.questionnaire.getHairGrowthAnswer8()}. "
-                                        "I ${widget.questionnaire.getHairGrowthAnswer9()} practice stress management (e.g., meditation, exercise, journaling).";
+                                        "I do experience issues like dandruff or an itchy scalp ${widget.questionnaire.getHairGrowthAnswer6()}"
+                                        "I sleep ${widget.questionnaire.getHairGrowthAnswer7()} hours per night. "
+                                        "I ${widget.questionnaire.getHairGrowthAnswer8()} use a silk scarf or pillowcase. "
+                                        "I describe my stress level as ${widget.questionnaire.getHairGrowthAnswer9()}. "
+                                        "I ${widget.questionnaire.getHairGrowthAnswer10()} practice stress management (e.g., meditation, exercise, journaling).";
 
                                     // ✅ Fetch AI Response
                                     await fetchResponse(input);

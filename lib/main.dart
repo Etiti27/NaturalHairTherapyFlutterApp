@@ -1,5 +1,6 @@
 import 'package:natural_hair_therapist/Screens/GrowHair/GrowYourHair6.dart';
 
+import 'Screens/Questions/7Question.dart';
 import 'imports.dart';
 
 void main() async {
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
         Question7.id: (context) => Question7(),
         Question8.id: (context) => Question8(),
         Question9.id: (context) => Question9(),
+        Question10.id: (context) => Question10(),
         Growyourhair.id: (context) => Growyourhair(),
         Growyourhair2.id: (context) => Growyourhair2(),
         Growyourhair3.id: (context) => Growyourhair3(),

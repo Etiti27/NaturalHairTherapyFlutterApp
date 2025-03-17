@@ -15,17 +15,18 @@ class _Question8State extends State<Question8> {
   @override
   Widget build(BuildContext context) {
     final questionnaire = Provider.of<ProviderClass>(context);
+
     return QuestionsDynamics(
       questionnaire: questionnaire,
       questionnairAnswer: questionnaire.getHairGrowthAnswer8(),
       OnChange: (String? value) {
-        questionnaire.updateHairGrowthAnswer8(value);
+        questionnaire.updateHairGrowthAnswer8(value!);
         setState(() {
           feedback = "";
           isValued = true;
         });
       },
-      list: const ["Low", "Moderate", "High"],
+      list: const ["Yes", "every night", "Sometimes", "Never"],
       feedback: feedback,
       isValue: isValued,
     );

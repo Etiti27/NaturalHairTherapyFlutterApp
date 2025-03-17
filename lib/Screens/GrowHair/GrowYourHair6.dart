@@ -30,7 +30,7 @@ class _Growyourhair6State extends State<Growyourhair6> {
           ],
         ),
         nextButton: () {
-          Navigator.pushNamed(context, Growyourhair4.id);
+          Navigator.pushNamed(context, Questiononescreen.id);
         },
         nextButtonText: 'Next >>',
       ),

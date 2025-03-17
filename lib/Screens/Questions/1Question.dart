@@ -26,7 +26,7 @@ class _QuestiononescreenState extends State<Questiononescreen> {
           isValued = true;
         });
       },
-      list: const ["Daily", "A few times a week", "Rarely", "Never"],
+      list: const ["Daily", "Occasionally", "Rarely", "Never"],
       isValue: isValued,
     );
   }

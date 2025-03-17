@@ -3,20 +3,17 @@ import 'package:flutter/material.dart';
 import '../Constants.dart';
 import '../Methods/BackgroundImage.dart';
 
-class questionScreens extends StatelessWidget {
-  const questionScreens({
+class QuestionScreens extends StatelessWidget {
+  const QuestionScreens({
     super.key,
     required this.questionnaireAnswer,
-    // this.image,
     required this.text,
     required this.listOfAnswer,
     required this.OnChange,
     this.nextButtonAppearance,
     this.prevButtonAppearance,
-    // required ProviderClass questionnaire,
   });
 
-  // final Image image;
   final String text;
   final String? questionnaireAnswer;
   final List<String> listOfAnswer;
@@ -28,7 +25,6 @@ class questionScreens extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // height: double.infinity,
       decoration: BackgroundImage(),
       child: Center(
         child: Padding(
@@ -38,100 +34,64 @@ class questionScreens extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15.0),
             ),
-            // Shadow effect
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    text,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
 
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                // Image
-                // ClipRRect(
-                //     borderRadius: const BorderRadius.vertical(
-                //       top: Radius.circular(15.0),
-                //     ),
-                //     child: image),
-                // const SizedBox(
-                //   height: 30,
-                // ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        text,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          color: Colors.white,
+                  // ✅ Radio Buttons Instead of Dropdown
+                  Column(
+                    children: listOfAnswer.map((option) {
+                      return RadioListTile<String>(
+                        title: Text(
+                          option,
+                          style: const TextStyle(
+                              fontSize: 25,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      DropdownButton<String>(
-                        value: questionnaireAnswer,
-                        hint: const Text(
-                          "Select an option",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                          ),
-                        ),
-                        items: listOfAnswer
-                            .map((option) => DropdownMenuItem(
-                                  value: option,
-                                  child: Center(
-                                    child: Text(
-                                      option,
-                                      style: const TextStyle(
-                                        fontSize: 20,
-                                      ),
-                                    ),
-                                  ),
-                                ))
-                            .toList(),
+                        value: option,
+                        groupValue: questionnaireAnswer,
                         onChanged: OnChange,
-                        isExpanded: true,
-                        icon: const Icon(
-                          Icons
-                              .arrow_drop_down, // Adjust the dropdown arrow icon
-                          color: Colors.white, // Set the color of the arrow
-                          size: 24, // Adjust the size of the arrow
+                        activeColor:
+                            Colors.white, // ✅ Selected radio button color
+                        selected: questionnaireAnswer == option,
+                        fillColor: WidgetStateProperty.resolveWith<Color>(
+                          (Set<WidgetState> states) {
+                            if (states.contains(WidgetState.selected)) {
+                              return Colors.white; // ✅ Active color
+                            }
+                            return Colors.white; // ✅ Inactive color
+                          },
                         ),
-                        dropdownColor:
-                            kPrimaryColor, // Set dropdown menu color to match the card
-                        style: const TextStyle(
-                          color: Colors
-                              .white, // Set the text color of the selected item
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        underline: Container(
-                          height: 2,
-                          color: Colors
-                              .white, // Add an underline for styling (optional)
-                        ),
-                      ),
-                      const SizedBox(height: 20),
+                      );
+                    }).toList(),
+                  ),
 
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          if (prevButtonAppearance != null)
-                            prevButtonAppearance!,
-                          if (nextButtonAppearance != null)
-                            nextButtonAppearance!,
-                        ],
-                      ),
+                  const SizedBox(height: 20),
 
-                      // Subtitle
-
-                      // Button Row
+                  // ✅ Button Row
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      if (prevButtonAppearance != null) prevButtonAppearance!,
+                      if (nextButtonAppearance != null) nextButtonAppearance!,
                     ],
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

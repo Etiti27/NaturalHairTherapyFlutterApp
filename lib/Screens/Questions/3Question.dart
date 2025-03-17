@@ -22,11 +22,13 @@ class _Question3State extends State<Question3> {
         "Aloe vera is a fantastic ingredient! It soothes the scalp, helps with hydration, and can support healthy hair growth.",
     "Shea Butter":
         "Good choice! Shea butter is highly moisturizing and protective, especially beneficial for dry and textured hair types.",
-    "Sodium Cocoyl Isethionate":
-        "This is a gentle sulfate-free surfactant derived from coconut oil. It effectively cleanses without stripping the hair’s natural oils, making it a great option for maintaining moisture and softness.",
-    "Cetyl Alcohol":
-        "Great choice! Cetyl alcohol is a fatty alcohol that conditions and softens hair. It helps improve moisture retention and makes hair products creamier for easier application."
+    "I don't Know": "No Problem, We Got You"
   };
+  // Coconut oil,
+  //     aloe vera,
+  // shea butter,
+  //     I don’t know
+
   String feedback = "Please select an option.";
   bool isValued = false;
 

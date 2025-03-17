@@ -27,7 +27,7 @@ class _Question5State extends State<Question5> {
           isValued = true;
         });
       },
-      list: ["Yes", "Regularly", "Occasionally", "No"],
+      list: ["Yes", "Regularly", "Occasionally", "Never"],
       feedback: feedback,
       isValue: isValued,
     );

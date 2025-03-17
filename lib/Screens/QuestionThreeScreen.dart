@@ -25,7 +25,7 @@ class _QuestionthreescreenState extends State<Questionthreescreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            questionScreens(
+            QuestionScreens(
               questionnaireAnswer: questionnaire.getHairGrowthAnswer7(),
               // questionnaire: questionnaire.nutritionAnswer1,
               text:
@@ -39,7 +39,7 @@ class _QuestionthreescreenState extends State<Questionthreescreen> {
                 questionnaire.updateHairGrowthAnswer7(value);
               },
             ),
-            questionScreens(
+            QuestionScreens(
               questionnaireAnswer: questionnaire.getHairGrowthAnswer8(),
               text:
                   "How would you describe your stress levels on a daily basis?",
@@ -52,7 +52,7 @@ class _QuestionthreescreenState extends State<Questionthreescreen> {
                 questionnaire.updateHairGrowthAnswer8(value);
               },
             ),
-            questionScreens(
+            QuestionScreens(
               questionnaireAnswer: questionnaire.getHairGrowthAnswer9(),
               text:
                   "Do you have practices to manage stress, like exercise, meditation, or journaling?",

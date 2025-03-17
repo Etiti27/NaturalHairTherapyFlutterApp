@@ -29,7 +29,7 @@ class _QuestiontwoscreenState extends State<Questiontwoscreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            questionScreens(
+            QuestionScreens(
               questionnaireAnswer: questionnaire.getHairGrowthAnswer4(),
               // questionnaire: questionnaire.nutritionAnswer1,
               text:
@@ -44,7 +44,7 @@ class _QuestiontwoscreenState extends State<Questiontwoscreen> {
                 questionnaire.updateHairGrowthAnswer4(value);
               },
             ),
-            questionScreens(
+            QuestionScreens(
               questionnaireAnswer: questionnaire.getHairGrowthAnswer5(),
               text:
                   "Do you regularly massage your scalp or use scalp-specific treatments?",

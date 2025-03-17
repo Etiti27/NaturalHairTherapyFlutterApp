@@ -19,13 +19,13 @@ class _Question9State extends State<Question9> {
       questionnaire: questionnaire,
       questionnairAnswer: questionnaire.getHairGrowthAnswer9(),
       OnChange: (String? value) {
-        questionnaire.updateHairGrowthAnswer9(value!);
+        questionnaire.updateHairGrowthAnswer9(value);
         setState(() {
           feedback = "";
           isValued = true;
         });
       },
-      list: const ["Yes, regularly", "Occasionally", "No"],
+      list: const ["Low", "Moderate", "High"],
       feedback: feedback,
       isValue: isValued,
     );

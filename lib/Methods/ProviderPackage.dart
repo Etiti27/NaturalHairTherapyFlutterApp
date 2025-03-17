@@ -15,6 +15,7 @@ class ProviderClass with ChangeNotifier {
   String? _hairGrowthAnswer7;
   String? _hairGrowthAnswer8;
   String? _hairGrowthAnswer9;
+  String? _hairGrowthAnswer10;
   List<String> selectedIngredients = [];
   String? harmfulIngredientAnswer;
   String? _response;
@@ -22,7 +23,7 @@ class ProviderClass with ChangeNotifier {
   // int _currentIndex = 0;
 
   int _currentPage = 1;
-  int _totalPage = 9;
+  int _totalPage = 10;
 
   String? getCurrentUsername() {
     return _currentUsername;
@@ -150,6 +151,10 @@ class ProviderClass with ChangeNotifier {
     return _hairGrowthAnswer9;
   }
 
+  String? getHairGrowthAnswer10() {
+    return _hairGrowthAnswer9;
+  }
+
   void updateHairGrowthAnswer2(String? answer) {
     _hairGrowthAnswer2 = answer;
     notifyListeners();
@@ -186,6 +191,11 @@ class ProviderClass with ChangeNotifier {
   }
 
   void updateHairGrowthAnswer9(String? answer) {
+    _hairGrowthAnswer9 = answer;
+    notifyListeners();
+  }
+
+  void updateHairGrowthAnswer10(String? answer) {
     _hairGrowthAnswer9 = answer;
     notifyListeners();
   }

@@ -10,7 +10,7 @@ class Question6 extends StatefulWidget {
 }
 
 class _Question6State extends State<Question6> {
-  String selected = "7-8 Hours";
+  String selected = "yes";
   String feedback = "Please select an option.";
   bool isValued = false;
   @override
@@ -26,7 +26,7 @@ class _Question6State extends State<Question6> {
           isValued = true;
         });
       },
-      list: const ["7-8 Hours", "5-6 Hours", "Less than 5 Hours"],
+      list: const ["Yes", "Often", "Occasionally", "No"],
       feedback: feedback,
       isValue: isValued,
     );
