@@ -18,7 +18,7 @@ class SecondaryNavigation extends StatelessWidget {
           style: const TextStyle(
             color: kPrimaryColor,
             fontFamily: "Roboto-bold",
-            fontSize: 25,
+            fontSize: 35,
           ),
         ),
       ),

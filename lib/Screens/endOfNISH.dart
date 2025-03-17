@@ -87,7 +87,7 @@ class _EndOfNishState extends State<EndOfNish> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       ElevatedButton(
-                        iconAlignment: IconAlignment.end,
+                        // iconAlignment: IconAlignment.end,
                         style: ElevatedButton.styleFrom(
                             backgroundColor: kPrimaryColor),
                         onPressed: () async {

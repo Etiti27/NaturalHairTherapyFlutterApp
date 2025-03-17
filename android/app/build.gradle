@@ -9,9 +9,10 @@ plugins {
 }
 
 android {
-    namespace = "com.natreltherapy"
+    namespace "com.natreltherapy"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
+
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -31,6 +32,11 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+
+//        minSdkVersion 21
+//        targetSdkVersion 33
+//        versionCode 1
+//        versionName "1.0"
     }
 
     buildTypes {

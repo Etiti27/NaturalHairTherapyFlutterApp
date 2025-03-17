@@ -34,24 +34,23 @@ class WelcomeHair extends StatelessWidget {
           // ✅ Make entire screen scrollable in landscape
           child: Column(
             children: [
-              SecondaryNavigation(title: header),
+              SecondaryNavigation(
+                title: header,
+              ),
               const SizedBox(height: 10),
-
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Text(
                   subheader,
                   style: const TextStyle(
-                    fontSize: 20.0,
+                    fontSize: 25.0,
                     color: kPrimaryColor,
                     fontWeight: FontWeight.bold,
                   ),
                   textAlign: TextAlign.center,
                 ),
               ),
-
               const SizedBox(height: 20),
-
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: ConstrainedBox(
@@ -67,33 +66,17 @@ class WelcomeHair extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                     child: Padding(
-                      padding: EdgeInsets.all(15.0),
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: SingleChildScrollView(
-                                // ✅ Allow text to scroll if needed
-                                child: note
-                                // Text(
-                                //   note,
-                                //   textAlign: TextAlign.justify,
-                                //   style: const TextStyle(
-                                //     fontSize: 25,
-                                //     color: Colors.white,
-                                //     fontWeight: FontWeight.bold,
-                                //   ),
-                                // ),
-                                ),
-                          ),
-                        ],
+                      padding: const EdgeInsets.all(15.0),
+                      child: Center(
+                        child: SingleChildScrollView(
+                          child: note,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-
               const SizedBox(height: 10),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -104,8 +87,11 @@ class WelcomeHair extends StatelessWidget {
                       Navigator.pop(context);
                     },
                     child: const Text(
-                      "<< prev",
-                      style: TextStyle(color: Colors.white),
+                      "<< Back",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                      ),
                     ),
                   ),
                   ElevatedButton(
@@ -114,14 +100,11 @@ class WelcomeHair extends StatelessWidget {
                     onPressed: nextButton,
                     child: Text(
                       nextButtonText,
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white, fontSize: 25),
                     ),
                   ),
                 ],
               ),
-
-              const SizedBox(
-                  height: 20), // ✅ Extra space to prevent bottom overflow
             ],
           ),
         ),

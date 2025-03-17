@@ -1,11 +1,4 @@
-import 'package:natural_hair_therapist/Screens/HairCareGrowthMain.dart';
-import 'package:natural_hair_therapist/Screens/HairCareMaintenance/HairCare.dart';
-import 'package:natural_hair_therapist/Screens/HairCareMaintenance/HairGrowth.dart';
-import 'package:natural_hair_therapist/Screens/HairCareMaintenance/HairGrowth2.dart';
-import 'package:natural_hair_therapist/Screens/HairCareMaintenance/HairMaintenance.dart';
-import 'package:natural_hair_therapist/Screens/HairCareMaintenance/HairMaintenance2.dart';
-import 'package:natural_hair_therapist/Screens/HairCareMaintenance/HairMaintenance3.dart';
-import 'package:natural_hair_therapist/Screens/endOfNISH.dart';
+import 'package:natural_hair_therapist/Screens/GrowHair/GrowYourHair6.dart';
 
 import 'imports.dart';
 
@@ -56,6 +49,8 @@ class MyApp extends StatelessWidget {
         Growyourhair2.id: (context) => Growyourhair2(),
         Growyourhair3.id: (context) => Growyourhair3(),
         Growyourhair4.id: (context) => Growyourhair4(),
+        Growyourhair5.id: (context) => Growyourhair5(),
+        Growyourhair6.id: (context) => Growyourhair6(),
         ResultScreen.id: (context) => ResultScreen(),
         NISH1.id: (context) => NISH1(),
         NISH2.id: (context) => NISH2(),

@@ -3,11 +3,17 @@ import 'package:natural_hair_therapist/imports.dart';
 // final questionnaire = Provider.of<ProviderClass>(context);
 const kPrimaryColor = Color(0xff8ba870);
 const kGrowYourHairText =
-    """We're so glad you're here! Growing healthy hair is a natural process—your body already knows how to do it. Our role is to support that process by providing the right nutrition, care, and environment for optimal growth. 
+    """We’re so glad you’re here! Growing healthy hair is all about giving your body the support it needs—it already knows how to grow hair; our job is just to help it along.""";
+const kGrowYourHairText2 = """On this journey, we’ll be focusing on""";
+const kGrowYourHairText2b = """NIS³H""";
+const kGrowYourHairText3 = """NIS³H™""";
+const kGrowYourHairText3b =
+    """is a unique, holistic hair care framework developed by your Natural Hair Therapist (NHT) to give your body exactly what it needs for healthy hair growth.""";
+const kGrowYourHairText6 =
+    """To make this experience as personal as possible, let’s take a quick look at your current habits and routines.
     
-    Hair thrives when we nourish it from within, maintain a healthy scalp, and use the right products and techniques to prevent breakage. 
-    
-    It's not about forcing growth but about giving your hair what it needs to flourish. With the right approach, patience, and consistency, you can achieve strong, beautiful hair. Let’s work together to support your hair’s natural journey!""";
+Don’t worry—it’s simple and only takes a minute!
+""";
 const kNish1 =
     """Welcome to NISH! This unique, holistic framework, developed by your Natural Hair Therapist (NHT), provides everything your body needs for healthy hair growth. 
     

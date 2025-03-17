@@ -1,0 +1,2 @@
+/Users/obinna/Desktop/IU/natural_hair_therapist/android/app/.cxx/Debug/5m4d2n2q/x86/CMakeFiles/edit_cache.dir
+/Users/obinna/Desktop/IU/natural_hair_therapist/android/app/.cxx/Debug/5m4d2n2q/x86/CMakeFiles/rebuild_cache.dir

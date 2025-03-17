@@ -20,7 +20,7 @@ class _GrowyourhairState extends State<Growyourhair> {
           kGrowYourHairText,
           textAlign: TextAlign.justify,
           style: TextStyle(
-            fontSize: 20,
+            fontSize: 25,
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
