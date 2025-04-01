@@ -21,7 +21,7 @@ class _NISH2State extends State<NISH2> {
       appBar: AppBarWidget(),
       body: WelcomeHair(
         header: 'NUTRITION',
-        subheader: 'The Building Block for Healthy Hair',
+        subheader: 'Why Nutrition Is Important for Hair',
         note: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -29,7 +29,7 @@ class _NISH2State extends State<NISH2> {
               kNISH2,
               textAlign: TextAlign.justify,
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 25,
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),

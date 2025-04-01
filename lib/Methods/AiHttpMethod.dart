@@ -33,8 +33,8 @@ class OpenAIService {
         {"role": "user", "content": userInput},
         {"role": "assistant", "content": predefinedAnswer},
       ],
-      'max_tokens': 70,
-      'temperature': 0.7,
+      'max_tokens': 200,
+      'temperature': 1,
     });
 
     try {

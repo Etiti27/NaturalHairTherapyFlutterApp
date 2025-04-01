@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:natural_hair_therapist/Constants.dart';
 import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Nutriton/NISH4.dart';
 
 import '../../../Widgets/AppBarWidget.dart';
@@ -22,17 +21,38 @@ class _NISH3State extends State<NISH3> {
       body: WelcomeHair(
         header: 'NUTRITION',
         subheader: 'The Role of Gut Health',
-        note: const Column(
+        note: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              kNISH3,
-              textAlign: TextAlign.justify,
+            const Text(
+              "Those tools are called",
+              textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 40,
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            TweenAnimationBuilder(
+              tween: Tween<double>(begin: 0, end: 1),
+              duration: const Duration(seconds: 2),
+              builder: (context, double value, child) {
+                return Opacity(
+                  opacity: value,
+                  child: Text(
+                    "NUTRIENTS",
+                    style: TextStyle(
+                      fontSize: 60,
+                      color: Colors.red,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                );
+              },
             ),
           ],
         ),

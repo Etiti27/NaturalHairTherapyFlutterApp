@@ -25,6 +25,7 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
+    updateResponse("email", "response");
     displayingQuote = getQuote();
   }
 

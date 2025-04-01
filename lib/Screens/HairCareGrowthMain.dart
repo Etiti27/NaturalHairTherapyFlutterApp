@@ -1,4 +1,3 @@
-import 'package:natural_hair_therapist/Screens/HairCareMaintenance/HairCare.dart';
 import 'package:natural_hair_therapist/imports.dart';
 
 class HairCareGrowthMain extends StatefulWidget {
@@ -36,10 +35,12 @@ class _HairCareGrowthMainState extends State<HairCareGrowthMain> {
                   Expanded(
                       child: _buildDashboardCard('Hair Care', HairCare.id)),
                   const SizedBox(width: 10),
-                  Expanded(child: _buildDashboardCard('Hair Growth', NISH1.id)),
+                  Expanded(
+                      child: _buildDashboardCard('Hair Growth', IntroNISH.id)),
                   const SizedBox(width: 10),
                   Expanded(
-                      child: _buildDashboardCard('Hair Maintenance', NISH1.id)),
+                      child: _buildDashboardCard(
+                          'Hair Maintenance', IntroNISH.id)),
                 ],
               ),
 

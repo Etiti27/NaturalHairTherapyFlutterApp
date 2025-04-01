@@ -1,3 +1,4 @@
+import 'package:natural_hair_therapist/Screens/Dashboards/Dashboard3.dart';
 import 'package:natural_hair_therapist/imports.dart';
 
 // import 'openai_service.dart'; // Ensure this is the correct file path
@@ -18,6 +19,7 @@ class _ResultScreenState extends State<ResultScreen> {
   // }
 
   List<String> users = ["obinna", "how"];
+  bool isNishDone = true;
   // int index = 1;
   final Map<String, String> _questions = QuestionBank().getQuestion();
 
@@ -35,67 +37,66 @@ class _ResultScreenState extends State<ResultScreen> {
         child: Container(
           // height: double.infinity,
           decoration: BackgroundImage(),
-          child: Center(
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SecondaryNavigation(
-                    title: "Result",
+          child: Padding(
+            padding:
+                const EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                SecondaryNavigation(
+                  title: "Result",
+                ),
+                // const SizedBox(
+                //   height: 20,
+                // ),
+                Card(
+                  color: kPrimaryColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
                   ),
-                  // const SizedBox(
-                  //   height: 20,
-                  // ),
-                  Card(
-                    color: kPrimaryColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
-                    // Shadow effect
+                  // Shadow effect
 
-                    child: const Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.all(20.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              // Text(responseText),
-                              Text(
-                                "Great job! 🎉 Your responses have been recorded, and your personalized report has been emailed to you. Make sure to check your inbox for insights and recommendations based on your answers. If you don’t see the email, kindly check your spam folder or contact support for assistance",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 25,
-                                  color: Colors.white,
-                                ),
+                  child: const Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.all(20.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            // Text(responseText),
+                            Text(
+                              kEmailText,
+                              textAlign: TextAlign.justify,
+                              style: TextStyle(
+                                fontSize: 25,
+                                color: Colors.white,
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Center(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: kPrimaryColor),
-                      onPressed: () {
-                        Navigator.pushNamed(context, Dashboard2.id);
-                      },
-                      child: const Text(
-                        "Start Your Education",
-                        style: TextStyle(color: Colors.white),
                       ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+
+                Center(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: kPrimaryColor),
+                    onPressed: () {
+                      Navigator.pushNamed(context, Dashboard3.id);
+                    },
+                    child: const Text(
+                      "Let's get into it",
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

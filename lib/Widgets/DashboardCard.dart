@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../Constants.dart';
 
 class DashboardCard extends StatefulWidget {
-  Widget image;
+  Widget? image;
   String title;
   Widget? icon;
   bool? isHover;
@@ -11,7 +11,7 @@ class DashboardCard extends StatefulWidget {
 
   DashboardCard(
       {super.key,
-      required this.image,
+      this.image,
       required this.title,
       required this.OnTap,
       this.icon,
@@ -55,7 +55,7 @@ class _DashboardCardState extends State<DashboardCard> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        if (widget.icon != null) widget.icon!,
+                        if (widget.icon != null) Center(child: widget.icon!),
                         // Title
                         Center(
                           child: Text(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:natural_hair_therapist/Constants.dart';
 import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Ingredient/Ingredient.dart';
 
 import '../../../Widgets/AppBarWidget.dart';
@@ -21,12 +20,14 @@ class _NISH4State extends State<NISH4> {
       appBar: AppBarWidget(),
       body: WelcomeHair(
         header: 'NUTRITION',
-        subheader: 'Gut-Healthy Tips for Hair Growth',
+        subheader: '',
         note: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              kNISH4,
+              """Hair is made up of a tough protein called keratin. To produce strong, healthy strands, your body needs a steady supply of building blocks like protein, vitamins, and minerals. 
+              
+              If your nutrition is poor, your body will focus its energy on more vital organs first — and your hair will be the first to show signs of weakness.""",
               textAlign: TextAlign.justify,
               style: TextStyle(
                 fontSize: 20,

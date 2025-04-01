@@ -2,6 +2,13 @@ import 'package:natural_hair_therapist/imports.dart';
 
 // final questionnaire = Provider.of<ProviderClass>(context);
 const kPrimaryColor = Color(0xff8ba870);
+// ff8ba870
+const kEmailText =
+    """Great job! 🎉 Your responses have been recorded, and your personalized report has been emailed to you. 
+    
+    Make sure to check your inbox for insights and recommendations based on your answers. 
+    
+    If you don’t see the email, kindly check your spam folder or contact support for assistance""";
 const kGrowYourHairText =
     """We’re so glad you’re here! Growing healthy hair is all about giving your body the support it needs—it already knows how to grow hair; our job is just to help it along.""";
 const kGrowYourHairText2 = """On this journey, we’ll be focusing on""";
@@ -15,33 +22,13 @@ const kGrowYourHairText6 =
 Don’t worry—it’s simple and only takes a minute!
 """;
 const kNish1 =
-    """Welcome to NISH! This unique, holistic framework, developed by your Natural Hair Therapist (NHT), provides everything your body needs for healthy hair growth. 
+    """Healthy hair starts from within. Let’s explore how nutrition supports strong, vibrant growth.Hair doesn’t grow from a jar—it grows from within. 
     
-    NISH focuses on Nutrition, Ingredients, Scalp care, Sleep management, Stress management, and Hair maintenance, ensuring a well-rounded approach to hair health. 
-    
-    By addressing both internal and external factors, NISH empowers you to support your hair naturally and effectively. 
-    
-    Let’s begin your journey to stronger, healthier hair!""";
+    Nutrition is the first and most essential pillar in the NIS³H philosophy, because it provides the building blocks your body needs to make healthy, strong hair""";
 const kNISH2 =
-    """Nutrition is the foundation of hair health. Just like plants need water, soil, and sunlight to grow, your hair relies on the nutrients you provide through your diet. Think of it as giving your body the building blocks it needs to create strong, resilient hair.”
+    """Hair growth is a natural function of the body. Just like your heart beats and your lungs breathe, your body knows how to grow hair — but it needs the right tools to do the job well.""";
 
-How Nutrition Benefits Hair Health Promotes Growth: Hair growth happens from the inside out. Protein-rich foods, for example, provide the amino acids essential for building keratin, the protein that makes up most of our hair.
-
-Strengthens Hair: Nutrients like iron, zinc, and vitamin D contribute to stronger hair strands and prevent brittleness.
-
-Boosts Scalp Health: Vitamins and minerals, especially those in leafy greens and nuts, promote a healthy scalp environment by improving blood flow and oxygen levels, allowing hair follicles to thrive.
-
-Supports Moisture and Elasticity: Healthy fats like omega-3s (found in fish, chia seeds, and walnuts) help keep the hair and scalp moisturized, reducing dryness and breakage.
-""";
-
-const kNISH3 =
-    """A balanced gut is essential for nutrient absorption. No matter how nutrient-rich your diet is, poor gut health can prevent the body from absorbing the key vitamins and minerals that support hair health.
-
-	• Probiotics: Foods rich in probiotics, such as yogurt, kefir, and kimchi, introduce beneficial bacteria to the gut, which aid in digestion and nutrient absorption.
-	
-	•	Prebiotics: Foods like bananas, garlic, and onions contain fiber that feeds the beneficial gut bacteria, helping maintain a balanced microbiome.
-	
-	•	Postbiotics: Postbiotics are the beneficial byproducts produced when prebiotics are fermented by probiotics in the gut. These compounds support immune health and reduce inflammation, which benefits overall hair and scalp health.
+const kNISH3 = """Those tools are called nutrients.
 """;
 
 const kNISH4 = """

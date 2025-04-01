@@ -1,6 +1,8 @@
+import 'package:natural_hair_therapist/Screens/Dashboards/Dashboard3.dart';
 import 'package:natural_hair_therapist/Screens/GrowHair/GrowYourHair6.dart';
 
 import 'Screens/Questions/7Question.dart';
+import 'Screens/UnderstandingNISH/Nutriton/NISH1.dart';
 import 'imports.dart';
 
 void main() async {
@@ -33,6 +35,7 @@ class MyApp extends StatelessWidget {
         Registration.id: (context) => const Registration(),
         Dashboard.id: (context) => const Dashboard(),
         Dashboard2.id: (context) => const Dashboard2(),
+        Dashboard3.id: (context) => const Dashboard3(),
         Growyourhair.id: (context) => const Growyourhair(),
         QuestionScreen.id: (context) => QuestionScreen(),
         Questiononescreen.id: (context) => Questiononescreen(),
@@ -54,6 +57,7 @@ class MyApp extends StatelessWidget {
         Growyourhair5.id: (context) => Growyourhair5(),
         Growyourhair6.id: (context) => Growyourhair6(),
         ResultScreen.id: (context) => ResultScreen(),
+        IntroNISH.id: (context) => IntroNISH(),
         NISH1.id: (context) => NISH1(),
         NISH2.id: (context) => NISH2(),
         NISH3.id: (context) => NISH3(),

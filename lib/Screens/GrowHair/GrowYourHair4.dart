@@ -20,6 +20,41 @@ class _Growyourhair4State extends State<Growyourhair4> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "NIS³H",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 50,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Baseline(
+                  baseline: 50, // Adjust the baseline height as needed
+                  baselineType: TextBaseline.alphabetic,
+                  child: Text(
+                    "Stands for ",
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(
+                      fontSize: 25,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      textBaseline: TextBaseline
+                          .alphabetic, // Ensure text aligns to baseline
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
             Text(
               "✅ Nutrition",
               textAlign: TextAlign.left,
@@ -57,7 +92,19 @@ class _Growyourhair4State extends State<Growyourhair4> {
               height: 10,
             ),
             Text(
-              "✅ Sleep & Stress Management",
+              "✅ Sleep Management",
+              textAlign: TextAlign.start,
+              style: TextStyle(
+                fontSize: 25,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              "✅ Stress Management",
               textAlign: TextAlign.start,
               style: TextStyle(
                 fontSize: 25,
