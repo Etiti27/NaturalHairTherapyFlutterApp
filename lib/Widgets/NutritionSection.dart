@@ -3,26 +3,27 @@ import 'package:flutter/material.dart';
 import '../Constants.dart';
 import '../Methods/secondaryNavigation.dart';
 
-class WelcomeHair extends StatelessWidget {
-  const WelcomeHair(
-      {super.key,
-      required this.header,
-      required this.subheader,
-      required this.note,
-      required this.nextButton,
-      required this.nextButtonText,
-      this.Section1,
-      this.Section2,
-      this.Section3});
+class NutritionSection extends StatelessWidget {
+  const NutritionSection({
+    super.key,
+    required this.header,
+    required this.subheader,
+    required this.note,
+    this.nextButton,
+    this.Section1,
+    this.Section2,
+    this.Section3,
+    this.prevButton,
+  });
 
   final String header;
   final String subheader;
   final Widget note;
-  final VoidCallback? nextButton;
+  final Widget? nextButton;
   final Widget? Section1;
   final Widget? Section2;
   final Widget? Section3;
-  final String nextButtonText;
+  final Widget? prevButton;
 
   @override
   Widget build(BuildContext context) {
@@ -85,34 +86,17 @@ class WelcomeHair extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: kPrimaryColor),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text(
-                      "<< Back",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
-                      ),
-                    ),
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: kPrimaryColor),
-                    onPressed: nextButton,
-                    child: Text(
-                      nextButtonText,
-                      style: const TextStyle(color: Colors.white, fontSize: 25),
-                    ),
-                  ),
                   if (Section1 != null) Section1!,
                   if (Section2 != null) Section2!,
                   if (Section3 != null) Section3!
                 ],
               ),
+              Row(
+                children: [
+                  if (prevButton != null) prevButton!,
+                  if (nextButton != null) nextButton!,
+                ],
+              )
             ],
           ),
         ),

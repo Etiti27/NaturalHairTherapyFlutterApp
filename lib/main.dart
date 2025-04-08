@@ -1,5 +1,6 @@
 import 'package:natural_hair_therapist/Screens/Dashboards/Dashboard3.dart';
 import 'package:natural_hair_therapist/Screens/GrowHair/GrowYourHair6.dart';
+import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Nutriton/NISH5.dart';
 
 import 'Screens/Questions/7Question.dart';
 import 'Screens/UnderstandingNISH/Nutriton/NISH1.dart';
@@ -62,6 +63,7 @@ class MyApp extends StatelessWidget {
         NISH2.id: (context) => NISH2(),
         NISH3.id: (context) => NISH3(),
         NISH4.id: (context) => NISH4(),
+        NISH5.id: (context) => NISH5(),
         Ingredient.id: (context) => Ingredient(),
         Ingredient2.id: (context) => Ingredient2(),
         Ingredient3.id: (context) => Ingredient3(),

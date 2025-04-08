@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Ingredient/Ingredient.dart';
+import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Nutriton/NISH5.dart';
 
 import '../../../Widgets/AppBarWidget.dart';
 import '../../../Widgets/BottomWidget.dart';
@@ -25,9 +25,53 @@ class _NISH4State extends State<NISH4> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              """Hair is made up of a tough protein called keratin. To produce strong, healthy strands, your body needs a steady supply of building blocks like protein, vitamins, and minerals. 
-              
-              If your nutrition is poor, your body will focus its energy on more vital organs first — and your hair will be the first to show signs of weakness.""",
+              """Hair is made up of a tough protein called keratin. To produce strong, healthy strands, your body needs a steady supply of building blocks like:""",
+              textAlign: TextAlign.justify,
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  """• Protein""",
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.redAccent,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  """• Vitamins""",
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.redAccent,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  """• Minerals""",
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.redAccent,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+            Text(
+              """If your nutrition is poor, your body will focus its energy on more vital organs first — and your hair will be the first to show signs of weakness.""",
               textAlign: TextAlign.justify,
               style: TextStyle(
                 fontSize: 20,
@@ -38,7 +82,7 @@ class _NISH4State extends State<NISH4> {
           ],
         ),
         nextButton: () {
-          Navigator.pushNamed(context, Ingredient.id);
+          Navigator.pushNamed(context, NISH5.id);
         },
         nextButtonText: 'Next >>',
       ),

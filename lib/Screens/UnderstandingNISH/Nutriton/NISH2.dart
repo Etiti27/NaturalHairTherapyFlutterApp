@@ -21,7 +21,7 @@ class _NISH2State extends State<NISH2> {
       appBar: AppBarWidget(),
       body: WelcomeHair(
         header: 'NUTRITION',
-        subheader: 'Why Nutrition Is Important for Hair',
+        subheader: 'Why Nutrition Is Important for Hair!',
         note: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
