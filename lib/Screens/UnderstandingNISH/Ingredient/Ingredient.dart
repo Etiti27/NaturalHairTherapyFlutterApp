@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:natural_hair_therapist/Constants.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 import '../../../Widgets/AppBarWidget.dart';
 import '../../../Widgets/BottomWidget.dart';
 import '../../../Widgets/GrowYourHairWelcome.dart';
+import '../Nutriton/classesInsideNutrition/NutritionMode.dart';
 import 'Ingredient2.dart';
 
 class Ingredient extends StatefulWidget {
@@ -21,20 +22,31 @@ class _IngredientState extends State<Ingredient> {
       appBar: AppBarWidget(),
       body: WelcomeHair(
         header: 'INGREDIENT',
-        subheader: 'Know Your Ingredients!',
-        note: const Column(
+        subheader: 'Know What’s In Your Product – And Why That Matters',
+        note: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              kINGREDIENT,
-              textAlign: TextAlign.justify,
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10),
+            NutritionModal(
+                text1: "Why Ingredients Matter for Hair Health",
+                htmlCustom: Html(
+                  style: {
+                    "b": Style(
+                      fontWeight: FontWeight.w700,
+                      color: Colors.red, // dark green, for example
+                    ),
+                    "body": Style(
+                        fontSize: FontSize(20.0),
+                        textAlign: TextAlign.justify,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  },
+                  data:
+                      """Ingredients are the compounds that make up every product you use in your hair — from your shampoo and conditioner to your leave-ins and oils. Each ingredient has a specific purpose, and how your hair responds to that ingredient depends on your hair’s <b>needs</b>, not its <b>type.</b>""",
+                )
+
+                // """Ingredients are the compounds that make up every product you use in your hair — from your shampoo and conditioner to your leave-ins and oils. Each ingredient has a specific purpose, and how your hair responds to that ingredient depends on your hair’s <b>needs</b>, not its type.""",
+                ),
+            // const SizedBox(height: 10),
             // SizedBox(height: 10),
             // Text(
             //   textAlign: TextAlign.justify,

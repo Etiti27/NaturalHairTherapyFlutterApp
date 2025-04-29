@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:natural_hair_therapist/Constants.dart';
+import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Nutriton/classesInsideNutrition/NutritionMode.dart';
 import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Stress/Stress4.dart';
 
 import '../../../Widgets/AppBarWidget.dart';
@@ -21,31 +21,17 @@ class _stress3State extends State<stress3> {
       appBar: AppBarWidget(),
       body: WelcomeHair(
         header: 'STRESS MANAGEMENT',
-        subheader: 'Self-Assessment for Stress',
-        note: const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              kSTRESS3,
-              textAlign: TextAlign.justify,
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10),
-            // SizedBox(height: 10),
-            // Text(
-            //   textAlign: TextAlign.justify,
-            //   "NISH is a unique, holistic hair care framework developed by your Natural Hair Therapist (NHT) to give your body exactly what it needs for healthy hair growth.",
-            //   style: TextStyle(
-            //     fontSize: 25,
-            //     color: Colors.white,
-            //     fontWeight: FontWeight.bold,
-            //   ),
-            // ),
-          ],
+        subheader: 'This is why stress is linked to:',
+        note: NutritionModal(
+          text2: """•	Hair thinning
+	•	Increased shedding
+	•	Slower hair growth
+	•	Scalp irritation or inflammation
+
+In NHT philosophy, we understand that supporting hair health means supporting whole-body calm. 
+
+You can be eating all the right foods and using great products, but if your stress is high, your results will be limited.”
+""",
         ),
         nextButton: () {
           Navigator.pushNamed(context, stress4.id);

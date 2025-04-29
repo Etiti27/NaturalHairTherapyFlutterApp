@@ -2,7 +2,8 @@ import 'package:natural_hair_therapist/imports.dart';
 import 'package:postgres/postgres.dart';
 
 class DatabaseService {
-  final String _host = dotenv.env['DB_HOST'] ?? 'localhost';
+  final String _host = "10.0.2.2";
+  // final String _host = dotenv.env['DB_HOST'] ?? 'localhost';
   final String _dbPassword = dotenv.env['DB_PASSWORD'] ?? '';
   final String _dbUser = dotenv.env['DB_USER'] ?? 'postgres';
   final int _dbPort = int.parse(dotenv.env['DB_PORT'] ?? '5432');

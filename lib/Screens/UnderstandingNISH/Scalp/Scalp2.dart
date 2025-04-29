@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:natural_hair_therapist/Constants.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Nutriton/classesInsideNutrition/NutritionMode.dart';
 import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Scalp/Scalp3.dart';
 
 import '../../../Widgets/AppBarWidget.dart';
@@ -21,31 +22,26 @@ class _scalp2State extends State<scalp2> {
       appBar: AppBarWidget(),
       body: WelcomeHair(
         header: 'SCALP CARE',
-        subheader: 'The Scalp as the “Feeding Soil” of the Hair',
-        note: const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              kSCALP2,
-              textAlign: TextAlign.justify,
-              style: TextStyle(
-                fontSize: 20,
+        subheader: 'The Womb of the Hair Deserves Daily Love',
+        note: NutritionModal(
+          text2:
+              """Underneath the surface of your scalp are hair follicles. Inside each follicle, in a part called the dermal papilla, new hair cells are created through cell division.""",
+          htmlCustom: Html(
+            style: {
+              "body": Style(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
+                fontSize: FontSize(20),
+                textAlign: TextAlign.justify,
               ),
-            ),
-            SizedBox(height: 10),
-            // SizedBox(height: 10),
-            // Text(
-            //   textAlign: TextAlign.justify,
-            //   "NISH is a unique, holistic hair care framework developed by your Natural Hair Therapist (NHT) to give your body exactly what it needs for healthy hair growth.",
-            //   style: TextStyle(
-            //     fontSize: 25,
-            //     color: Colors.white,
-            //     fontWeight: FontWeight.bold,
-            //   ),
-            // ),
-          ],
+              "b": Style(
+                color: Colors.red,
+                fontSize: FontSize(23),
+              )
+            },
+            data: """
+                These cells are pushed upward and hardened to form a strand of hair. The only way this process can work well is if the scalp is nourished, oxygenated, clean, and healthy.""",
+          ),
         ),
         nextButton: () {
           Navigator.pushNamed(context, scalp3.id);

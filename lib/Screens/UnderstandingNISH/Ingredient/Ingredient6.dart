@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:natural_hair_therapist/Constants.dart';
-import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Ingredient/Ingredient7.dart';
 
 import '../../../Widgets/AppBarWidget.dart';
 import '../../../Widgets/BottomWidget.dart';
 import '../../../Widgets/GrowYourHairWelcome.dart';
+import 'Methods/QuestionB.dart';
 
 class Ingredient6 extends StatefulWidget {
   const Ingredient6({super.key});
@@ -20,13 +19,17 @@ class _Ingredient6State extends State<Ingredient6> {
     return Scaffold(
       appBar: AppBarWidget(),
       body: WelcomeHair(
-        header: 'INGREDIENT',
-        subheader: 'Choosing Ingredients Based on Hair Needs',
+        header: '🌿 Hair Needs Assessment',
+        subheader: 'What Does Your Hair Need Right Now?',
         note: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              kINGREDIENT6,
+              """Every head of hair is different, and what your hair needs right now may be different from what it needed last month. 
+              
+              This quick check-in will help you understand your current hair need—whether it’s more moisture, more strength, or a bit of balance.
+              
+              Let’s find out what your hair is asking for.""",
               textAlign: TextAlign.justify,
               style: TextStyle(
                 fontSize: 20,
@@ -48,9 +51,9 @@ class _Ingredient6State extends State<Ingredient6> {
           ],
         ),
         nextButton: () {
-          Navigator.pushNamed(context, Ingredient7.id);
+          QuestionB(context);
         },
-        nextButtonText: 'Next >>',
+        nextButtonText: 'Start Assessment',
       ),
       bottomNavigationBar: BottomWidget(),
     );

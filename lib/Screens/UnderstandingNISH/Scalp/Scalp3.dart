@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:natural_hair_therapist/Constants.dart';
+import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Nutriton/classesInsideNutrition/NutritionMode.dart';
 import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Scalp/Scalp4.dart';
 
 import '../../../Widgets/AppBarWidget.dart';
@@ -21,31 +21,10 @@ class _scalp3State extends State<scalp3> {
       appBar: AppBarWidget(),
       body: WelcomeHair(
         header: 'SCALP CARE',
-        subheader: 'Essential Practices for Scalp Health',
-        note: const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              kSCALP3,
-              textAlign: TextAlign.justify,
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10),
-            // SizedBox(height: 10),
-            // Text(
-            //   textAlign: TextAlign.justify,
-            //   "NISH is a unique, holistic hair care framework developed by your Natural Hair Therapist (NHT) to give your body exactly what it needs for healthy hair growth.",
-            //   style: TextStyle(
-            //     fontSize: 25,
-            //     color: Colors.white,
-            //     fontWeight: FontWeight.bold,
-            //   ),
-            // ),
-          ],
+        subheader: 'The Womb of the Hair Deserves Daily Love',
+        note: NutritionModal(
+          text2:
+              "That’s why scalp care is about more than solving dandruff or itchiness. It’s a proactive practice that supports growth, strength, and resilience.",
         ),
         nextButton: () {
           Navigator.pushNamed(context, scalp4.id);

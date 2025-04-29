@@ -1,51 +1,46 @@
 import 'package:flutter/material.dart';
-import 'package:natural_hair_therapist/Constants.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Nutriton/classesInsideNutrition/NutritionMode.dart';
 import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Scalp/Scalp2.dart';
 
 import '../../../Widgets/AppBarWidget.dart';
 import '../../../Widgets/BottomWidget.dart';
 import '../../../Widgets/GrowYourHairWelcome.dart';
 
-class scalp1 extends StatefulWidget {
-  const scalp1({super.key});
+class Scalp1 extends StatefulWidget {
+  const Scalp1({super.key});
   static const String id = "scalp1";
 
   @override
-  State<scalp1> createState() => _scalp1State();
+  State<Scalp1> createState() => _Scalp1State();
 }
 
-class _scalp1State extends State<scalp1> {
+class _Scalp1State extends State<Scalp1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidget(),
       body: WelcomeHair(
         header: 'SCALP CARE',
-        subheader: 'Introduction',
-        note: const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              kSCALP1,
-              textAlign: TextAlign.justify,
-              style: TextStyle(
-                fontSize: 20,
+        subheader: 'The Womb of the Hair Deserves Daily Love',
+        note: NutritionModal(
+          text1: "Why Scalp Care Matters",
+          htmlCustom: Html(
+            style: {
+              "body": Style(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
+                fontSize: FontSize(20),
+                textAlign: TextAlign.justify,
               ),
-            ),
-            SizedBox(height: 10),
-            // SizedBox(height: 10),
-            // Text(
-            //   textAlign: TextAlign.justify,
-            //   "NISH is a unique, holistic hair care framework developed by your Natural Hair Therapist (NHT) to give your body exactly what it needs for healthy hair growth.",
-            //   style: TextStyle(
-            //     fontSize: 25,
-            //     color: Colors.white,
-            //     fontWeight: FontWeight.bold,
-            //   ),
-            // ),
-          ],
+              "b": Style(
+                color: Colors.red,
+                fontSize: FontSize(23),
+              )
+            },
+            data:
+                "The scalp is more than just the skin that covers your head — it’s the feeding soil of your hair. It’s where hair begins its journey — where it’s born, fed, and supported. In the Natural Hair Therapist philosophy, we call it <b>the womb of the hair.</b>",
+          ),
         ),
         nextButton: () {
           Navigator.pushNamed(context, scalp2.id);

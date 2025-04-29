@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Ingredient/Ingredient5a.dart';
 
 import '../../../Widgets/AppBarWidget.dart';
 import '../../../Widgets/BottomWidget.dart';
 import '../../../Widgets/GrowYourHairWelcome.dart';
 import '../Nutriton/classesInsideNutrition/NutritionMode.dart';
-import 'Ingredient4b.dart';
 
-class Ingredient4 extends StatefulWidget {
-  const Ingredient4({super.key});
-  static const String id = "ingredient4";
+class Ingredient4b extends StatefulWidget {
+  const Ingredient4b({super.key});
+  static const String id = "ingredient4b";
 
   @override
-  State<Ingredient4> createState() => _Ingredient4State();
+  State<Ingredient4b> createState() => _Ingredient4bState();
 }
 
-class _Ingredient4State extends State<Ingredient4> {
+class _Ingredient4bState extends State<Ingredient4b> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,19 +26,19 @@ class _Ingredient4State extends State<Ingredient4> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             NutritionModal(
-              text1: "Humectants",
+              text1: "Proteins",
               text2:
-                  "Attract moisture from the air to the hair (e.g., glycerin, hyaluronic acid).",
+                  "Strengthen the hair structure, reducing breakage (e.g., hydrolyzed keratin, silk proteins).",
             ),
             NutritionModal(
-              text1: "Emollients",
+              text1: "Cleansing Agents",
               text2:
-                  "Soften and smooth the hair, helping it retain moisture (e.g., oils like jojoba and shea butter).",
+                  "Remove dirt and buildup from the hair and scalp (e.g., sodium cocoyl isethionate, a mild sulfate found in some shampoos).",
             ),
           ],
         ),
         nextButton: () {
-          Navigator.pushNamed(context, Ingredient4b.id);
+          Navigator.pushNamed(context, Ingredient5a.id);
         },
         nextButtonText: 'Next >>',
       ),

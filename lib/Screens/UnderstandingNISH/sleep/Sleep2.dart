@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:natural_hair_therapist/Constants.dart';
+import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Nutriton/classesInsideNutrition/NutritionMode.dart';
 
 import '../../../Widgets/AppBarWidget.dart';
 import '../../../Widgets/BottomWidget.dart';
@@ -21,31 +21,12 @@ class _sleep2State extends State<sleep2> {
       appBar: AppBarWidget(),
       body: WelcomeHair(
         header: 'SLEEP MANAGEMENT',
-        subheader: 'Why Quality Sleep Matters for Hair Health',
-        note: const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              kSLEEP2,
-              textAlign: TextAlign.justify,
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10),
-            // SizedBox(height: 10),
-            // Text(
-            //   textAlign: TextAlign.justify,
-            //   "NISH is a unique, holistic hair care framework developed by your Natural Hair Therapist (NHT) to give your body exactly what it needs for healthy hair growth.",
-            //   style: TextStyle(
-            //     fontSize: 25,
-            //     color: Colors.white,
-            //     fontWeight: FontWeight.bold,
-            //   ),
-            // ),
-          ],
+        subheader: 'Why Sleep Matters for Hair',
+        note: NutritionModal(
+          text2:
+              """During sleep, your body releases melatonin, a hormone that plays a role in regulating the hair growth cycle. Poor or insufficient sleep can disrupt this cycle, causing slowed growth, increased shedding, or weakened strands over time. 
+              
+              Sleep is not just rest. It’s a biological reset, a recovery session for your hair.""",
         ),
         nextButton: () {
           Navigator.pushNamed(context, sleep3.id);

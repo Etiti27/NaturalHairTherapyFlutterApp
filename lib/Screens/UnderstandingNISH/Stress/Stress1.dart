@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:natural_hair_therapist/Constants.dart';
+import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Nutriton/classesInsideNutrition/NutritionMode.dart';
 import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Stress/Stress2.dart';
 
 import '../../../Widgets/AppBarWidget.dart';
@@ -21,31 +21,13 @@ class _stress1State extends State<stress1> {
       appBar: AppBarWidget(),
       body: WelcomeHair(
         header: 'STRESS MANAGEMENT',
-        subheader: 'Introduction',
-        note: const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              kSTRESS1,
-              textAlign: TextAlign.justify,
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10),
-            // SizedBox(height: 10),
-            // Text(
-            //   textAlign: TextAlign.justify,
-            //   "NISH is a unique, holistic hair care framework developed by your Natural Hair Therapist (NHT) to give your body exactly what it needs for healthy hair growth.",
-            //   style: TextStyle(
-            //     fontSize: 25,
-            //     color: Colors.white,
-            //     fontWeight: FontWeight.bold,
-            //   ),
-            // ),
-          ],
+        subheader: 'Stress and Hair Don’t Mix',
+        note: NutritionModal(
+          text1: "Why Stress Affects Hair",
+          text2:
+              """Stress isn’t just a feeling—it’s a physical response inside the body. And your hair feels it too.
+
+When you’re stressed, your body produces hormones like cortisol and adrenaline, which are designed to help you survive short-term danger.""",
         ),
         nextButton: () {
           Navigator.pushNamed(context, stress2.id);

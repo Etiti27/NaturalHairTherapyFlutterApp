@@ -1,10 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:natural_hair_therapist/Constants.dart';
-import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Ingredient/Ingredient4.dart';
+import 'package:natural_hair_therapist/imports.dart';
 
-import '../../../Widgets/AppBarWidget.dart';
-import '../../../Widgets/BottomWidget.dart';
-import '../../../Widgets/GrowYourHairWelcome.dart';
+import '../Nutriton/classesInsideNutrition/NutritionMode.dart';
 
 class Ingredient3 extends StatefulWidget {
   const Ingredient3({super.key});
@@ -21,20 +17,27 @@ class _Ingredient3State extends State<Ingredient3> {
       appBar: AppBarWidget(),
       body: WelcomeHair(
         header: 'INGREDIENT',
-        subheader: 'Categories of Ingredients in Hair Maintenance Products',
-        note: const Column(
+        subheader: '',
+        note: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              kINGREDIENT3,
-              textAlign: TextAlign.justify,
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
+            NutritionModal(
+              // text1: "Why Ingredients Matter for Hair Health",
+              text1:
+                  """Ingredients behave uniquely based on factors like climate, humidity, and individual hair characteristics""",
+              // """Ingredients are the compounds that make up every product you use in your hair — from your shampoo and conditioner to your leave-ins and oils. Each ingredient has a specific purpose, and how your hair responds to that ingredient depends on your hair’s <b>needs</b>, not its type.""",
             ),
-            SizedBox(height: 10),
+            // const SizedBox(height: 10),
+            // SizedBox(height: 10),
+            // Text(
+            //   textAlign: TextAlign.justify,
+            //   "NISH is a unique, holistic hair care framework developed by your Natural Hair Therapist (NHT) to give your body exactly what it needs for healthy hair growth.",
+            //   style: TextStyle(
+            //     fontSize: 25,
+            //     color: Colors.white,
+            //     fontWeight: FontWeight.bold,
+            //   ),
+            // ),
           ],
         ),
         nextButton: () {

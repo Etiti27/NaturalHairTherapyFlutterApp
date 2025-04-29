@@ -47,6 +47,7 @@ dependencies:
 
   onesignal_flutter: ^5.3.0
   flip_card: ^0.7.0
+  flutter_html: ^3.0.0
 
 
 dev_dependencies:

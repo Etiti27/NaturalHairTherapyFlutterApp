@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:natural_hair_therapist/Constants.dart';
+import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Nutriton/classesInsideNutrition/NutritionMode.dart';
 import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Stress/Stress3.dart';
 
 import '../../../Widgets/AppBarWidget.dart';
@@ -21,31 +21,10 @@ class _stress2State extends State<stress2> {
       appBar: AppBarWidget(),
       body: WelcomeHair(
         header: 'STRESS MANAGEMENT',
-        subheader: 'Key Points in Stress Management',
-        note: const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              kSTRESS2,
-              textAlign: TextAlign.justify,
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10),
-            // SizedBox(height: 10),
-            // Text(
-            //   textAlign: TextAlign.justify,
-            //   "NISH is a unique, holistic hair care framework developed by your Natural Hair Therapist (NHT) to give your body exactly what it needs for healthy hair growth.",
-            //   style: TextStyle(
-            //     fontSize: 25,
-            //     color: Colors.white,
-            //     fontWeight: FontWeight.bold,
-            //   ),
-            // ),
-          ],
+        subheader: 'Stress and Hair Don’t Mix',
+        note: NutritionModal(
+          text2:
+              """But when those hormones stick around too long, they create inflammation, nutrient depletion, and blood flow disruption—especially to areas the body doesn’t consider vital… like your hair follicles.""",
         ),
         nextButton: () {
           Navigator.pushNamed(context, stress3.id);

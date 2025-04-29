@@ -1,7 +1,7 @@
-import '../../../imports.dart';
-import 'NISH1.dart';
+import '../../../../imports.dart';
+import '../classesInsideNutrition/NutritionMode.dart';
 
-void _showSideModal(BuildContext context) {
+void showSideModal1(BuildContext context) {
   double screenHeight = MediaQuery.of(context).size.height;
   double screenWidth = MediaQuery.of(context).size.width;
   bool isLandscape = screenWidth > screenHeight;

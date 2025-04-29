@@ -27,9 +27,9 @@ export 'package:natural_hair_therapist/Screens/UnderstandingNISH/HairMain3.dart'
 // import 'package:natural_hair_therapist/Screens/HairMain2.dart';
 export 'package:natural_hair_therapist/Screens/UnderstandingNISH/Ingredient/Ingredient6.dart';
 export 'package:natural_hair_therapist/Screens/UnderstandingNISH/Ingredient/Ingredient7.dart';
+export 'package:natural_hair_therapist/Screens/UnderstandingNISH/Intro.dart';
 export 'package:natural_hair_therapist/Screens/UnderstandingNISH/LengthLen2.dart';
 export 'package:natural_hair_therapist/Screens/UnderstandingNISH/LengthLent.dart';
-export 'package:natural_hair_therapist/Screens/UnderstandingNISH/Nutriton/Intro.dart';
 export 'package:natural_hair_therapist/Screens/UnderstandingNISH/Scalp/Scalp1.dart';
 export 'package:natural_hair_therapist/Screens/UnderstandingNISH/Stress/Stress1.dart';
 export 'package:natural_hair_therapist/Screens/UnderstandingNISH/Stress/Stress3.dart';
