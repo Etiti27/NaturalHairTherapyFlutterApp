@@ -1,5 +1,6 @@
 import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Stress/Method/StressQuickTip.dart';
 
+import '../../../../Methods/AiHttpMethod.dart';
 import '../../../../imports.dart';
 import '../../Nutriton/Methods/listTile.dart';
 import '../../Nutriton/classesInsideNutrition/NutritionMode.dart';
@@ -22,6 +23,9 @@ StressSelfcheckQuestion(BuildContext context) {
   String? answer4;
   String? answer5;
   String? answer6;
+  final OpenAIService openAIService = OpenAIService();
+  String? data;
+  bool isNew = true;
 
   showModalBottomSheet(
     context: context,
@@ -99,7 +103,7 @@ StressSelfcheckQuestion(BuildContext context) {
                     text1: "I feel like I’m constantly rushing or behind.",
                     text3: listviewBuilder(
                       optionsQuestion: optionsQuestion,
-                      answer: answer4,
+                      answer: answer5,
                       onChanged: (String? v) {
                         setModalState(() {
                           answer5 = v;
@@ -110,37 +114,74 @@ StressSelfcheckQuestion(BuildContext context) {
                     ),
                   );
                 case 6:
-                  return NutritionModal(
-                    text1:
-                        'My scalp feels tight or my hair is shedding more than usual',
-                    text3: listviewBuilder(
-                      optionsQuestion: optionsQuestion,
-                      answer: answer6,
-                      onChanged: (String? v) {
-                        setModalState(() {
-                          answer5 = v;
-                          lastQuestionAnswered = true;
-                          print(answer5);
-                        });
-                      },
-                    ),
-                    text4: Text(
-                      !lastQuestionAnswered ? "pls select option" : "",
-                      style: const TextStyle(
-                        fontStyle: FontStyle.italic,
-                        color: Colors.red,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  );
+                  return isNew
+                      ? NutritionModal(
+                          text1:
+                              'My scalp feels tight or my hair is shedding more than usual',
+                          text3: listviewBuilder(
+                            optionsQuestion: optionsQuestion,
+                            answer: answer6,
+                            onChanged: (String? v) {
+                              setModalState(() {
+                                answer6 = v;
+                                lastQuestionAnswered = true;
+                                print(answer5);
+                              });
+                            },
+                          ),
+                          text4: Text(
+                            !lastQuestionAnswered ? "pls select option" : "",
+                            style: const TextStyle(
+                              fontStyle: FontStyle.italic,
+                              color: Colors.red,
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        )
+                      : NutritionModal(
+                          text1: "Please Wait.",
+                          text2: "Analyzing Your data ...",
+                          text3: CircularProgressIndicator(
+                            color: Colors.white,
+                          ),
+                        );
 
                 default:
                   return NutritionModal(
-                    text1:
-                        'You have successfully completed the Introduction section',
-                    text2:
-                        'You can now close this and go to the next page (Building block)',
+                    text3: Column(
+                      children: [
+                        const Text(
+                          "Result",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 30,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                        const Divider(
+                          color: Colors.white,
+                          thickness: 5.0,
+                        ),
+                        Text(
+                          data!,
+                          textAlign: TextAlign.justify,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    // text3: ElevatedButton(
+                    //   onPressed: () {
+                    //     Navigator.pop(context);
+                    //   },
+                    //   child: const Text("close"),
+                    // ),
                   );
               }
             }
@@ -192,16 +233,37 @@ StressSelfcheckQuestion(BuildContext context) {
                         if (currentStep == numberOfPages)
                           ElevatedButton(
                             onPressed: lastQuestionAnswered
-                                ? () {
+                                ? () async {
+                                    setModalState(() {
+                                      isNew = false;
+                                    });
+                                    String input = """
+                                    I feel mentally exhausted or overwhelmed: $answer1,
+                                    I sleep poorly or wake up tired: $answer2,
+                                    I have tension in my neck, jaw, or shoulders: $answer3,
+                                    My mood changes quickly: $answer4,
+                                    I feel like I’m constantly rushing or behind: $answer5,
+                                    My scalp feels tight or my hair is shedding more than usual: $answer6.
+                                    """;
+                                    try {
+                                      String resp =
+                                          await openAIService.generateResponse(
+                                              input,
+                                              "Generate a personalized summary (max 25 words) based on a hair assessment using the NISH framework: Nutrition, Ingredients, Scalp Care, Sleep Management, Stress Management, and Hair Maintenance.The tone should be warm, empowering, and informative.");
+                                      print(resp);
+                                      setModalState(() {
+                                        data = resp;
+                                        currentStep++;
+                                      });
+                                    } catch (e) {
+                                      print(e.toString());
+                                    }
                                     print("welcome");
                                     print(answer1);
                                     print(answer2);
                                     print(answer3);
                                     print(answer4);
                                     print(answer5);
-                                    setModalState(() {
-                                      currentStep++;
-                                    });
                                   }
                                 : null,
                             child: Text("View Result"),

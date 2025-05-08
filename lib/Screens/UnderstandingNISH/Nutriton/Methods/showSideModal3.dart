@@ -36,7 +36,9 @@ void showSideModal3(BuildContext context) {
                     color: kPrimaryColor,
                     child: NutritionModal(
                       text2:
-                          'We often talk about what to eat for hair health, but very few people talk about how well your body is absorbing what you eat. You can eat all the right foods, but if your gut isn’t functioning properly, those nutrients may never reach your hair follicles.',
+                          '''We often talk about what to eat for hair health, but very few people talk about how well your body is absorbing what you eat. 
+                          
+                          You can eat all the right foods, but if your gut isn’t functioning properly, those nutrients may never reach your hair follicles.''',
                     ),
                   );
 
@@ -61,7 +63,9 @@ void showSideModal3(BuildContext context) {
                     color: kPrimaryColor,
                     child: NutritionModal(
                       text2:
-                          'Your gut is where vitamins, minerals, and proteins are broken down and absorbed into your bloodstream. It’s also where inflammation can begin—especially if your gut lining is compromised or your microbiome (the bacteria living in your gut) is out of balance. If your gut isn’t happy, your hair won’t be either.',
+                          '''Your gut is where vitamins, minerals, and proteins are broken down and absorbed into your bloodstream. 
+                          
+                          It is also where inflammation can begin especially if your gut lining is compromised or your microbiome (the bacteria living in your gut) is out of balance. If your gut isn’t happy, your hair won’t be either.''',
                     ),
                   );
                 case 5:
@@ -125,11 +129,23 @@ void showSideModal3(BuildContext context) {
                           text2:
                               'You can now close this and Check the next pillar (Ingredients) OR you can start optionally self check',
                         ),
-                        ElevatedButton(
-                            onPressed: () {
-                              GutQuestionModal(context);
-                            },
-                            child: const Text("Start Gut self check"))
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                GutQuestionModal(context);
+                              },
+                              child: const Text("Start Gut self check"),
+                            ),
+                            ElevatedButton(
+                                onPressed: () {
+                                  Navigator.pushReplacementNamed(
+                                      context, Ingredient.id);
+                                },
+                                child: const Text("Go to Ingredient"))
+                          ],
+                        )
                       ],
                     ),
                   );

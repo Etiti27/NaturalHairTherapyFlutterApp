@@ -69,6 +69,17 @@ void showSideModal1(BuildContext context) {
                         'You have successfully completed the Introduction section',
                     text2:
                         'You can now close this and go to next page (Building block)',
+                    // text4: ElevatedButton(
+                    //   onPressed: () {
+                    //     showSideModal2(context);
+                    //   },
+                    //   style: ElevatedButton.styleFrom(
+                    //       backgroundColor: kPrimaryColor),
+                    //   child: Text(
+                    //     "Go to Building Block page",
+                    //     style: TextStyle(color: Colors.white),
+                    //   ),
+                    // ),
                   );
               }
             }

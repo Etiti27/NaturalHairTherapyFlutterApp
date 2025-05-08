@@ -17,39 +17,36 @@ class NutritionModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          if (text1 != null)
-            Text(
-              text1!,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 25,
-                fontWeight: FontWeight.w900,
-              ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        if (text1 != null)
+          Text(
+            text1!,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 25,
+              fontWeight: FontWeight.w900,
             ),
-          const SizedBox(height: 20),
-          if (text2 != null)
-            Text(
-              text2!,
-              textAlign: TextAlign.justify,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+          ),
+        const SizedBox(height: 20),
+        if (text2 != null)
+          Text(
+            text2!,
+            textAlign: TextAlign.justify,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
             ),
-          const SizedBox(height: 20),
-          if (htmlCustom != null) htmlCustom!,
-          if (text3 != null) text3!,
-          if (text4 != null) text4!
-        ],
-      ),
+          ),
+        // const SizedBox(height: 10),
+        if (htmlCustom != null) htmlCustom!,
+        if (text3 != null) text3!,
+        if (text4 != null) text4!
+      ],
     );
   }
 }

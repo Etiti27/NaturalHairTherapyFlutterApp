@@ -1,17 +1,18 @@
 import '../../../../Methods/AiHttpMethod.dart';
 import '../../../../imports.dart';
-import '../classesInsideNutrition/NutritionMode.dart';
-import 'listTile.dart';
+import '../../Nutriton/Methods/listTile.dart';
+import '../../Nutriton/classesInsideNutrition/NutritionMode.dart';
+import 'QuickTipHairMaint.dart';
 
-GutQuestionModal(BuildContext context) {
+HairMaintSelfcheckQuestion(BuildContext context) {
   int currentStep = 1;
-  int numberOfPages = 5;
+  int numberOfPages = 6;
 
   String? selectedOption;
   final List<String> optionsQuestion = [
-    'Never',
-    'Sometimes',
-    'Often',
+    'Always',
+    "Sometimes",
+    'Rarely',
   ];
   bool lastQuestionAnswered = false;
 
@@ -20,19 +21,10 @@ GutQuestionModal(BuildContext context) {
   String? answer3;
   String? answer4;
   String? answer5;
+  String? answer6;
+  final OpenAIService openAIService = OpenAIService();
   String? data;
   bool isNew = true;
-
-  final OpenAIService openAIService = OpenAIService();
-  Future<String> fetchResponse(String userInput) async {
-    try {
-      String resp = await openAIService.generateResponse(userInput,
-          "Generate a personalized summary (max 25 words) based on a hair assessment using the NISH framework: Nutrition, Ingredients, Scalp Care, Sleep Management, Stress Management, and Hair Maintenance.The tone should be warm, empowering, and informative.");
-      return resp;
-    } catch (e) {
-      return e.toString();
-    }
-  }
 
   showModalBottomSheet(
     context: context,
@@ -43,13 +35,11 @@ GutQuestionModal(BuildContext context) {
         color: kPrimaryColor,
         child: StatefulBuilder(
           builder: (context, setModalState) {
-            bool isData = false;
-
             Widget _buildStepContent(int step) {
               switch (step) {
                 case 1:
                   return NutritionModal(
-                    text1: 'I often feel bloated or gassy after meals.',
+                    text1: 'I moisturize and seal my hair regularly.',
                     text3: listviewBuilder(
                       optionsQuestion: optionsQuestion,
                       answer: answer1,
@@ -64,7 +54,8 @@ GutQuestionModal(BuildContext context) {
                   );
                 case 2:
                   return NutritionModal(
-                    text1: 'I have irregular bowel movements.',
+                    text1:
+                        'I wash and condition my hair based on what it needs.',
                     text3: listviewBuilder(
                       optionsQuestion: optionsQuestion,
                       answer: answer2,
@@ -79,7 +70,7 @@ GutQuestionModal(BuildContext context) {
                   );
                 case 3:
                   return NutritionModal(
-                    text1: 'I frequently feel sluggish or tired after eating.',
+                    text1: 'I have tension in my neck, jaw, or shoulders.',
                     text3: listviewBuilder(
                       optionsQuestion: optionsQuestion,
                       answer: answer3,
@@ -94,7 +85,8 @@ GutQuestionModal(BuildContext context) {
                   );
                 case 4:
                   return NutritionModal(
-                    text1: "I’ve taken antibiotics in the last 6 months.",
+                    text1:
+                        "I protect my hair at night (satin scarf/bonnet/pillowcase).",
                     text3: listviewBuilder(
                       optionsQuestion: optionsQuestion,
                       answer: answer4,
@@ -108,17 +100,32 @@ GutQuestionModal(BuildContext context) {
                     ),
                   );
                 case 5:
+                  return NutritionModal(
+                    text1: "I avoid harsh tools or over-manipulating my hair.",
+                    text3: listviewBuilder(
+                      optionsQuestion: optionsQuestion,
+                      answer: answer5,
+                      onChanged: (String? v) {
+                        setModalState(() {
+                          answer5 = v;
+                          print(answer5);
+                          currentStep++;
+                        });
+                      },
+                    ),
+                  );
+                case 6:
                   return isNew
                       ? NutritionModal(
-                          text1: 'I regularly eat fermented foods.',
+                          text1: 'I trim or dust my ends regularly.',
                           text3: listviewBuilder(
                             optionsQuestion: optionsQuestion,
-                            answer: answer5,
+                            answer: answer6,
                             onChanged: (String? v) {
                               setModalState(() {
-                                answer5 = v;
+                                answer6 = v;
                                 lastQuestionAnswered = true;
-                                print(answer5);
+                                print(answer6);
                               });
                             },
                           ),
@@ -176,13 +183,6 @@ GutQuestionModal(BuildContext context) {
                     //   child: const Text("close"),
                     // ),
                   );
-
-                  return NutritionModal(text1: 'My Result', text2: data);
-                // isData
-                // ? Center(
-                //     child: const CircularProgressIndicator(
-                //         color: Colors.white))
-                // : NutritionModal(text1: 'My Result', text2: data);
               }
             }
 
@@ -209,6 +209,27 @@ GutQuestionModal(BuildContext context) {
                                   }),
                           child: const Text("<< prev"),
                         ),
+                        if (currentStep == numberOfPages + 1)
+                          Row(
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  HairMaintQuickTip(context);
+                                },
+                                child: const Text("Quick Tip"),
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text("Close"),
+                              ),
+                            ],
+                          ),
+
                         if (currentStep == numberOfPages)
                           ElevatedButton(
                             onPressed: lastQuestionAnswered
@@ -216,14 +237,14 @@ GutQuestionModal(BuildContext context) {
                                     setModalState(() {
                                       isNew = false;
                                     });
-                                    print({answer1, answer2, answer3});
-
-                                    String input =
-                                        """I $answer1 feel bloated or gassy after meals.
-                                        I $answer2 have irregular bowel movements.
-                                        I $answer3 feel sluggish or tired after eating.
-                                        I’ve $answer4 taken antibiotics in the last 6 months.
-                                        I $answer5 eat fermented foods.""";
+                                    String input = """
+                                    I moisturize and seal my hair regularly: $answer1,
+                                    I wash and condition my hair based on what it needs: $answer2,
+                                    I have tension in my neck, jaw, or shoulders: $answer3,
+                                    I protect my hair at night (satin scarf/bonnet/pillowcase): $answer4,
+                                    I avoid harsh tools or over-manipulating my hair: $answer5,
+                                    I trim or dust my ends regularly: $answer6.
+                                    """;
                                     try {
                                       String resp =
                                           await openAIService.generateResponse(

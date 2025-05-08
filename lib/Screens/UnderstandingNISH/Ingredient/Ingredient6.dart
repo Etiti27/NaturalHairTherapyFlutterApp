@@ -1,8 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:natural_hair_therapist/imports.dart';
 
-import '../../../Widgets/AppBarWidget.dart';
-import '../../../Widgets/BottomWidget.dart';
-import '../../../Widgets/GrowYourHairWelcome.dart';
 import 'Methods/QuestionB.dart';
 
 class Ingredient6 extends StatefulWidget {
@@ -53,7 +50,17 @@ class _Ingredient6State extends State<Ingredient6> {
         nextButton: () {
           QuestionB(context);
         },
-        nextButtonText: 'Start Assessment',
+        Section4: ElevatedButton(
+          style: ElevatedButton.styleFrom(backgroundColor: kPrimaryColor),
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, IntroNISH.id);
+          },
+          child: const Text(
+            "Home",
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+        nextButtonText: 'Assessment',
       ),
       bottomNavigationBar: BottomWidget(),
     );

@@ -17,7 +17,7 @@ class _stress4State extends State<stress4> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidget(),
-      body: FlipcardStressWidget(),
+      body: const FlipcardStressWidget(),
       bottomNavigationBar: BottomWidget(),
     );
   }

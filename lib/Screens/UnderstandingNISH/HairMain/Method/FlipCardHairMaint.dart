@@ -1,20 +1,22 @@
 import 'package:flip_card/flip_card.dart';
-import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Scalp/Method/Selfcheck.dart';
+import 'package:natural_hair_therapist/Screens/UnderstandingNISH/HairMain/Method/SelfCheckHairMaint.dart';
 
 import '../../../../imports.dart';
 import '../../Ingredient/Methods/IngredientCard.dart';
 import '../../Nutriton/classesInsideNutrition/NutritionMode.dart';
+import '../../Nutriton/flipcard/flipcard.dart';
 
-class FlipcardScalpWidget extends StatefulWidget {
-  const FlipcardScalpWidget({super.key});
+class FlipcardHairMaintWidget extends StatefulWidget {
+  const FlipcardHairMaintWidget({super.key});
 
   @override
-  State<FlipcardScalpWidget> createState() => _FlipcardScalpWidgetState();
+  State<FlipcardHairMaintWidget> createState() =>
+      _FlipcardHairMaintWidgetState();
 }
 
-class _FlipcardScalpWidgetState extends State<FlipcardScalpWidget> {
+class _FlipcardHairMaintWidgetState extends State<FlipcardHairMaintWidget> {
   int currentStep = 1;
-  final int totalSteps = 4;
+  final int totalSteps = 5;
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +31,15 @@ class _FlipcardScalpWidgetState extends State<FlipcardScalpWidget> {
             direction: FlipDirection.HORIZONTAL,
             speed: 500,
             front: buildFrontCardB(
-              title: "The Scalp Is the Womb of the Hair",
+              title: "Hair Maintenance = Caring for Hair Strands",
             ),
             back: buildBackCardB(
               description:
-                  """	•	It’s where the hair is born, where nutrients are delivered through blood flow, and where healthy growth begins.
+                  """•	Washing, conditioning, moisturizing, sealing, detangling, stretching.
                   
-                  •	If the womb is unhealthy, the hair will suffer — no matter what products you use afterward.""",
+                  •	Your hair is no longer connected to the blood supply—it cannot repair itself.
+                  
+                  •	Your job is to preserve what has already grown.""",
             ),
           );
         case 2:
@@ -43,13 +47,15 @@ class _FlipcardScalpWidgetState extends State<FlipcardScalpWidget> {
             direction: FlipDirection.HORIZONTAL,
             speed: 500,
             front: buildFrontCardB(
-              title: "The Scalp Reflects Internal Health",
+              title: "Products, Tools & Techniques",
             ),
-            back: buildBackCardB(
+            back: buildBackCard(
               description:
-                  """•	Poor diet, dehydration, or inflammation can show up in the scalp first — through flaking, itching, or sensitivity.
-                  •	This is why nutrition and stress management are also scalp care.
-                  Just as plants absorb nutrients through soil, hair receives its nutrients through the scalp. The health of each strand is directly linked to the nutrients available in this “feeding soil.""",
+                  """•	Products: These are your hair maintenance products (shampoo, conditioner, oils, leave-ins).
+	•	Tools: Wide-tooth combs, satin scarves, bonnets, microfiber towels.
+	•	Techniques: LOC/LCO methods, finger detangling, steaming, greenhouse method.""",
+              tip:
+                  'tips: Choose tools and methods based on your hair needs, not just trends.',
             ),
           );
         case 3:
@@ -57,29 +63,30 @@ class _FlipcardScalpWidgetState extends State<FlipcardScalpWidget> {
             direction: FlipDirection.HORIZONTAL,
             speed: 500,
             front: buildFrontCardB(
-              title: "Daily Practices to Support a Healthy Scalp",
+              title: "What Is Length Retention?",
             ),
             back: buildBackCardB(
                 description:
-                    """•	Massage regularly to stimulate blood flow and oxygen delivery to the follicles.
-	•	Cleanse gently to avoid buildup without stripping natural oils.
-	•	Moisturize lightly if your scalp is dry — just like the rest of your skin.
-	•	Avoid tight styles, constant manipulation, or stress on the follicles.
-"""),
+                    """You don’t grow longer hair — you keep more of what you’ve already grown.
+                    
+	•	Hair growth is automatic. What you need is retention.
+	•	Retention means protecting your ends, minimizing breakage, and being consistent.
+	•	Most people are growing hair… they’re just not keeping it."""),
           );
         case 4:
           return FlipCard(
             direction: FlipDirection.HORIZONTAL,
             speed: 500,
             front: buildFrontCardB(
-              title: "Scalp Stress Is Real",
+              title: "Hair Maintenance Is a Cycle",
             ),
-            back: buildBackCardB(
-              description:
-                  """• Tension, dryness, inflammation, or buildup all create stress for the scalp.
-	
-	•	Scalp stress can lead to slow growth, weak strands, and even permanent damage if ignored.""",
-            ),
+            back: buildBackCardB(description: """•	Cleanse (gently, regularly)
+•	Condition and treat
+•	Moisturize and seal
+•	Protect at night and during styling
+
+You don’t need 50 products. You need a routine that matches your lifestyle and hair needs.
+"""),
           );
 
         default:
@@ -142,15 +149,14 @@ class _FlipcardScalpWidgetState extends State<FlipcardScalpWidget> {
                     foregroundColor: kPrimaryColor,
                   ),
                   onPressed: () {
-                    selfcheckQuestion(context);
+                    HairMaintSelfcheckQuestion(context);
                   },
                   child: Text("self assesment"),
                 ),
               ElevatedButton(
                 onPressed: currentStep < totalSteps
                     ? () => setState(() => currentStep++)
-                    : () =>
-                        Navigator.pushReplacementNamed(context, IntroNISH.id),
+                    : () => Navigator.pop(context),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
                   foregroundColor: kPrimaryColor,

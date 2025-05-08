@@ -30,9 +30,22 @@ class _Growyourhair6State extends State<Growyourhair6> {
           ],
         ),
         nextButton: () {
-          Navigator.pushNamed(context, Questiononescreen.id);
+          Navigator.pushNamed(context, Dashboard2.id);
         },
         nextButtonText: 'Next >>',
+        Section4: ElevatedButton(
+          onPressed: () {
+            Navigator.pushNamed(context, Questiononescreen.id);
+          },
+          style: ElevatedButton.styleFrom(backgroundColor: kPrimaryColor),
+          child: const Text(
+            "Hair Scan",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+            ),
+          ),
+        ),
       ),
       bottomNavigationBar: BottomWidget(),
     );

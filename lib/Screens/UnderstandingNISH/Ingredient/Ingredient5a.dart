@@ -2,6 +2,7 @@ import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 
 import '../../../Constants.dart';
+import '../../../Methods/AiHttpMethod.dart';
 import '../../../Widgets/AppBarWidget.dart';
 import '../../../Widgets/BottomWidget.dart';
 import '../Intro.dart';
@@ -20,6 +21,9 @@ class Ingredient5a extends StatefulWidget {
 }
 
 class _Ingredient5aState extends State<Ingredient5a> {
+  bool isData = false;
+  bool isNew = true;
+
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -168,7 +172,8 @@ NHT Tip: The right product for you is the one with the right ingredients for you
                               if (currentStep == totalSteps + 1)
                                 ElevatedButton(
                                   onPressed: () {
-                                    Navigator.pushNamed(context, IntroNISH.id);
+                                    Navigator.pushReplacementNamed(
+                                        context, IntroNISH.id);
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.white,
@@ -205,8 +210,11 @@ NHT Tip: The right product for you is the one with the right ingredients for you
   }
 
   _QuestionModal(BuildContext context) {
+    final OpenAIService openAIService = OpenAIService();
+
     int currentStep = 1;
     int numberOfPages = 5;
+    String? data;
     String? selectedOption;
     final List<String> optionsAnswer = [
       "Yes",
@@ -224,6 +232,7 @@ NHT Tip: The right product for you is the one with the right ingredients for you
     bool shouldMove3 = false;
     bool shouldMove4 = false;
     bool shouldMove5 = false;
+    bool lastQuestionAnswered = false;
 
     showModalBottomSheet(
       context: context,
@@ -301,45 +310,69 @@ NHT Tip: The right product for you is the one with the right ingredients for you
                       ),
                     );
                   case 5:
-                    return NutritionModal(
-                      text1:
-                          'Do you choose products based on your hair need (e.g., moisture, protein)?',
-                      text3: listviewBuilder(
-                        optionsQuestion: optionsAnswer,
-                        answer: answer5,
-                        onChanged: (String? v) {
-                          setModalState(() {
-                            answer5 = v;
-                            // currentStep++;
-                          });
-                        },
-                      ),
-                    );
+                    return isNew
+                        ? NutritionModal(
+                            text1:
+                                'Do you choose products based on your hair need (e.g., moisture, protein)?',
+                            text3: listviewBuilder(
+                              optionsQuestion: optionsAnswer,
+                              answer: answer5,
+                              onChanged: (String? v) {
+                                setModalState(() {
+                                  answer5 = v;
+                                  lastQuestionAnswered = true;
+                                  // currentStep++;
+                                });
+                              },
+                            ),
+                            text4: Text(
+                              !lastQuestionAnswered ? "pls select option" : "",
+                              style: const TextStyle(
+                                fontStyle: FontStyle.italic,
+                                color: Colors.red,
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          )
+                        : NutritionModal(
+                            text1: "Please Wait",
+                            text3: const CircularProgressIndicator(
+                              color: Colors.white,
+                            ),
+                            text2: "Analyzing Your data...");
 
                   default:
                     return NutritionModal(
-                      text1:
-                          'You have successfully completed the Introduction section',
-                      text3: Column(
-                        children: [
-                          const Text(
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              "You can now close this and go to the next page (Building block)"),
-                          const SizedBox(
-                            height: 20.0,
-                          ),
-                          ElevatedButton(
-                              onPressed: () {
-                                Navigator.pushNamed(context, Ingredient6.id);
-                              },
-                              child: const Text("Start Hair Needs Assessment"))
-                        ],
-                      ),
-                    );
+                        text1: 'Your Self Check Result',
+                        text2: data,
+                        text3: ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, Ingredient6.id);
+                          },
+                          child: const Text("Start Hair Needs Assessment"),
+                        )
+                        // Column(
+                        //   children: [
+                        //     const Text(
+                        //         style: TextStyle(
+                        //           color: Colors.white,
+                        //           fontSize: 20.0,
+                        //           fontWeight: FontWeight.bold,
+                        //         ),
+                        //         "data"),
+                        //     const SizedBox(
+                        //       height: 20.0,
+                        //     ),
+                        //     ElevatedButton(
+                        //       onPressed: () {
+                        //         Navigator.pushNamed(context, Ingredient6.id);
+                        //       },
+                        //       child: const Text("Start Hair Needs Assessment"),
+                        //     )
+                        //   ],
+                        // ),
+                        );
                 }
               }
 
@@ -396,18 +429,40 @@ NHT Tip: The right product for you is the one with the right ingredients for you
                             ),
                           if (currentStep == numberOfPages)
                             ElevatedButton(
-                              onPressed: () {
-                                print({
-                                  answer1,
-                                  answer2,
-                                  answer3,
-                                  answer4,
-                                  answer5
-                                });
-                                setModalState(() {
-                                  currentStep++;
-                                });
-                              },
+                              onPressed: lastQuestionAnswered
+                                  ? () async {
+                                      setModalState(() {
+                                        isNew = false;
+                                      });
+                                      String input =
+                                          """Do you usually check the ingredient list before buying a product?: $answer1.
+                                        Are you aware of any ingredients that your hair doesn’t like?: $answer2.
+                                        Do you know the difference between drying and moisturizing alcohols?: $answer3.
+                                        Have you ever had a negative reaction to a product, but weren’t sure why?: $answer4.
+                                        Do you choose products based on your hair need (e.g., moisture, protein)?: $answer5.""";
+                                      try {
+                                        String resp = await openAIService
+                                            .generateResponse(input,
+                                                "Generate a personalized summary (max 25 words) based on a hair assessment using the NISH framework: Nutrition, Ingredients, Scalp Care, Sleep Management, Stress Management, and Hair Maintenance.The tone should be warm, empowering, and informative.");
+                                        print(resp);
+                                        setModalState(() {
+                                          data = resp;
+                                          isData = true;
+                                          isNew = true;
+                                          currentStep++;
+                                        });
+                                      } catch (e) {
+                                        print(e.toString());
+                                      }
+                                      print({
+                                        answer1,
+                                        answer2,
+                                        answer3,
+                                        answer4,
+                                        answer5
+                                      });
+                                    }
+                                  : null,
                               child: const Text("show result"),
                             )
                         ],

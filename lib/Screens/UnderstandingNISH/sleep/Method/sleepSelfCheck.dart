@@ -1,5 +1,6 @@
 import 'package:natural_hair_therapist/Screens/UnderstandingNISH/sleep/Method/SleepQuickTip.dart';
 
+import '../../../../Methods/AiHttpMethod.dart';
 import '../../../../imports.dart';
 import '../../Nutriton/Methods/listTile.dart';
 import '../../Nutriton/classesInsideNutrition/NutritionMode.dart';
@@ -21,6 +22,9 @@ SleepSelfcheckQuestion(BuildContext context) {
   String? answer3;
   String? answer4;
   String? answer5;
+  final OpenAIService openAIService = OpenAIService();
+  String? data;
+  bool isNew = true;
 
   showModalBottomSheet(
     context: context,
@@ -80,7 +84,7 @@ SleepSelfcheckQuestion(BuildContext context) {
                   );
                 case 4:
                   return NutritionModal(
-                    text1: "I avoid screens/bright light an hour before bed .",
+                    text1: "I avoid screens/bright light an hour before bed.",
                     text3: listviewBuilder(
                       optionsQuestion: optionsQuestion,
                       answer: answer4,
@@ -94,37 +98,74 @@ SleepSelfcheckQuestion(BuildContext context) {
                     ),
                   );
                 case 5:
-                  return NutritionModal(
-                    text1:
-                        'I use silk or satin to protect my hair while sleeping.',
-                    text3: listviewBuilder(
-                      optionsQuestion: optionsQuestion,
-                      answer: answer5,
-                      onChanged: (String? v) {
-                        setModalState(() {
-                          answer5 = v;
-                          lastQuestionAnswered = true;
-                          print(answer5);
-                        });
-                      },
-                    ),
-                    text4: Text(
-                      !lastQuestionAnswered ? "pls select option" : "",
-                      style: const TextStyle(
-                        fontStyle: FontStyle.italic,
-                        color: Colors.red,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  );
+                  return isNew
+                      ? NutritionModal(
+                          text1:
+                              'I use silk or satin to protect my hair while sleeping.',
+                          text3: listviewBuilder(
+                            optionsQuestion: optionsQuestion,
+                            answer: answer5,
+                            onChanged: (String? v) {
+                              setModalState(() {
+                                answer5 = v;
+                                lastQuestionAnswered = true;
+                                print(answer5);
+                              });
+                            },
+                          ),
+                          text4: Text(
+                            !lastQuestionAnswered ? "pls select option" : "",
+                            style: const TextStyle(
+                              fontStyle: FontStyle.italic,
+                              color: Colors.red,
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        )
+                      : NutritionModal(
+                          text1: "Please Wait.",
+                          text2: "Analyzing Your data ...",
+                          text3: CircularProgressIndicator(
+                            color: Colors.white,
+                          ),
+                        );
 
                 default:
                   return NutritionModal(
-                    text1:
-                        'You have successfully completed the Introduction section',
-                    text2:
-                        'You can now close this and go to the next page (Building block)',
+                    text3: Column(
+                      children: [
+                        const Text(
+                          "Result",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 30,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                        const Divider(
+                          color: Colors.white,
+                          thickness: 5.0,
+                        ),
+                        Text(
+                          data!,
+                          textAlign: TextAlign.justify,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    // text3: ElevatedButton(
+                    //   onPressed: () {
+                    //     Navigator.pop(context);
+                    //   },
+                    //   child: const Text("close"),
+                    // ),
                   );
               }
             }
@@ -176,16 +217,36 @@ SleepSelfcheckQuestion(BuildContext context) {
                         if (currentStep == numberOfPages)
                           ElevatedButton(
                             onPressed: lastQuestionAnswered
-                                ? () {
+                                ? () async {
+                                    setModalState(() {
+                                      isNew = false;
+                                    });
+                                    String input = """
+                              I sleep at least 7 hours most nights: $answer1,
+                              I feel well-rested when I wake up: $answer2,
+                              I go to bed and wake up around the same time: $answer3,
+                              I avoid screens/bright light an hour before bed: $answer4,
+                              I use silk or satin to protect my hair while sleeping: $answer5.
+                              """;
+                                    try {
+                                      String resp =
+                                          await openAIService.generateResponse(
+                                              input,
+                                              "Generate a personalized summary (max 25 words) based on a hair assessment using the NISH framework: Nutrition, Ingredients, Scalp Care, Sleep Management, Stress Management, and Hair Maintenance.The tone should be warm, empowering, and informative.");
+                                      print(resp);
+                                      setModalState(() {
+                                        data = resp;
+                                        currentStep++;
+                                      });
+                                    } catch (e) {
+                                      print(e.toString());
+                                    }
                                     print("welcome");
                                     print(answer1);
                                     print(answer2);
                                     print(answer3);
                                     print(answer4);
                                     print(answer5);
-                                    setModalState(() {
-                                      currentStep++;
-                                    });
                                   }
                                 : null,
                             child: Text("View Result"),

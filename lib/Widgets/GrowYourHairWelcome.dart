@@ -4,16 +4,18 @@ import '../Constants.dart';
 import '../Methods/secondaryNavigation.dart';
 
 class WelcomeHair extends StatelessWidget {
-  const WelcomeHair(
-      {super.key,
-      required this.header,
-      required this.subheader,
-      required this.note,
-      required this.nextButton,
-      required this.nextButtonText,
-      this.Section1,
-      this.Section2,
-      this.Section3});
+  const WelcomeHair({
+    super.key,
+    required this.header,
+    required this.subheader,
+    required this.note,
+    required this.nextButton,
+    required this.nextButtonText,
+    this.Section1,
+    this.Section2,
+    this.Section3,
+    this.Section4,
+  });
 
   final String header;
   final String subheader;
@@ -22,6 +24,7 @@ class WelcomeHair extends StatelessWidget {
   final Widget? Section1;
   final Widget? Section2;
   final Widget? Section3;
+  final Widget? Section4;
   final String nextButtonText;
 
   @override
@@ -95,17 +98,18 @@ class WelcomeHair extends StatelessWidget {
                       "<< Back",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 25,
+                        fontSize: 20,
                       ),
                     ),
                   ),
+                  if (Section4 != null) Section4!,
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: kPrimaryColor),
                     onPressed: nextButton,
                     child: Text(
                       nextButtonText,
-                      style: const TextStyle(color: Colors.white, fontSize: 25),
+                      style: const TextStyle(color: Colors.white, fontSize: 20),
                     ),
                   ),
                   if (Section1 != null) Section1!,

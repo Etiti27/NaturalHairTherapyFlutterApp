@@ -76,10 +76,28 @@ class _Dashboard2State extends State<Dashboard2> {
                           // height: 50.0,
                           fit: BoxFit.cover,
                         ),
-                        title: 'Understanding NISH',
+                        title: 'Understand NISH',
                         OnTap: () {
                           isNishDone
                               ? Navigator.pushNamed(context, IntroNISH.id)
+                              : null;
+                        },
+                      ),
+                    ),
+                    Flexible(
+                      child: DashboardCard(
+                        icon: iconLock(isDone: isHairCare),
+                        image: Image.asset(
+                          'assets/images/logo.png',
+                          width: 100.0,
+                          // height: 50.0,
+                          fit: BoxFit.cover,
+                        ),
+                        title: """Hair Care, Growth""",
+                        OnTap: () {
+                          isHairCare
+                              ? Navigator.pushNamed(
+                                  context, HairCareGrowthMain.id)
                               : null;
                         },
                       ),
@@ -101,7 +119,25 @@ class _Dashboard2State extends State<Dashboard2> {
                           // height: 50.0,
                           fit: BoxFit.cover,
                         ),
-                        title: """Hair Care, Hair Growth, Hair Maintenance""",
+                        title: """Hair Maintenance""",
+                        OnTap: () {
+                          isHairCare
+                              ? Navigator.pushNamed(
+                                  context, HairCareGrowthMain.id)
+                              : null;
+                        },
+                      ),
+                    ),
+                    Flexible(
+                      child: DashboardCard(
+                        icon: iconLock(isDone: isHairCare),
+                        image: Image.asset(
+                          'assets/images/logo.png',
+                          width: 100.0,
+                          // height: 50.0,
+                          fit: BoxFit.cover,
+                        ),
+                        title: """Steps to grow Better Hair""",
                         OnTap: () {
                           isHairCare
                               ? Navigator.pushNamed(
@@ -112,28 +148,6 @@ class _Dashboard2State extends State<Dashboard2> {
                     ),
                   ],
                 ),
-                const SizedBox(width: 10),
-                Row(
-                  mainAxisAlignment:
-                      MainAxisAlignment.center, // ✅ Center content vertically
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Flexible(
-                      child: DashboardCard(
-                        icon: iconLock(isDone: is3step),
-                        image: Image.asset(
-                          'assets/images/logo.png',
-                          width: 100.0,
-                          // height: 50.0,
-                          fit: BoxFit.cover,
-                        ),
-                        title: '3 steps to grow Better Hair',
-                        OnTap: () {},
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(width: 10),
               ],
             ),
           ),

@@ -1,18 +1,38 @@
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:natural_hair_therapist/Screens/Dashboards/Dashboard3.dart';
 import 'package:natural_hair_therapist/Screens/GrowHair/GrowYourHair6.dart';
+import 'package:natural_hair_therapist/Screens/UnderstandingNISH/HairMain/HairMaint1.dart';
+import 'package:natural_hair_therapist/Screens/UnderstandingNISH/HairMain/HairMaint3.dart';
 import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Nutriton/NISH5.dart';
 
 import 'Screens/Questions/7Question.dart';
+import 'Screens/UnderstandingNISH/HairMain/HairMaint2.dart';
+import 'Screens/UnderstandingNISH/HairMain/HairMaint4.dart';
 import 'Screens/UnderstandingNISH/Ingredient/Ingredient4b.dart';
 import 'Screens/UnderstandingNISH/Ingredient/Ingredient5a.dart';
 import 'Screens/UnderstandingNISH/Nutriton/NISH1.dart';
 import 'imports.dart';
+
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp();
+//   await FirebaseAppCheck.instance.activate(
+//     androidProvider: AndroidProvider.debug, // or playIntegrity
+//     appleProvider: AppleProvider.debug, // or appAttest/deviceCheck
+//   );
+//
+//   runApp(MyApp());
+// }
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensures binding is initialized
   // await NotificationService.init();
   await dotenv.load(fileName: ".env");
   await Firebase.initializeApp();
+  await FirebaseAppCheck.instance.activate(
+    androidProvider: AndroidProvider.debug, // or playIntegrity
+    appleProvider: AppleProvider.debug, // or appAttest/deviceCheck
+  );
   runApp(
     MultiProvider(
       providers: [
@@ -90,9 +110,10 @@ class MyApp extends StatelessWidget {
         sleep3.id: (context) => const sleep3(),
         sleep4.id: (context) => const sleep4(),
         sleep5.id: (context) => const sleep5(),
-        hairMain1.id: (context) => const hairMain1(),
-        hairMain2.id: (context) => const hairMain2(),
-        hairMain3.id: (context) => const hairMain3(),
+        hairMaint1.id: (context) => const hairMaint1(),
+        hairMaint2.id: (context) => const hairMaint2(),
+        hairMaint3.id: (context) => const hairMaint3(),
+        HairMaint4.id: (context) => const HairMaint4(),
         lengthlent1.id: (context) => const lengthlent1(),
         lengthlent2.id: (context) => const lengthlent2(),
         HairCareGrowthMain.id: (context) => const HairCareGrowthMain(),

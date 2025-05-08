@@ -137,7 +137,8 @@ class _FlipcardSleepWidgetState extends State<FlipcardSleepWidget> {
               ElevatedButton(
                 onPressed: currentStep < totalSteps
                     ? () => setState(() => currentStep++)
-                    : () => Navigator.pop(context),
+                    : () =>
+                        Navigator.pushReplacementNamed(context, IntroNISH.id),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
                   foregroundColor: kPrimaryColor,

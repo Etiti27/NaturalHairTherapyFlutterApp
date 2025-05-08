@@ -1,3 +1,4 @@
+import '../../../../Methods/AiHttpMethod.dart';
 import '../../../../imports.dart';
 import '../../Nutriton/Methods/listTile.dart';
 import '../../Nutriton/classesInsideNutrition/NutritionMode.dart';
@@ -5,6 +6,9 @@ import '../../Nutriton/classesInsideNutrition/NutritionMode.dart';
 QuestionB(BuildContext context) {
   int currentStep = 1;
   int numberOfPages = 6;
+  bool lastQuestionAnswered = false;
+  bool isNew = true;
+
   String? selectedOption;
   final List<String> optionsAnswer1 = [
     "Very dry and rough",
@@ -55,6 +59,8 @@ QuestionB(BuildContext context) {
   String? answer4;
   String? answer5;
   String? answer6;
+  String? data;
+  final OpenAIService openAIService = OpenAIService();
 
   showModalBottomSheet(
     context: context,
@@ -77,6 +83,7 @@ QuestionB(BuildContext context) {
                       onChanged: (String? v) {
                         setModalState(() {
                           answer1 = v;
+                          currentStep++;
                         });
                       },
                     ),
@@ -91,6 +98,7 @@ QuestionB(BuildContext context) {
                       onChanged: (String? v) {
                         setModalState(() {
                           answer2 = v;
+                          currentStep++;
                         });
                       },
                     ),
@@ -105,6 +113,7 @@ QuestionB(BuildContext context) {
                       onChanged: (String? v) {
                         setModalState(() {
                           answer3 = v;
+                          currentStep++;
                         });
                       },
                     ),
@@ -119,6 +128,7 @@ QuestionB(BuildContext context) {
                       onChanged: (String? v) {
                         setModalState(() {
                           answer4 = v;
+                          currentStep++;
                         });
                       },
                     ),
@@ -133,30 +143,46 @@ QuestionB(BuildContext context) {
                       onChanged: (String? v) {
                         setModalState(() {
                           answer5 = v;
+                          currentStep++;
                         });
                       },
                     ),
                   );
                 case 6:
-                  return NutritionModal(
-                    text1: 'What is your current styling routine like?',
-                    text3: listviewBuilder(
-                      optionsQuestion: optionsAnswer6,
-                      answer: answer6,
-                      onChanged: (String? v) {
-                        setModalState(() {
-                          answer6 = v;
-                        });
-                      },
-                    ),
-                  );
+                  return isNew
+                      ? NutritionModal(
+                          text1: 'What is your current styling routine like?',
+                          text3: listviewBuilder(
+                            optionsQuestion: optionsAnswer6,
+                            answer: answer6,
+                            onChanged: (String? v) {
+                              setModalState(() {
+                                answer6 = v;
+                                lastQuestionAnswered = true;
+                              });
+                            },
+                          ),
+                          text4: Text(
+                            !lastQuestionAnswered ? "pls select option" : "",
+                            style: const TextStyle(
+                              fontStyle: FontStyle.italic,
+                              color: Colors.red,
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        )
+                      : NutritionModal(
+                          text1: "Please Wait",
+                          text3: const CircularProgressIndicator(
+                            color: Colors.white,
+                          ),
+                          text2: "Analyzing Your data...");
 
                 default:
                   return NutritionModal(
-                    text1:
-                        'You have successfully completed the Introduction section',
-                    text2:
-                        'You can now close this and go to the next page (Building block)',
+                    text1: 'Self Assessment Result',
+                    text2: data,
                   );
               }
             }
@@ -186,18 +212,44 @@ QuestionB(BuildContext context) {
                         ),
                         currentStep == numberOfPages
                             ? ElevatedButton(
-                                onPressed: () {
-                                  print({
-                                    answer1,
-                                    answer2,
-                                    answer3,
-                                    answer4,
-                                    answer5
-                                  });
-                                  setModalState(() {
-                                    currentStep++;
-                                  });
-                                },
+                                onPressed: lastQuestionAnswered
+                                    ? () async {
+                                        setModalState(() {
+                                          isNew = false;
+                                        });
+                                        String input =
+                                            """How does your hair feel when dry (not freshly moisturized)?': $answer1.
+                                        How does your hair behave when you stretch a strand gently?: $answer2.
+                                        Are you experiencing breakage (small hairs in the sink, on your clothes, or hands)?: $answer3.
+                                        How does your hair respond to water or moisture-based products?: $answer4.
+                                        Have you used protein treatments or protein-rich products recently?: $answer5.
+                                        What is your current styling routine like?: $answer6""";
+                                        try {
+                                          String resp = await openAIService
+                                              .generateResponse(input,
+                                                  "Generate a personalized summary (max 25 words) based on a hair assessment using the NISH framework: Nutrition, Ingredients, Scalp Care, Sleep Management, Stress Management, and Hair Maintenance.The tone should be warm, empowering, and informative.");
+                                          print(resp);
+                                          setModalState(() {
+                                            data = resp;
+
+                                            isNew = true;
+                                            currentStep++;
+                                          });
+                                        } catch (e) {
+                                          print(e.toString());
+                                        }
+                                        print({
+                                          answer1,
+                                          answer2,
+                                          answer3,
+                                          answer4,
+                                          answer5
+                                        });
+                                        setModalState(() {
+                                          currentStep++;
+                                        });
+                                      }
+                                    : null,
                                 child: Text("View Result"),
                               )
                             : ElevatedButton(

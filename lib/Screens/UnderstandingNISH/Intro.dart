@@ -1,3 +1,4 @@
+import 'package:natural_hair_therapist/Screens/UnderstandingNISH/HairMain/HairMaint1.dart';
 import 'package:natural_hair_therapist/Screens/UnderstandingNISH/Nutriton/NISH1.dart';
 import 'package:natural_hair_therapist/imports.dart';
 
@@ -153,7 +154,7 @@ class _IntroNISHState extends State<IntroNISH> {
                         left: 20,
                         child: GestureDetector(
                           onTap: () {
-                            // Navigator.pushNamed(context, NISH1.id);
+                            Navigator.pushNamed(context, hairMaint1.id);
                             print('Element 6 clicked.');
                           },
                           child: Text(

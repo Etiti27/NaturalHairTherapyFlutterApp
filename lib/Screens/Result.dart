@@ -1,4 +1,3 @@
-import 'package:natural_hair_therapist/Screens/Dashboards/Dashboard3.dart';
 import 'package:natural_hair_therapist/imports.dart';
 
 // import 'openai_service.dart'; // Ensure this is the correct file path
@@ -88,7 +87,7 @@ class _ResultScreenState extends State<ResultScreen> {
                     style: ElevatedButton.styleFrom(
                         backgroundColor: kPrimaryColor),
                     onPressed: () {
-                      Navigator.pushNamed(context, Dashboard3.id);
+                      Navigator.pushNamed(context, Dashboard2.id);
                     },
                     child: const Text(
                       "Let's get into it",

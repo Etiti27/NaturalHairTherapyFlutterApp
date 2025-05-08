@@ -21,10 +21,26 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
           },
           itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
             const PopupMenuItem<String>(
-              value: 'Profile',
+              value: 'Start My Action Plan',
               child: ListTile(
-                leading: Icon(Icons.person),
-                title: Text('Profile'),
+                leading: Icon(Icons.rocket_launch),
+                title: Text('Start My Action Plan'),
+              ),
+            ),
+            const PopupMenuItem<String>(
+              value: 'Track My Progress',
+              child: ListTile(
+                leading: Icon(Icons.track_changes),
+                title: Text('Track My Progress'),
+              ),
+            ),
+            const PopupMenuItem<String>(
+              value: 'My Goal Summary',
+              child: ListTile(
+                leading: Icon(Icons.summarize),
+                title: Text(
+                  'My Goal Summary',
+                ),
               ),
             ),
             const PopupMenuItem<String>(

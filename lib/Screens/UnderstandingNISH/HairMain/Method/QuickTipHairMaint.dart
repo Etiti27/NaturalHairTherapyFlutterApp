@@ -1,7 +1,7 @@
 import 'package:natural_hair_therapist/imports.dart';
 
 // Function to show the sliding modal
-void StressQuickTip(BuildContext context) {
+void HairMaintQuickTip(BuildContext context) {
   int currentStep = 1;
   int totalSteps = 4;
 
@@ -15,7 +15,8 @@ void StressQuickTip(BuildContext context) {
         alignment: Alignment.centerLeft, // Modal will come from the left
         child: StatefulBuilder(
           builder: (context, setState) {
-            String title = "Your hair thrives when your body is calm";
+            String title =
+                "Retention is protection. Don’t let your ends suffer";
             // Function to build the flip card for each step
             Widget buildSlidingCard(int step) {
               switch (step) {
@@ -23,23 +24,22 @@ void StressQuickTip(BuildContext context) {
                   return _buildCard(
                     title: title,
                     description:
-                        "Take 5 deep breaths before every wash day—it helps more than you think.",
+                        "Hair maintenance is a lifestyle, not an event.",
                   );
                 case 2:
                   return _buildCard(
                     title: title,
-                    description: "Sleep is not a luxury. It’s hair food.",
+                    description: "Wrap it up. Your hair needs rest too.",
                   );
                 case 3:
                   return _buildCard(
                       title: title,
-                      description:
-                          "Journaling helps your mind, your mood—and your hair.");
+                      description: "Be gentle. Hair strands are precious.");
                 case 4:
                   return _buildCard(
                       title: title,
                       description:
-                          "A scalp massage isn’t just good for blood flow—it’s a nervous system reset.");
+                          "It’s not what you use—it’s what you consistently do.");
 
                 default:
                   return const Center(
